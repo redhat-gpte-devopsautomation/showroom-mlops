@@ -10,11 +10,11 @@ asciidoc:
     page-pagination: true
     experimental:
     numbered:
-    lab_name: "From Development to Deployment: Securing The Software Supply Chain with Red Hat OpenShift"
+    lab_name: "AI Based Smart Retail: Event-Driven Ansible & ChatOps"
     guid: my-guid
     ssh_user: lab-user
     ssh_password: lab-user
-    ssh_command: ssh devops@bastion.{guid}.example.opentlc.com
+    ssh_command: ssh lab-user@bastion.{guid}.example.opentlc.com
 
   extensions:
     - ./content/lib/tab-block.js
