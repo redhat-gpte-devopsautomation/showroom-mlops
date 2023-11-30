@@ -4,12 +4,10 @@
 === Workshop Overview
 
 
-This solution about *AI based smart retail* showcases an architecture which is scalable and efficient system capturing and responding to events with operational actions to ease business teams by making product managers quickly take decisions and implement it through easy operations like ChatOps. With *Event-Driven Ansible*, this system can connect to, and consume from a number of systems, services and data sources by responding to triggering events.
-
-This architecture demonstrates how an Event-Driven Ansible with Red Hat AMQ Streams and ChatOps can help build an intelligent system to drive business insights with an event-driven workflow.
+Explore how Red Hat OpenShift combines Machine Learning, CI/CD, and GitOps into a coherent development experience. Participants will learn how Jupyter Notebooks within the Red Hat OpenShift Data Science ecosystem enable dynamic adjustments to applications and models. The workshop will also showcase the power of MLOps via Red Hat OpenShift Pipelines for intelligent application management. Concurrently, attendees will gain insights into GitOps practices, particularly the role of Argo CD in maintaining application resilience. The workshop concludes with a department store scenario, illustrating how these technologies can be applied in a real-world setting to benefit consumers and businesses.
 
 
-=== Use Cases
+=== Use Cases - To Be Updated
 * Common use cases that can be addressed with this architecture are:
 
 ** Machine Learning and Real-Time Analytics to build business intelligence.
