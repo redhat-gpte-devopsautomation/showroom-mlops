@@ -1,7 +1,6 @@
 :icons: font
 
-= AI Based Smart Retail: Event-Driven Ansible & ChatOps
-
+= Synergy of GitOps, CI/CD, and MLOps: Holistic Development in a Modern Landscape
 
 == Introduction 
 TBD
