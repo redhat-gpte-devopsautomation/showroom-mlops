@@ -4,27 +4,42 @@
 
 == Workshop Overview
 
-This AI-based smart retail solution features a scalable and efficient architecture designed to capture and respond to events, facilitating swift decision-making by product managers through streamlined operations like ChatOps. Leveraging link:https://www.redhat.com/en/technologies/management/ansible/event-driven-ansible[Event-driven Ansible,window=_blank], the system seamlessly connects and consumes data from various systems and services, responding to triggering events.
+This AI-based smart retail solution features a scalable and efficient architecture designed to capture and respond to image detection with specific business outcome.
 
-The integration of link:https://www.redhat.com/en/technologies/management/ansible/event-driven-ansible[Event-driven Ansible,window=_blank] with Red Hat AMQ Streams and ChatOps exemplifies how this architecture can construct an intelligent system, driving valuable business insights through an event-driven workflow. This cohesive approach enhances the agility of operational actions, empowering business teams with the ability to respond effectively to dynamic retail scenarios.
+Explore how Red Hat OpenShift combines Machine Learning, CI/CD, and GitOps into a coherent development experience. Participants will learn how Jupyter Notebooks within the Red Hat OpenShift Data Science ecosystem enable dynamic adjustments to applications and models. The workshop will also showcase the power of MLOps via Red Hat OpenShift Pipelines for intelligent application management. Concurrently, attendees will gain insights into GitOps practices, particularly the role of Argo CD in maintaining application resilience. The workshop concludes with a department store scenario, illustrating how these technologies can be applied in a real-world setting to benefit consumers and businesses.
 
+Participants will also be able to explore and understand OpenShift AI features especially on how model serving works and can be depooyed as well as how an applications can leverage this new features. 
+
+This lab also provides you with sentiment analysis based on real cstomer feedback usign a fictitious retail company. At the end we will explore how you can create a story combining this intelligent application for sentiment analysis and Object detection using MLOps helps achieve a specific business goal. This will help you take this demo to your custoemr leading with this use case to make it as realistic as possible to provide your point of view and walk through various Red Hat components and how it works together to create this higly scalable event driven architecture based solution. 
+
+We will showcases an architecture which is scalable and efficient system capturing and responding to streaming data using Kafka as the streaming platform and AIML. With Event-Driven Architecture this system can connect to, and consume from a number of systems, services and data sources by responding to triggering events.
+
+This architecture demonstrates how an Event-Driven Architecture with Red Hat AMQ Streams and OpenShift Serverless can help build an intelligent system with OpenShift Data Science platform to drive business insights and drive an event-driven workflow.
 
 == Use Cases
 This architecture is well-suited for addressing a variety of common use cases, including:
+. *Machine Learning and Real-Time Analytics for Business Intelligence:*
+* Utilize the framework for implementing machine learning and real-time analytics to enhance business intelligence, providing valuable insights for strategic decision-making. 
 
-. *Machine Learning and Real-Time Analytics:*
-* Utilize the framework for implementing machine learning and real-time analytics to enhance business intelligence, providing valuable insights for strategic decision-making.
+. *Personalized Recommendations:*
+Implement recommendation engines using machine learning models deployed on Red Hat OpenShift. By analyzing customer behavior and preferences in real-time, the system can be further enhanced to personalized product recommendations, improving customer engagement and increasing sales.
 
-. *Real-Time Events from End-User Feedback:*
-* Capture and respond to real-time events generated from end-user feedback, enabling enhanced product analysis and management with a focus on immediate customer needs and preferences.
-
-. *Real-Time System Interaction through Chat Ops:*
-* Enable real-time interaction with the system through user-friendly ChatOps mechanisms. This approach simplifies communication and operational commands, fostering a dynamic and responsive system.
-
-. *Event-Driven Ansible with Intelligent Applications, Kafka, and ChatOps:*
-* Leverage the power of Event-Driven Ansible in combination with intelligent applications, Kafka, and ChatOps to create a robust and interconnected system. This integration ensures efficient handling of events and seamless communication across different components.
+. *Image and Video Analysis for Object Detection, Monitoring, Face Recognition:*
+ntegrate image and video analysis capabilities into the solution for various applications such as object detection, monitoring of store premises, and face recognition. This can enhance security measures, optimize store layouts, and provide a personalized customer experience.
 
 . *Sentiment Analysis:*
 * Implement sentiment analysis to gauge customer sentiments effectively. By analyzing feedback and interactions in real time, businesses can adapt and respond to changing sentiments, enhancing customer satisfaction.
 
-These use cases showcase the versatility of the architecture, demonstrating its applicability across diverse scenarios for driving business innovation and intelligence.
+. *Model Serving and Deployment with OpenShift AI Features:*
+Showcase how models can be served and deployed using OpenShift AI features. This can include demonstrating the seamless integration of machine learning models into applications, ensuring scalability and efficiency in deploying AI solutions.
+
+. *GitOps Practices and Application Resilience with Argo CD:*
+Highlight the role of Argo CD in maintaining application resilience through GitOps practices. Showcase how version-controlled configurations and automated deployment processes contribute to the reliability and stability of the AI-based smart retail solution.
+
+. *Intelligent Application Management with MLOps and Red Hat OpenShift Pipelines:*
+Demonstrate the power of MLOps through Red Hat OpenShift Pipelines for managing intelligent applications. Showcase how automation and continuous integration/continuous deployment (CI/CD) contribute to efficient model deployment, monitoring, and management.
+
+. *Department Store Scenario: Real-World Application:*
+Present a real-world scenario in a department store, illustrating how the showcased technologies and architectures can be applied. This could involve demonstrating how the system responds to real-time events, engages customers through personalized recommendations, and enhances overall retail operations.
+
+These expanded use cases can help provide a comprehensive understanding of the AI-based smart retail solution and the showcased Red Hat technologies in addressing diverse business challenges and opportunities.

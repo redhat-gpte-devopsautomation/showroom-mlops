@@ -1,5 +1,5 @@
 
-.AI Based Smart Retail: Event-Driven Ansible & ChatOps
+.Synergy of GitOps, CI/CD, and MLOps: Holistic Development in a Modern Landscape
 * xref:index.adoc[]
 * xref:02-agenda.adoc[]
 * xref:03-introduction.adoc[]
