@@ -4,17 +4,17 @@
 
 == Workshop Overview
 
-This AI-based smart retail solution features a scalable and efficient architecture designed to capture and respond to image detection with specific business outcome.
+This AI-based smart retail solution features a scalable and efficient architecture designed for image detection with specific business outcomes.
 
-Explore how Red Hat OpenShift combines Machine Learning, CI/CD, and GitOps into a coherent development experience. Participants will learn how Jupyter Notebooks within the Red Hat OpenShift Data Science ecosystem enable dynamic adjustments to applications and models. The workshop will also showcase the power of MLOps via Red Hat OpenShift Pipelines for intelligent application management. Concurrently, attendees will gain insights into GitOps practices, particularly the role of Argo CD in maintaining application resilience. The workshop concludes with a department store scenario, illustrating how these technologies can be applied in a real-world setting to benefit consumers and businesses.
+Explore how Red Hat OpenShift seamlessly integrates Machine Learning, CI/CD, and GitOps into a coherent development experience. Participants will delve into the capabilities of Jupyter Notebooks within the Red Hat OpenShift Data Science ecosystem, enabling dynamic adjustments to applications and models. The workshop will also spotlight the effectiveness of MLOps through Red Hat OpenShift Pipelines for intelligent application management. Concurrently, attendees will gain insights into GitOps practices, focusing on the role of Argo CD in maintaining application resilience. The workshop concludes with a department store scenario, illustrating the practical application of these technologies in a real-world setting to benefit both consumers and businesses.
 
-Participants will also be able to explore and understand OpenShift AI features especially on how model serving works and can be depooyed as well as how an applications can leverage this new features. 
+Participants will also have the opportunity to explore and understand OpenShift AI features, particularly how model serving works and can be deployed, and how applications can leverage these new features.
 
-This lab also provides you with sentiment analysis based on real cstomer feedback usign a fictitious retail company. At the end we will explore how you can create a story combining this intelligent application for sentiment analysis and Object detection using MLOps helps achieve a specific business goal. This will help you take this demo to your custoemr leading with this use case to make it as realistic as possible to provide your point of view and walk through various Red Hat components and how it works together to create this higly scalable event driven architecture based solution. 
+This lab provides hands-on experience with sentiment analysis based on real customer feedback, using a fictitious retail company. In the final stages, we will explore how to weave a compelling narrative by combining this intelligent application for sentiment analysis with object detection using MLOps, contributing to the achievement of specific business goals. This approach allows you to present the demo to your customers, leading with a realistic use case to provide your perspective. You will also walk through various Red Hat components and their seamless integration to create a highly scalable event-driven architecture.
 
-We will showcases an architecture which is scalable and efficient system capturing and responding to streaming data using Kafka as the streaming platform and AIML. With Event-Driven Architecture this system can connect to, and consume from a number of systems, services and data sources by responding to triggering events.
+The workshop showcases an architecture that is scalable and efficient, capturing and responding to streaming data using Kafka as the streaming platform and AIML. With an Event-Driven Architecture, this system can seamlessly connect to and consume data from various systems, services, and data sources by responding to triggering events.
 
-This architecture demonstrates how an Event-Driven Architecture with Red Hat AMQ Streams and OpenShift Serverless can help build an intelligent system with OpenShift Data Science platform to drive business insights and drive an event-driven workflow.
+This architecture exemplifies how an Event-Driven Architecture, coupled with Red Hat AMQ Streams and OpenShift Serverless, can help build an intelligent system using the OpenShift Data Science platform to derive business insights and facilitate an event-driven workflow.
 
 == Use Cases
 This architecture is well-suited for addressing a variety of common use cases, including:
