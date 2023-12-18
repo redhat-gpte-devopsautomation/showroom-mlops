@@ -1,17 +1,17 @@
 site:
-  title: "Synergy of GitOps, CI/CD, and MLOps: Holistic Development in a Modern Landscape"
-  url: https://redhat-scholars.github.io/course-template
+  title: "AI Based Smart Retail: Event-Driven Ansible & ChatOps"
+  url: https://demo.redhat.com
   start_page: modules::index.adoc
 
 ui:
   bundle:
     url: https://github.com/tonykay/demo-gpte-classroom-ui/raw/main/releases/download/v0.0.2/ui-bundle.zip
-    snapshot: true
-  supplemental_files:
-    - path: ./content/supplemental-ui
-    - path: .nojekyll
-    - path: ui.yml
-      contents: "static_files: [ .nojekyll ]"
+    snapshot: false
+  supplemental_files: ./content/supplemental-ui
+    # - path: ./content/supplemental-ui
+    # - path: .nojekyll
+    # - path: ui.yml
+    #   contents: "static_files: [ .nojekyll ]"
 
 content:
   sources:
