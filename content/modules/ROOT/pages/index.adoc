@@ -25,10 +25,10 @@ This architecture is well-suited for addressing a variety of common use cases, i
 Implement recommendation engines using machine learning models deployed on Red Hat OpenShift. By analyzing customer behavior and preferences in real-time, the system can be further enhanced to personalized product recommendations, improving customer engagement and increasing sales.
 
 . *Image and Video Analysis for Object Detection, Monitoring, Face Recognition:*
-ntegrate image and video analysis capabilities into the solution for various applications such as object detection, monitoring of store premises, and face recognition. This can enhance security measures, optimize store layouts, and provide a personalized customer experience.
+Integrate image and video analysis capabilities into the solution for various applications such as object detection, monitoring of store premises, and face recognition. This can enhance security measures, optimize store layouts, and provide a personalized customer experience.
 
 . *Sentiment Analysis:*
-* Implement sentiment analysis to gauge customer sentiments effectively. By analyzing feedback and interactions in real time, businesses can adapt and respond to changing sentiments, enhancing customer satisfaction.
+Implement sentiment analysis to gauge customer sentiments effectively. By analyzing feedback and interactions in real time, businesses can adapt and respond to changing sentiments, enhancing customer satisfaction.
 
 . *Model Serving and Deployment with OpenShift AI Features:*
 Showcase how models can be served and deployed using OpenShift AI features. This can include demonstrating the seamless integration of machine learning models into applications, ensuring scalability and efficiency in deploying AI solutions.
