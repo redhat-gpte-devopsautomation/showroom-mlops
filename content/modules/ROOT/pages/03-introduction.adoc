@@ -1,5 +1,6 @@
 == Introduction and Challenge Overview
 :navtitle: 3: Workshop Introduction and Challenge Overview
+
 === The Story Behind The Solution 
 
 This solution highlights an architecture that is both scalable and efficient, designed to capture and respond to streaming data using Kafka as the streaming platform and AIML. Leveraging an Event-Driven Architecture, this system seamlessly connects to and consumes data from various systems, services, and data sources, triggered by specific events. Moreover, it incorporates a GitOps approach, facilitating collaboration between data scientists and application teams in deploying models and implementing business logic. This integration ensures a streamlined and collaborative development process within a modern landscape.
