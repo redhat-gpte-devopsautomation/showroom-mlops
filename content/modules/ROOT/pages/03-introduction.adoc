@@ -1,5 +1,6 @@
-== Introduction and Challenge Overview
 :navtitle: 3: Workshop Introduction and Challenge Overview
+
+== Introduction and Challenge Overview
 
 === The Story Behind The Solution 
 
