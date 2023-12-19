@@ -1,8 +1,7 @@
+= Introduction and Challenge Overview
 :navtitle: 3: Workshop Introduction and Challenge Overview
 
-== Introduction and Challenge Overview
-
-=== The Story Behind The Solution 
+== The Story Behind The Solution 
 
 This solution highlights an architecture that is both scalable and efficient, designed to capture and respond to streaming data using Kafka as the streaming platform and AIML. Leveraging an Event-Driven Architecture, this system seamlessly connects to and consumes data from various systems, services, and data sources, triggered by specific events. Moreover, it incorporates a GitOps approach, facilitating collaboration between data scientists and application teams in deploying models and implementing business logic. This integration ensures a streamlined and collaborative development process within a modern landscape.
 
@@ -16,7 +15,7 @@ Globex would like to:
 2. Build a Sentiment Analysis system to gain business intelligence based on the product reviews.
 3. Help curtail negative sentiments with coupon-based discounting to improve sales and sentiments
 
-=== The Solution
+== The Solution
 
 The solution is based on an Event-Driven Architecture, which relies on Apache Kafka as the data streaming platform for product reviews. The product reviews submitted by a customer are pushed to a Kafka topic, which is then consumed by both a Review Moderation Service (moderating for foul/abusive language) and a Sentiment Analysis Service (scoring the sentiment as positive or negative).
 
@@ -26,7 +25,7 @@ Once a review is moderated and marked as suitable, it is persisted in the Globex
 
 If there is negative feedback for a specific product category due to cost, the product manager can work with the business and data scientist team to provide coupon-based discounts on that specific category (for example, clothing) using image detection and business logic. This whole process is implemented by bringing in the synergy of GitOps, CI/CD, and MLOps, providing a holistic development approach to data scientists and application developers in a modern landscape.
 
-=== Lab Access
+== Lab Access
 
 The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`.
 All steps of this lab are to be completed as the `{ssh_user}` user.
