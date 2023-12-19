@@ -1,4 +1,4 @@
-:navtitle: 2: Introduction and Challenge
+:navtitle: 3: Introduction and Challenge
 == Introduction and Challenge Overview
 
 === The Story Behind The Solution 
