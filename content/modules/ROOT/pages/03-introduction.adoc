@@ -1,59 +1,30 @@
-= Introduction and Challenge Overview
-:navtitle: 3: Workshop Introduction
+== Introduction and Challenge Overview
 
-== The Story Behind The Solution 
+=== The Story Behind The Solution 
 
+This solution highlights an architecture that is both scalable and efficient, designed to capture and respond to streaming data using Kafka as the streaming platform and AIML. Leveraging an Event-Driven Architecture, this system seamlessly connects to and consumes data from various systems, services, and data sources, triggered by specific events. Moreover, it incorporates a GitOps approach, facilitating collaboration between data scientists and application teams in deploying models and implementing business logic. This integration ensures a streamlined and collaborative development process within a modern landscape.
 
-This solution pattern extends Globex, a fictional retail store that has undergone modernization and already embraces Event-driven Ansible, Automation Controller, and Apache Kafka as a streaming platform for customer feedback on their eCommerce website.
+This architecture demonstrates how an Event-Driven Architecture with Red Hat AMQ Streams and OpenShift Serverless can help build an intelligent system with the OpenShift Data Science platform to drive business insights and an event-driven workflow.
 
-*Here's an overview of the key components:*
+This solution pattern extends Globex, a fictitious retail store that has undergone a modernization journey and has already adopted Kafka as a streaming platform. Globex now wants to extend its eCommerce website to allow customers to leave their reviews of the product catalog.
 
-. *Customer Sentiments Analysis:*
-* Customer sentiments are analyzed through an intelligent application.
+Globex would like to:
 
-. *Event Trigger with Event-driven Ansible and Automation Controller:*
-* An event is triggered using Event-driven Ansible and Automation Controller.
-* Filtered messages are dispatched to respective category Product Managers for review on an in-house Chat System.
+1. Moderate the language in comments to ensure foul language is appropriately filtered out.
+2. Build a Sentiment Analysis system to gain business intelligence based on the product reviews.
+3. Help curtail negative sentiments with coupon-based discounting to improve sales and sentiments
 
-. *Feedback System and Grafana Dashboard:*
-* Product reviews from the feedback system are visualized on a Grafana dashboard.
-* Data-driven intelligent decisions are made based on this feedback.
+=== The Solution
 
-. *ChatOps System Integration:*
-* The ChatOps system is utilized to enact actions like blocking a product or offering discounts.
-* An event is triggered using both Event-driven Ansible and Ansible Controller to implement the requested logic or operation through the chat system.
+The solution is based on an Event-Driven Architecture, which relies on Apache Kafka as the data streaming platform for product reviews. The product reviews submitted by a customer are pushed to a Kafka topic, which is then consumed by both a Review Moderation Service (moderating for foul/abusive language) and a Sentiment Analysis Service (scoring the sentiment as positive or negative).
 
-This integrated approach enables Globex to harness cutting-edge technologies for prompt feedback analysis, informed decision-making, and seamless interaction with ChatOps systems, fostering efficient product management and enhancing customer engagement.
+The data flows in and out of different systems through the OpenShift Serverless Eventing architecture, which uses brokers, sources, and triggers to build a scalable, fully decoupled system.
 
-== The Solution
-This solution is built on an Event Driven Ansible architecture leveraging Apache Kafka and ChatOps as powerful data streaming platforms to initiate events based on filters or chat commands. The process for handling customer product reviews is as follows:
+Once a review is moderated and marked as suitable, it is persisted in the Globex Product Review DB (PostgreSQL) to be then shown on the Products page. The Sentiment Analysis score is persisted within a Time Series DB (InfluxDB in this case) and then used to build a Dashboard (Grafana) to view how well a particular category of products is performing over different time periods.
 
-. *Customer Review Processing:*
-* Customer product reviews are submitted and pushed to a Kafka topic.
-* The data undergoes moderation for foul/abusive language through a Review Moderation Service and is further analyzed for sentiment using a Sentiment Analysis Service (in this case, focusing solely on sentiment analysis).
+If there is negative feedback for a specific product category due to cost, the product manager can work with the business and data scientist team to provide coupon-based discounts on that specific category (for example, clothing) using image detection and business logic. This whole process is implemented by bringing in the synergy of GitOps, CI/CD, and MLOps, providing a holistic development approach to data scientists and application developers in a modern landscape.
 
-. *Serverless Eventing Architecture:*
-* OpenShift Serverless Eventing architecture, utilizing brokers, sources, and triggers, facilitates the smooth flow of data across different systems, ensuring scalability and full decoupling.
+=== Lab Access
 
-. *Data Persistence:*
-* Moderated and suitable reviews are stored in the Globex Product Review Database (PostgreSQL).
-* Sentiment analysis scores are persisted in a Time Series Database (InfluxDB) for creating a Grafana Dashboard to track category performance over time.
-
-. *Event-driven Ansible Playbooks:*
-* Event Driven Ansible, triggered by sentiments and feedback filters, executes playbooks for specific actions.
-* Messages are then sent to the respective Product Manager's chat room through ChatOps (Rocket Chat) System.
-
-. *Real-time Decision-Making:*
-* Product Managers can make real-time decisions by combining ChatOps messages with the Grafana real-time dashboard, using insights from the InfluxDB time series database.
-* Decisions may include stopping a specific product, offering discounts, etc.
-
-. *Command Execution through ChatOps:*
-* Product Managers issue commands on the ChatOps system (Rocket Chat) for specific categories.
-* This triggers an event captured by Event Driven Ansible, which runs the respective playbook to execute the command (disabling the product in the database or updating the discount).
-
-In essence, this integrated approach empowers efficient and data-driven decision-making for product management, leveraging the capabilities of various technologies seamlessly. 
-
-// == Lab Access
-
-// The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`.
-// All steps of this lab are to be completed as the `{ssh_user}` user.
+The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`.
+All steps of this lab are to be completed as the `{ssh_user}` user.
