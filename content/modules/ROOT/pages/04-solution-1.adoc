@@ -1,9 +1,9 @@
-= Solution Addressing The Challenges
-:navtitle: 1: Product Manager - Monitoring System
+= Understanding the challenge
+:navtitle: 1: Understand the customer sentiments
 :numbered:
 
 
-== Addressing Challenge: 
+== Understanding Challenge: 
 
 The Product Manager seamlessly integrates customer feedback from the live online retail e-commerce website into the chat monitoring system, enabling timely and proactive responses
 
