@@ -5,7 +5,7 @@
 
 == Understanding Challenge: 
 
-The Product Manager seamlessly integrates customer feedback from the live online retail e-commerce website into the chat monitoring system, enabling timely and proactive responses
+The Product Manager and Business Unit understands customer feedback from the live online retail e-commerce website using intelligent application leverain sentiment analysis to provide data driven decision making capability.
 
 
 == Solution:

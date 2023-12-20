@@ -1,5 +1,5 @@
 = Solution Addressing The Challenges
-:navtitle: 2: Admin - Connecting ChatOps
+:navtitle: 2: Addressing Challenge
 :numbered:
 
 == Addressing Challenge: 
