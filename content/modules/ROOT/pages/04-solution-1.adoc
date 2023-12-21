@@ -16,10 +16,13 @@ The Product Manager and Business Unit understands customer feedback from the liv
 ****
 [upperalpha]
 
-.. Find the login details for accessing Smart Retail Application below:
-... *Web Url:* https://globex-web-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
-... *Username:* asilva
-... *Password:* openshift
+.. Find the login details for accessing Smart Retail Application below.
+.. A number of users have been already setup for you
+... Choose any of these as login user names: *asilva*, *mmiller*, *asanders*, *cjones* or *pwong*
+... All users have  the same password:  *openshift*
+.... *Web Url:* https://globex-web-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
+.... *Username:* asilva
+.... *Password:* openshift
 
 +
 .Smart Retails Main Page
@@ -92,6 +95,21 @@ image::03_negative_kpi.jpg[Grafana Dashboard showing KPI not met for clothing pr
 ****
 
 . Before we move onto implementing the marketing strategy (in out next section) to improve the KPI for clothing product category, lets understand the technical aspects of how the above sentiment analysis works.
+There are 4 namespaces which are used for sentiment analysis:
+
+* *sentiment-analysis*:
+** most of the microservices
+** knative services, knative brokers, and  knative triggers
+* *influxdb-project*:
+** InfluxDB - a time series database
+** Python based connector which reads from Kafka and pushes the content into InfluxDB
+** Grafana dashboard
+* *globex*: A number of fundamental microservices and database of the fictitious retail customer Globex, which are used in the our application, but aren't really impacting the Sentiment Analysis solution pattern
+* *globex-mw*:
+** Red Hat AMQ Streams (Apache Kafka)
+** Kafdrop (a Kafka topic visualization tool)
+* *rhsso*:
+** Red Hat SSO based on Keycloak which manages the user login. You can find the password for the `admin` user within the Secret *credential-rhsso* within the *rhsso* namespace
 
 +
 ****
@@ -112,63 +130,23 @@ image::06_openshift_login-2.jpg[OpenShift, 600]
 
 ****
 
-
-. Log in to the Automation Controller to observe the job triggered by Event-driven Ansible upon submitting feedback. The Automation Controller job is designed to post formatted feedback in RocketChat. This feature ensures that the product manager can efficiently monitor feedback and take timely actions as needed. Refer to the details provided below for a comprehensive overview of this integration process.
-
-+
-****
-[upperalpha]
-
-.. Find the login details for accessing Automation Controller below:
-... *Automation Controller:* https://globex-web-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
-... *Username:* {aap_controller_admin_user}
-... *Password:* {aap_controller_admin_password}
+. Let us now trace the flow of the reviews across the various systems
+.. Once you login to GLBOEX App UI as a customer and comment on a product (for e.g. we commented on cothing category - T-shirt above).
+This review gets submitted to the *globex.reviews* kafka topic, which then gets picked up by the Intelligent App *aiml-moderate-reviews*
+This service routes the reviews to either *reviews.moderated* topic or *reviews.denied* topic depending on whether review's language was acceptable or not
 
 +
-.Automation Controller Login Page
-image::04_controller_login-1.jpg[Automation_Controller,350]
-
-.. Navigate to 'Jobs' and observe the latest executed job, identified as 'X - push-favourable-feedback.' This allows you to review the details of the most recent execution, providing insights into the actions taken as a result of the triggered event.
+image:aiml-moderate-reviews-app.png[]
+* You can view these topics through Kafkdrop. To access Kafdrop, navigate to *globex-mw* namespace, and launch kafdrop.
+* Filter the topics with the word *review* to see a list of relevant topics
 +
-.Automation Controller Jobs Page
-image::04_controller_job-1.jpg[Automation_Controller,640]
-
-.. Select 'X - push-favourable-feedback' to view and analyze the logs associated with this specific job. By examining the logs, you can gain a deeper understanding of the processes and actions carried out during the execution of this particular task.
+image:reviews-topics.png[]
+* Click on each of the topics to see the actual messages.
+* This is the *reviews.moderated* topic. You will notice that the message is a JSON.
+** What is even more interesting is the headers of this message *ce-type* and *ce-source*
+** These headers are present because the messages are all managed as https://cloudevents.io/[Cloud Events^]. CloudEvents is a specification for describing event data in a common way.
 +
-.Automation Controller Jobs Details
-image::04_controller_job-2.jpg[Automation_Controller,640]
-
-****
-
-. Access the RocketChat monitoring system to view the latest message posted by the Automation Controller. The details are provided below, offering insights into the formatted feedback generated by the system:
-
-* Message Source: Smart Retail Application
-* Message Triggered by: Event-driven Ansible
-* Message Posted by: Automation Controller
-* Content: [_USER SENTIMENT: positive, PRODUCT_CATEGORY: clothing, PRODUCT_ID: 329299, PRODUCT_NAME: Quarkus T-shirt, USER NAME: Addison Silva, REGION: USA, REVIEW: This good product, SCORE: 2_]
-
-+
-This allows for convenient monitoring by the product manager, facilitating timely actions based on the received feedback.
-
-+
-****
-[upperalpha]
-
-.. Find the login details for accessing RocketChat below:
-... *RocketChat Url:* {rocketchat_url}[window=_blank]
-... *Username:* pm_clothing
-... *Password:* {rocketchat_admin_password}
-
-+
-.RocketChat Login page
-image::05_rocketchat_login-1.jpg[Rocketchat, 640]
-
-.. Navigate to the #clothing channel and review the new message that contains the original feedback, along with additional product details. This comprehensive information is designed to assist the product manager in monitoring the products effectively. Insights provided in the message contribute to informed decision-making and proactive actions based on customer feedback.
-+
-.RocketChat Channels
-image::05_rocketchat_login-2.jpg[Rocketchat, 640]
-
-****
+image:moderated-review.png[]
 
 == Summary:
 
