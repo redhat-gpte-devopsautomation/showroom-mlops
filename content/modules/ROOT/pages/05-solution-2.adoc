@@ -193,9 +193,9 @@ application, and then to maintain its state.
 
 ==== Connecting to OpenShift GitOps
 
-*OpenShift GitOps / ArgoCD URL* https://{gitops_argocd_url}[window=_blank]
-*Username:* {gitops_argocd_username}
-*Password:* {gitops_argocd_admin_password}
+.. OpenShift GitOps / ArgoCD URL* https://{gitops_argocd_url}[window=_blank]
+.. Username:* {gitops_argocd_username}
+.. Password:* {gitops_argocd_admin_password}
 * When you first open up that URL, you may get a warning that ``your
 connection is not private''.
 * Click on *Advanced* and then *Proceed to
