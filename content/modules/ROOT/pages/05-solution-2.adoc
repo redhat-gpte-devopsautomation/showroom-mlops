@@ -192,7 +192,7 @@ In this section, we will see how OpenShift GitOps is used deploy our
 application, and then to maintain its state.
 
 ==== Connecting to OpenShift GitOps
-.. *OpenShift GitOps / ArgoCD URL* https://{gitops_argocd_url}[window=_blank]
+.. *OpenShift GitOps / ArgoCD URL*: https://{gitops_argocd_url}[window=_blank]
 .. *Username:* {gitops_argocd_username}
 .. *Password:* {gitops_argocd_admin_password}
 
