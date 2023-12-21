@@ -22,8 +22,10 @@ your application was deployed. Let’s review it and confirm it works as
 expected.
 
 [arabic]
-. Follow the URL marked as `Application url'
-image: application-url.png[application-url]
+. Follow the URL marked as `Discount Application url'
+* *Discount Application url:* https://object-detection-app-git-retail-rhods-project.{openshift_cluster_ingress_domain}[window=_blank]
+image:application-url.png[application-url]
+
 . This will open the app in your browser
 . You will be prompted to authorize your browser to use your Camera.
 Allow it to do so.
