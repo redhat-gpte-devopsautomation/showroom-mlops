@@ -91,6 +91,7 @@ This dashboard shows that the KPI (Key Performance Indicator of more than 60% po
 image::03_negative_kpi.jpg[Grafana Dashboard showing KPI not met for clothing product category, 640]
 
 . Before we move onto implementing the marketing strategy to improve the KPI for clothing product category, lets understand the technical aspects of how the above sentiment analysis works.
+
 +
 ****
 [upperalpha]
