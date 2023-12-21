@@ -23,8 +23,7 @@ expected.
 
 [arabic]
 . Follow the URL marked as `Discount Application url'
-* *Discount Application url:* https://object-detection-app-git-retail-rhods-project.{openshift_cluster_ingress_domain}[window=_blank]
-image:application-url.png[application-url]
+* *Discount Application url:* https://object-detection-app-git-retail-Red Hat OpenShift AI-project.{openshift_cluster_ingress_domain}[window=_blank]
 
 . This will open the app in your browser
 . You will be prompted to authorize your browser to use your Camera.
@@ -41,18 +40,17 @@ We can now move on to the next step.
 The initial version of the discounting model was built using a dataset
 called link:discount_data/datasets/monday.csv[monday.csv].
 
-In this section, we will: * log into RHODS * Clone the project from your
+In this section, we will: * log into Red Hat OpenShift AI * Clone the project from your
 on-cluster gitea instance * Retrain the model with fresher data *
 Publish our changes
 
-==== Logging into RHODS
+==== Logging into Red Hat OpenShift AI
 
-* Locate the RHODS-Dashboard URL. (It starts with
-`https://rhods-dashboard....`)
+* Locate the Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
 * Click on ``Log in with OpenShift''
 * Log in as `user1` with the password `openshift`
 * Click *Allow Selected Permissions* to Authorize the access
-* Once in the RHODS Dashboard, Click on the *Launch Application*
+* Once in the Red Hat OpenShift AI Dashboard, Click on the *Launch Application*
 hyperlink in the JupyterHub tile
 * Log in as `user1` with the password `openshift`
 * Click *Allow Selected Permissions* to Authorize the access
@@ -68,17 +66,18 @@ without affecting the others.
 
 * The Gitea URL to use should be provided together with your environment
 information here:
+* *Gitea url:* {gitea_console_url}[window=_blank]
 +
-image:gittea-url.png[instructions/gittea-url]
+image:gittea-url.png[gittea-url]
 * Once you have the gitea URL:
-* Log in to Gitea as user `lab-user` with password `openshift`.
+* Sign in to Gitea as user `lab-user` with password `openshift`.
 * Navigate to the *arc-model* git repo.
 * Copy the Git Clone URL:
-** image:copy-git-url.png[instructions/copy-git-url]
+** image:copy-git-url.png[copy-git-url]
 * Navigate back to your JupyterLab tab
 * Click on the Git Icon (fourth of the 6 big icons on the left)
 * Click on the *Clone a repository* button
-** image:clone-repo.png[instructions/clone-repo]
+** image:clone-repo.png[clone-repo]
 * Paste the URL and click *Clone*
 * In the File Explorer menu, double-click on *arc-model* to move to that
 directory
@@ -88,7 +87,7 @@ directory
 Now that we’ve cloned the project, let’s retrain the model. We will use
 a notebook to do so.
 
-* Open the Notebook called `5_discount_model.ipynb` from the RHODS file
+* Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI file
 system tab
 * This notebook contains the code for training our discount model.
 * In the third cell you can see a reference to our ``monday'' dataset
@@ -97,7 +96,7 @@ called `discount_data/datasets/monday.csv`
 dataset: `discount_data/datasets/tuesday.csv`
 * Select the *Run* menu, then the last option: *Restart Kernel and Run
 All Cells*
-** image:csv-restart-run-all.png[instructions/csv-restart-run-all]
+** image:csv-restart-run-all.png[csv-restart-run-all]
 * Confirm by clicking *Restart*
 * Once all the cells have run, you will notice that some of the files in
 the folder *5_discount_models* have been updated.
@@ -137,11 +136,11 @@ changes to the git repository.
 . Log in to OpenShift using the username: `user1` and password:
 `openshift`
 . Select `Administrator` view.
-image:select-administrator.png[instructions/select-administrator]
+image:select-administrator.png[select-administrator]
 . Navigate to *Pipelines* , then *Pipelines* (yes, again), and then go
 to *PipelineRuns*
-image:select-pipelines.png[instructions/select-pipelines]
-. Make sure that the selected project is *retail-rhods-project*
+image:select-pipelines.png[select-pipelines]
+. Make sure that the selected project is *retail-Red Hat OpenShift AI-project*
 . You should see a pipeline run that failed on the third step
 . Review the failed step.
 . Our sanitycheck.py program is a safeguard that ensures the discounts
@@ -161,7 +160,7 @@ about rolling back a bad change: the bad change was prevented from
 happening.
 
 [arabic]
-. Again, go to `5_discount_model.ipynb` notebook in your RHODS tab.
+. Again, go to `5_discount_model.ipynb` notebook in your Red Hat OpenShift AI tab.
 . Let’s use the new data from wednesday, update that same cell as before
 to now point to `discount_data/datasets/wednesday.csv`.
 . Now, rerun the notebook by clicking *Restart Kernel and Run All* as we
@@ -251,7 +250,7 @@ that.
 * Edit the file directly in Gitea (using the pencil icon)
 * Change the text `replicas: 1` to `replicas: 4`
 * Commit the change with a meaningful commit message. For example:
-image:commit-msg.png[instructions/commit-msg]
+image:commit-msg.png[commit-msg]
 * Once that is done, toggle over to Argo and get it to refresh again.
 * You will quickly see that the number of pods will have been changed in
 the target environment as well.
