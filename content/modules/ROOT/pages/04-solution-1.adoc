@@ -160,7 +160,9 @@ image:moderated-review.png[]
 
 == Summary:
 
-In summary, the Product Manager is able to get a good understanding of customer sentiments. PM also have a dashboard to view realtime and historical sentiment trend to take timely data driven decisions.
-Now in this scenario we see that there are more negative reviews and the KPI of achieving 60% or more positive sentiments for a given category is not achieved. What we will see next is that PM along with Marketing team comes up with a strategy to address this challenge.
+In summary, the Product Manager is able to get a good understanding of customer sentiments.
+PM also has a dashboard to view realtime as well as historical sentiments and trends to take timely data driven decisions.
+Now in this scenario we see that there are more negative reviews and the KPI of achieving 60% or more positive sentiments for a given category is not achieved.
+What we will see next is that PM along with Marketing team devices a strategy to address this challenge by approaching Data scientist team.
 
 *Kindly proceed to the next page as we delve into the world of AI/ML based solution and understand how MLOps is implemented using true GitOps methodology.*
