@@ -23,7 +23,7 @@ expected.
 
 [arabic]
 . Follow the URL marked as `Application url'
-image:instructions/application-url.png[instructions/application-url]
+image: application-url.png[application-url]
 . This will open the app in your browser
 . You will be prompted to authorize your browser to use your Camera.
 Allow it to do so.
