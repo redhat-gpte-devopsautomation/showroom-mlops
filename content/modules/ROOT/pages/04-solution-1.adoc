@@ -93,7 +93,7 @@ Note that there is another application running and which moderates the comments 
 This output is then moved to a Time Series InfluxDB database for storing the results for dashboard and historical purpose as well as to another database from where its visible back to the GLOBEX UI as customer comments.
 Grafana then pull this data from influxdb database and provides you/management with graphical insights for data driven decision making capability.
 
-There are 4 major namespaces which are used for sentiment analysis:
+There are 5 major namespaces which are used for sentiment analysis:
 
 ****
 [upperalpha]
