@@ -138,7 +138,7 @@ image::06_openshift_login-2.jpg[OpenShift, 600]
 .. Let us now trace the flow of the reviews across the various systems
 ... Earlier when you login to GLBOEX App UI as a customer and commented on a product (for e.g. we commented on cothing category - T-shirt above), it gets submitted to the *globex.reviews* kafka topic, which then gets picked up by the Intelligent App *aiml-moderate-reviews*
 This service routes the reviews to either *reviews.moderated* topic or *reviews.denied* topic depending on whether review's language was acceptable or not.
-You go to your topology view as a developer and ensure that you are selecting sentiment-analysis project. If you review carefullly, you can see that all the aiml services and the persist review service are all running using knative serverless functionality.
+You go to your topology view as a developer and ensure that you are selecting sentiment-analysis project. If you review carefullly, you can see that all the aiml services and the persist review service are all knative serverless services.
 
 +
 ****
@@ -160,6 +160,7 @@ image:moderated-review.png[]
 
 == Summary:
 
-In summary, the Product Manager adeptly integrates customer feedback from the live online retail e-commerce website into the chat monitoring system, fostering a seamless process for timely and proactive responses. This harmonized approach ensures a dynamic and customer-focused engagement strategy.
+In summary, the Product Manager is able to get a good understanding of customer sentiments. PM also have a dashboard to view realtime and historical sentiment trend to take timely data driven decisions.
+Now in this scenario we see that there are more negative reviews and the KPI of achieving 60% or more positive sentiments for a given category is not achieved. What we will see next is that PM along with Marketing team comes up with a strategy to address this challenge.
 
-*Kindly proceed to the next page as we delve into the seamless integration of the ChatOps system with Event-Driven Ansible.*
+*Kindly proceed to the next page as we delve into the world of AI/ML based solution and understand how MLOps is implemented using true GitOps methodology.*
