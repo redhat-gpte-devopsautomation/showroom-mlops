@@ -47,15 +47,22 @@ image::01_coolstore_feedback-1.jpg[Review, 640]
 .Smart Retails Products Page
 image::01_coolstore_feedback-2.jpg[Review, 640]
 
-.. Type something which is a negative sentiments as feedback in the review box then click `Submit Review` button.
+.. Type something which is a negative sentiments as feedback for eg: "Not a good product to buy, will not recommend" in the review box then click `Submit Review` button.
 +
 .Smart Retails Review Page
 image::01_coolstore_feedback-3.jpg[Review, 640]
 ****
 
+.. Similarly add couple of more comments, one good and one bad so that we have more than 660% negative sentiments on grafana dashboard.
+Excellent T-Shirt to have.
+Waste of money. Do not buy this product as its over prized and not good.
+
+.. You will see Thank You message once you submit your review. After a few seconds you will see that same message in the bottom of that product page as Customer review.
+
 . This will push the comments to kafka message queue and is picked up by intelligent sentiment analysis application to analyse the sentiment of this comment.
 Once its analyzed, it will send the comment along with sentiment to another kafka message queue.
-This output is then moved to a Time Series InfluxDB database for storing the results for dashboard and historical purpose.
+Note that there is another application running and which moderates the comments which are not using proper language or are abusive in nature. Those messages are then discarded.
+This output is then moved to a Time Series InfluxDB database for storing the results for dashboard and historical purpose as well as to another database from where its visible back to the GLOBEX UI as customer comments.
 Grafana then pull this data from influxdb database and provides you/management with graphical insights for data driven decision making capability.
 
 . Access the Grafana Dashboard to understand overall historical trend and customer sentiments.
@@ -74,13 +81,14 @@ image::03_grafana_dashboard_login.jpg[Grafana Dashboard Login, 400]
 
 .. Navigate to 'Search or Jump to' (its at the top middle section of the page) and select the 'GLOBEX Sentiment Analysis Dashboard'
 +
-.Event-driven Ansible Rulebook Activations Page
+.GLOBEX Sentiment Analysis Dashboard Page
 image::03_globex_grafana_dashboard.jpg[GLOBEX Sentiment Analysis Dashboard, 640]
 
-.. Access 'push-favourable-feedback' rulebook activations, then click on 'History' to review the log history and obtain a detailed list of activities and events. This will provide valuable insights into the execution and outcomes associated with this rulebook activation.
+.. Post the earlier 3 customer comments, you will see dashboard with more than 60% negative sentiment.
+This dashboard shows that the KPI (Key Performance Indicator of more than 60% positive sentiments) for GLOBEX Clothing Product Manager is not met and so the PM needs to do something to get the KPI of positive sentiments back to more than 60%. That is when a marketing strategy is evolved and data scientist team is roped in.
 +
 .Event-driven Ansible Rulebook Activations History Page
-image::03_eda_favourable_trigger_history-1.jpg[Event-driven Ansible, 640]
+image::03_negative_kpi.jpg[Event-driven Ansible, 640]
 
 .. Select the latest entry 'X - push-favourable-feedback' to access and review the triggered logs. Take a moment to observe the log details, as they provide valuable information about the events and actions initiated during the execution of this rulebook activation.
 +
