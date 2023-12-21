@@ -3,7 +3,7 @@
 :numbered:
 
 
-== Understanding Challenge: 
+== Understanding Challenge:
 
 The Product Manager and Business Unit understands customer feedback from the live online retail e-commerce website using intelligent application leveraging sentiment analysis as well as historical sentiments using grafana dashboard providing important data driven decision making capability.
 
@@ -47,26 +47,26 @@ image::01_coolstore_feedback-1.jpg[Review, 640]
 .Smart Retails Products Page
 image::01_coolstore_feedback-2.jpg[Review, 640]
 
-.. Type something good as feedback in the review box then click `Submit Review` button.
+.. Type something which is a negative sentiments as feedback in the review box then click `Submit Review` button.
 +
 .Smart Retails Review Page
 image::01_coolstore_feedback-3.jpg[Review, 640]
 ****
 
 
-. Access the Event-driven Ansible console to observe the seamless triggering of the Ansible Controller Job Template upon submitting feedback in the Smart Retail Application. Refer to the details provided below for a comprehensive view of this process:
+. Access the Grafana Dashboard to understand overall historical trend and customer sentiments.
 
 +
 ****
 [upperalpha]
 
-.. Find the login details for accessing Event-driven Ansible below:
-... *Event-driven Ansible:* {eda_controller_web_url}[window=_blank]
-... *Username:* {eda_controller_admin_user}
-... *Password:* {eda_controller_admin_password}
+.. Find the login details for accessing Grafana Dashboard below:
+... *Grafana Dashboard:* https://grafana-route-influxdb-project.{openshift_cluster_ingress_domain}[window=_blank]
+... *Username:* admin
+... *Password:* graphsRcool
 +
-.Event-driven Ansible Login Page
-image::03_eda_login.jpg[Event-driven Ansible, 400]
+.Grafana Dashboard Login Page
+image::03_grafana_dashboard_login.jpg[Event-driven Ansible, 400]
 
 .. Navigate to 'Rulebook Activations' and observe that the 'push-favourable-feedback' Fire count has increased by 1. This indicates the successful triggering of the specified rulebook activation. Your attention to this metric is crucial for monitoring the feedback integration process effectively.
 +
@@ -93,7 +93,7 @@ image::03_eda_favourable_trigger_history-2.jpg[Event-driven Ansible, 640]
 [upperalpha]
 
 .. Find the login details for accessing Automation Controller below:
-... *Automation Controller:* {aap_controller_web_url}[window=_blank]
+... *Automation Controller:* https://globex-web-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
 ... *Username:* {aap_controller_admin_user}
 ... *Password:* {aap_controller_admin_password}
 
@@ -147,4 +147,4 @@ image::05_rocketchat_login-2.jpg[Rocketchat, 640]
 
 In summary, the Product Manager adeptly integrates customer feedback from the live online retail e-commerce website into the chat monitoring system, fostering a seamless process for timely and proactive responses. This harmonized approach ensures a dynamic and customer-focused engagement strategy.
 
-*Kindly proceed to the next page as we delve into the seamless integration of the ChatOps system with Event-Driven Ansible.* 
+*Kindly proceed to the next page as we delve into the seamless integration of the ChatOps system with Event-Driven Ansible.*
