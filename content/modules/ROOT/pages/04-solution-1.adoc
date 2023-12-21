@@ -140,7 +140,7 @@ This service routes the reviews to either *reviews.moderated* topic or *reviews.
 [upperalpha]
 image:aiml-moderate-reviews-app.png[]
 * You can view these topics through Kafkdrop. To access Kafdrop, navigate to *globex-mw* namespace, and launch kafdrop or you can click on the below link
-... *Kafkadrop:* https://kafdrop-globex-mw.{openshift_cluster_ingress_domain}[window=_blank]
+* *Kafkadrop:* https://kafdrop-globex-mw.{openshift_cluster_ingress_domain}[window=_blank]
 
 * Filter the topics with the word *review* to see a list of relevant topics
 +
