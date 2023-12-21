@@ -69,16 +69,16 @@ without affecting the others.
 * The Gitea URL to use should be provided together with your environment
 information here:
 +
-image:instructions/gittea-url.png[instructions/gittea-url]
+image:gittea-url.png[instructions/gittea-url]
 * Once you have the gitea URL:
 * Log in to Gitea as user `lab-user` with password `openshift`.
 * Navigate to the *arc-model* git repo.
 * Copy the Git Clone URL:
-** image:instructions/copy-git-url.png[instructions/copy-git-url]
+** image:copy-git-url.png[instructions/copy-git-url]
 * Navigate back to your JupyterLab tab
 * Click on the Git Icon (fourth of the 6 big icons on the left)
 * Click on the *Clone a repository* button
-** image:instructions/clone-repo.png[instructions/clone-repo]
+** image:clone-repo.png[instructions/clone-repo]
 * Paste the URL and click *Clone*
 * In the File Explorer menu, double-click on *arc-model* to move to that
 directory
@@ -97,7 +97,7 @@ called `discount_data/datasets/monday.csv`
 dataset: `discount_data/datasets/tuesday.csv`
 * Select the *Run* menu, then the last option: *Restart Kernel and Run
 All Cells*
-** image:instructions/csv-restart-run-all.png[instructions/csv-restart-run-all]
+** image:csv-restart-run-all.png[instructions/csv-restart-run-all]
 * Confirm by clicking *Restart*
 * Once all the cells have run, you will notice that some of the files in
 the folder *5_discount_models* have been updated.
@@ -137,10 +137,10 @@ changes to the git repository.
 . Log in to OpenShift using the username: `user1` and password:
 `openshift`
 . Select `Administrator` view.
-image:instructions/select-administrator.png[instructions/select-administrator]
+image:select-administrator.png[instructions/select-administrator]
 . Navigate to *Pipelines* , then *Pipelines* (yes, again), and then go
 to *PipelineRuns*
-image:instructions/select-pipelines.png[instructions/select-pipelines]
+image:select-pipelines.png[instructions/select-pipelines]
 . Make sure that the selected project is *retail-rhods-project*
 . You should see a pipeline run that failed on the third step
 . Review the failed step.
@@ -251,7 +251,7 @@ that.
 * Edit the file directly in Gitea (using the pencil icon)
 * Change the text `replicas: 1` to `replicas: 4`
 * Commit the change with a meaningful commit message. For example:
-image:instructions/commit-msg.png[instructions/commit-msg]
+image:commit-msg.png[instructions/commit-msg]
 * Once that is done, toggle over to Argo and get it to refresh again.
 * You will quickly see that the number of pods will have been changed in
 the target environment as well.
