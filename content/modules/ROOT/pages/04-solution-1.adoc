@@ -66,12 +66,12 @@ image::01_coolstore_feedback-3.jpg[Review, 640]
 ... *Password:* graphsRcool
 +
 .Grafana Dashboard Login Page
-image::03_grafana_dashboard_login.jpg[Event-driven Ansible, 400]
+image::03_grafana_dashboard_login.jpg[Grafana Dashboard Login, 400]
 
-.. Navigate to 'Rulebook Activations' and observe that the 'push-favourable-feedback' Fire count has increased by 1. This indicates the successful triggering of the specified rulebook activation. Your attention to this metric is crucial for monitoring the feedback integration process effectively.
+.. Navigate to 'Search or Jump to' (its at the top middle section of the page) and select the 'GLOBEX Sentiment Analysis Dashboard'
 +
 .Event-driven Ansible Rulebook Activations Page
-image::03_eda_favourable_trigger.jpg[Event-driven Ansible, 640]
+image::03_globex_grafana_dashboard.jpg[GLOBEX Sentiment Analysis Dashboard, 640]
 
 .. Access 'push-favourable-feedback' rulebook activations, then click on 'History' to review the log history and obtain a detailed list of activities and events. This will provide valuable insights into the execution and outcomes associated with this rulebook activation.
 +
