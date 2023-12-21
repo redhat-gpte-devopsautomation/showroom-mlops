@@ -95,6 +95,7 @@ Grafana then pull this data from influxdb database and provides you/management w
 
 .. There are 5 major namespaces which are used for sentiment analysis:
 
++
 ****
 [upperalpha]
 
@@ -112,7 +113,7 @@ Grafana then pull this data from influxdb database and provides you/management w
 * *rhsso*:
 ** Red Hat SSO based on Keycloak which manages the user login. You can find the password for the `admin` user within the Secret *credential-rhsso* within the *rhsso* namespace
 ****
-+
+
 .. Lets dig deeper into how this is implemented.
 
 +
