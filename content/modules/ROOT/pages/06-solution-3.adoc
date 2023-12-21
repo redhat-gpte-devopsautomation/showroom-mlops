@@ -1,8 +1,8 @@
 = MLOps (GitOps)
-:navtitle: 3: Syndergy - MLOps with GitOps
+:navtitle: 3: Synergy - MLOps with GitOps
 :numbered:
 
-== Addressing Operational Challenges using GitOps: 
+== Addressing Operational Challenges using GitOps:
 
 Toggle Table of Contents
 
@@ -333,7 +333,7 @@ TIP: You can skip the login process if you're already signed in.
 
 .. Choose the 'T-shirt' and kindly share your thoughts by providing feedback `This is over priced T-shirt` in the designated box.
 +
-.Smart Retail Application 
+.Smart Retail Application
 image::01_coolstore_feedback-4.jpg[coolstore, 640]
 
 ****
@@ -382,12 +382,12 @@ IMPORTANT: Kindly log out and log back in as pm_clothing if you are currently si
 .. Navigate to the #clothing channel and review the new message that contains the original feedback, along with additional product details.
 * Message Content:
 ** *USER SENTIMENT*: negative,
-** *PRODUCT_CATEGORY*: clothing, 
-** *PRODUCT_ID*: 329299, 
-** *PRODUCT_NAME*: Quarkus T-shirt, 
-** *USER NAME*: Addison Silva, 
-** *REGION*: USA, 
-** *REVIEW*: his is over priced T-shirt, 
+** *PRODUCT_CATEGORY*: clothing,
+** *PRODUCT_ID*: 329299,
+** *PRODUCT_NAME*: Quarkus T-shirt,
+** *USER NAME*: Addison Silva,
+** *REGION*: USA,
+** *REVIEW*: his is over priced T-shirt,
 ** *SCORE:* 2
 +
 .RocketChat Channel Page
