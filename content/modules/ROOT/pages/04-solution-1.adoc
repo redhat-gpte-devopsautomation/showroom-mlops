@@ -7,9 +7,6 @@
 
 The Product Manager and Business Unit understands customer feedback from the live online retail e-commerce website using intelligent application leveraging sentiment analysis as well as historical sentiments using grafana dashboard providing important data driven decision making capability.
 
-
-== Solution:
-
 . Sign in to the Smart Retail Application using the credentials for user 'asilva' to submit feedback for the clothing product, adhering to the details provided below:
 
 +
@@ -56,9 +53,9 @@ image::01_coolstore_feedback-2.jpg[Review, 640]
 image::01_coolstore_feedback-3.jpg[Review, 640]
 ****
 
-.. Similarly add couple of more comments, one good and one bad so that we have more than 660% negative sentiments on grafana dashboard.
-Excellent T-Shirt to have.
-Waste of money. Do not buy this product as its over prized and not good.
+.. Similarly add couple of more comments, one good and one bad so that we have more than 60% negative sentiments on grafana dashboard. Sample below to copy:
+... Excellent T-Shirt to have.
+... Waste of money. Do not buy this product as its over prized and not good.
 
 .. You will see Thank You message once you submit your review. After a few seconds you will see that same message in the bottom of that product page as Customer review.
 
@@ -81,8 +78,9 @@ image::03_grafana_dashboard_login.jpg[Grafana Dashboard Login, 400]
 .GLOBEX Sentiment Analysis Dashboard Page
 image::03_globex_grafana_dashboard.jpg[GLOBEX Sentiment Analysis Dashboard, 640]
 
-.. Post the earlier 3 customer comments, you will see dashboard with more than 60% negative sentiment.
-This dashboard shows that the KPI (Key Performance Indicator of more than 60% positive sentiments) for GLOBEX Clothing Product Manager is not met and so the PM needs to do something to get the KPI of positive sentiments back to more than 60%. That is when a marketing strategy is evolved and data scientist team is roped in.
+.. Post the earlier 3 customer ormore comments, you will see dashboard with more negative sentiments (ensure that your comments resemble more negative sentiments to make this look more real).
+This dashboard shows that the KPI (Key Performance Indicator of more than 60% positive sentiments is the ask from Product Manager) for GLOBEX Clothing Product Manager is not met and so the PM needs to do something to get the KPI of positive sentiments back to more than 60%. That is when a marketing strategy is evolved and data scientist team is roped in.
+We will see how to challenge is overcome in next section.
 +
 .Grafana Dashboard showing KPI not met for clothing product category Page
 image::03_negative_kpi.jpg[Grafana Dashboard showing KPI not met for clothing product category, 640]
@@ -97,6 +95,9 @@ Grafana then pull this data from influxdb database and provides you/management w
 
 There are 4 major namespaces which are used for sentiment analysis:
 
+****
+[upperalpha]
+
 * *sentiment-analysis*:
 ** most of the microservices
 ** knative services, knative brokers, and  knative triggers
@@ -110,6 +111,7 @@ There are 4 major namespaces which are used for sentiment analysis:
 ** Kafdrop (a Kafka topic visualization tool)
 * *rhsso*:
 ** Red Hat SSO based on Keycloak which manages the user login. You can find the password for the `admin` user within the Secret *credential-rhsso* within the *rhsso* namespace
+****
 
 +
 ****
