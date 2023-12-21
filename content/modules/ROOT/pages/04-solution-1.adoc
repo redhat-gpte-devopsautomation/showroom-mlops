@@ -93,7 +93,7 @@ Note that there is another application running and which moderates the comments 
 This output is then moved to a Time Series InfluxDB database for storing the results for dashboard and historical purpose as well as to another database from where its visible back to the GLOBEX UI as customer comments.
 Grafana then pull this data from influxdb database and provides you/management with graphical insights for data driven decision making capability.
 
-. There are 5 major namespaces which are used for sentiment analysis:
+.. There are 5 major namespaces which are used for sentiment analysis:
 
 ****
 [upperalpha]
@@ -113,15 +113,15 @@ Grafana then pull this data from influxdb database and provides you/management w
 ** Red Hat SSO based on Keycloak which manages the user login. You can find the password for the `admin` user within the Secret *credential-rhsso* within the *rhsso* namespace
 ****
 
-. Lets dig deeper into how this is implemented.
+.. Lets dig deeper into how this is implemented.
 +
 ****
 [upperalpha]
 
-.. Find the login details for accessing Openshift Console below:
-... *Console URL:* {openshift_console_url}[window=_blank]
-... *Username:* {openshift_cluster_admin_username}
-... *Password:* {openshift_cluster_admin_password}
+... Find the login details for accessing Openshift Console below:
+.... *Console URL:* {openshift_console_url}[window=_blank]
+.... *Username:* {openshift_cluster_admin_username}
+.... *Password:* {openshift_cluster_admin_password}
 
 +
 .OpenShift Console Login Page - skip if it shows next image below
