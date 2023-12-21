@@ -53,6 +53,10 @@ image::01_coolstore_feedback-2.jpg[Review, 640]
 image::01_coolstore_feedback-3.jpg[Review, 640]
 ****
 
+.. This will push the comments to kafka message queue and is picked up by intelligent sentiment analysis application to analyse the sentiment of this comment.
+Once its analyzed, it will send the comment along with sentiment to another kafka message queue.
+This output is then moved to a Time Series InfluxDB database for storing the results for dashboard and historical purpose.
+Grafana then pull this data from influxdb database and provides you/management with graphical insights for data driven decision making capability.
 
 . Access the Grafana Dashboard to understand overall historical trend and customer sentiments.
 
