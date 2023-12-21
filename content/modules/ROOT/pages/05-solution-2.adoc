@@ -259,7 +259,7 @@ Eventually leading to better positive comments and sentiments as customer's are 
 
 Finally review the grafana dashboard showing better positive sentiments for clothing category.
 
-You can try similar comments for utensils category as well. 
+You can try similar comments for utensils category as well.
 
 === Wrap up of solution addressing the challenge in previous section.
 

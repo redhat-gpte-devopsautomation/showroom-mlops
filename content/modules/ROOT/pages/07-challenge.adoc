@@ -2,7 +2,7 @@
 :navtitle: 4: Challenge Lab (Optional)
 :numbered:
 
-== Addressing Challenge: 
+== Addressing Challenge:
 
 Feel free to initiate and monitor the entire process for the utensils product. Below are the necessary details to ensure a smooth and comprehensive observation:
 
@@ -83,7 +83,7 @@ Replace ProductID with the product identifier and NewPrice with the updated pric
 ****
 
 
-. Navigate to the Event-driven Ansible console and witness the smooth triggering of the Ansible Controller Job Template. 
+. Navigate to the Event-driven Ansible console and witness the smooth triggering of the Ansible Controller Job Template.
 +
 ****
 [upperalpha]
@@ -98,7 +98,7 @@ TIP: You can skip the login process if you're already signed in.
 ****
 
 
-. Access the Automation Controller to observe the job triggered by Event-driven Ansible upon posting the ChatOps action in RocketChat. 
+. Access the Automation Controller to observe the job triggered by Event-driven Ansible upon posting the ChatOps action in RocketChat.
 +
 ****
 [upperalpha]
