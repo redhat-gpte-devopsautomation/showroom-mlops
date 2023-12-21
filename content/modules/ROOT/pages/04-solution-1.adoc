@@ -87,13 +87,29 @@ image::03_globex_grafana_dashboard.jpg[GLOBEX Sentiment Analysis Dashboard, 640]
 .. Post the earlier 3 customer comments, you will see dashboard with more than 60% negative sentiment.
 This dashboard shows that the KPI (Key Performance Indicator of more than 60% positive sentiments) for GLOBEX Clothing Product Manager is not met and so the PM needs to do something to get the KPI of positive sentiments back to more than 60%. That is when a marketing strategy is evolved and data scientist team is roped in.
 +
-.Event-driven Ansible Rulebook Activations History Page
-image::03_negative_kpi.jpg[Event-driven Ansible, 640]
+.Grafana Dashboard showing KPI not met for clothing product category Page
+image::03_negative_kpi.jpg[Grafana Dashboard showing KPI not met for clothing product category, 640]
 
-.. Select the latest entry 'X - push-favourable-feedback' to access and review the triggered logs. Take a moment to observe the log details, as they provide valuable information about the events and actions initiated during the execution of this rulebook activation.
+.. Before we move onto implementing the marketing strategy to improve the KPI for clothing product category, lets understand the technical aspects of how the above sentiment analysis works. .
 +
-.Event-driven Ansible Rulebook Activations History Logs
-image::03_eda_favourable_trigger_history-2.jpg[Event-driven Ansible, 640]
+. Access the OpenShift Console to configure routing for the Event-driven Ansible rulebook activation created in the previous step. Refer to the details provided below:
+
++
+****
+[upperalpha]
+
+.. Find the login details for accessing Openshift Console below:
+... *Console URL:* {openshift_console_url}[window=_blank]
+... *Username:* {openshift_cluster_admin_username}
+... *Password:* {openshift_cluster_admin_password}
+
++
+.OpenShift Console Login Page
+image::06_openshift_login-1.jpg[OpenShift, 560]
+
++
+.OpenShift Console Login Page
+image::06_openshift_login-2.jpg[OpenShift, 600]
 
 ****
 
