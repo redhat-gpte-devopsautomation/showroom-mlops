@@ -135,8 +135,8 @@ image::06_openshift_login-2.jpg[OpenShift, 600]
 
 ****
 
-.. Let us now trace the flow of the reviews across the various systems
-... Earlier when you login to GLBOEX App UI as a customer and commented on a product (for e.g. we commented on cothing category - T-shirt above), it gets submitted to the *globex.reviews* kafka topic, which then gets picked up by the Intelligent App *aiml-moderate-reviews*
+* Let us now trace the flow of the reviews across the various systems
+** Earlier when you login to GLBOEX App UI as a customer and commented on a product (for e.g. we commented on cothing category - T-shirt above), it gets submitted to the *globex.reviews* kafka topic, which then gets picked up by the Intelligent App *aiml-moderate-reviews*
 This service routes the reviews to either *reviews.moderated* topic or *reviews.denied* topic depending on whether review's language was acceptable or not.
 You go to your topology view as a developer and ensure that you are selecting sentiment-analysis project. If you review carefullly, you can see that all the aiml services and the persist review service are all knative serverless services.
 
@@ -144,9 +144,13 @@ You go to your topology view as a developer and ensure that you are selecting se
 ****
 [upperalpha]
 image:aiml-moderate-reviews-app.png[]
+****
+
 * You can view these topics through Kafkdrop. To access Kafdrop, navigate to *globex-mw* namespace, and launch kafdrop or you can click on the below link
 * *Kafkadrop:* https://kafdrop-globex-mw.{openshift_cluster_ingress_domain}[window=_blank]
 
+****
+[upperalpha]
 * Filter the topics with the word *review* to see a list of relevant topics
 +
 image:reviews-topics.png[]
