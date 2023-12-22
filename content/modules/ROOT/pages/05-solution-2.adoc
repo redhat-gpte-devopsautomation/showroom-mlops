@@ -3,7 +3,7 @@
 :numbered:
 
 == Addressing Challenge with AI/ML and MLOps (GitOps):
-PM of clothing category along with Marketing Team reviews sentiment analysis and respective comments.
+Product Manager (PM) for clothing category along with Marketing Team reviews sentiment analysis and respective comments.
 They conclude that cost seems to be a major issue for sentiments and comes up with a discounting offer.
 PM approaches data scientist team to come up with an object detection based discount coupon solution.
 - Customer goes to a store app or online to take picture of the product which they want to buy.
@@ -11,11 +11,14 @@ PM approaches data scientist team to come up with an object detection based disc
 - Customer keys in this discount online or shows to the Shop Manager for discount.
 - Customer avails discount which eventually will turn the sentiments positive.
 
-=== Accessing and testing your deployed Application
+. Accessing and testing your deployed Application
 
-As part of the bootstrapping of your environment, an initial instance of
-your application was deployed. Let’s review it and confirm it works as
-expected.
++
+****
+[upperalpha]
+
+An initial instance of your application was deployed during the lab environment creation.
+Let’s review it and confirm it works as expected.
 
 [arabic]
 . Follow the URL marked as `Discount Application url'
@@ -28,19 +31,20 @@ Allow it to do so.
 footwear, or a bottle it should display a rebate overlaid on the image.
 . You can also send the URL to your smart phone in order to have a more
 portable camera than your laptop
+****
 
-We can now move on to the next step.
+. Retraining the model
 
-=== Retraining the model
-
-The initial version of the discounting model was built using a dataset
+.. The initial version of the discounting model was built using a dataset
 called link:discount_data/datasets/monday.csv[monday.csv].
 
-In this section, we will: * log into Red Hat OpenShift AI * Clone the project from your
+.. In this section, we will: * log into Red Hat OpenShift AI * Clone the project from your
 on-cluster gitea instance * Retrain the model with fresher data *
 Publish our changes
 
-==== Logging into Red Hat OpenShift AI
++
+****
+... Logging into Red Hat OpenShift AI
 
 * Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
 * Click on ``Log in with OpenShift''
@@ -53,13 +57,16 @@ hyperlink in the JupyterHub tile
 * Choose *Standard Data Science* as the image and *Small* as the
 Notebook Size
 * Click on *Start Server*
+****
 
-==== Git clone the arc-model project
+. Git clone the arc-model project
 
-Each environment comes with a dedicated instance of Gitea so that each
+.. Each environment comes with a dedicated instance of Gitea so that each
 student can easily and independently make updates in the git repo
 without affecting the others.
 
++
+****
 * The Gitea URL to use should be provided together with your environment
 information here:
 * *Gitea URL:* {gitea_console_url}[window=_blank]
@@ -75,11 +82,15 @@ information here:
 * In the File Explorer menu, double-click on *arc-model* to move to that
 directory
 
-==== Retrain the model
+****
 
-Now that we’ve cloned the project, let’s retrain the model. We will use
+. Retrain the model
+
+.. Now that we’ve cloned the project, let’s retrain the model. We will use
 a notebook to do so.
 
++
+****
 * Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI file
 system tab
 * This notebook contains the code for training our discount model.
@@ -93,13 +104,16 @@ All Cells*
 * Confirm by clicking *Restart*
 * Once all the cells have run, you will notice that some of the files in
 the folder *5_discount_models* have been updated.
+****
 
-==== Publish the changes
+. Publish the changes
 
-We have now updated our model files as well as the notebook that was
+.. We have now updated our model files as well as the notebook that was
 used to generate them. We will push those changes back into our gitea
 instance, in the `main` branch.
 
++
+****
 * Open up the notebook called `6_git_commit_and_push.ipynb`
 * In the third cell, replace the existing command with:
 +
@@ -107,25 +121,36 @@ instance, in the `main` branch.
 * Once again, run the *Restart Kernel and Run all Cells*
 * Doing this will automatically Commit our changes into the local git
 repo, and then push those commits back into the Gitea instance.
+****
 
-Note that here, we are storing both the code (notebook) and model
+... Note that here, we are storing both the code (notebook) and model
 (*.pkl) in Git. If this were a real production project, we’d probably
 have a more advanced way of storing the various versions of the model.
 
-=== Reviewing the OpenShift Pipeline
+. Reviewing the OpenShift Pipeline
 
-In the previous steps, we pushed our changes back into the Gitea repo.
+.. In the previous steps, we pushed our changes back into the Gitea repo.
 
-In this environment, an OpenShift pipeline has been configure to
+.. In this environment, an OpenShift pipeline has been configure to
 automatically run every time something is pushed to Gitea.
 
-==== Reviewing the pipeline run
+... Reviewing the pipeline run
 
++
+****
 Our dev app should automatically rebuild since that we’ve pushed our
 changes to the git repository.
 
 [arabic]
-. Follow the link to your `OpenShift Console URL' on your page of URLs.
+. Follow the link to your `OpenShift Console URL'.
++
+*****
+.. Find the login details for accessing Openshift Console below:
+... *Console URL:* {openshift_console_url}[window=_blank]
+... *Username:* {openshift_cluster_admin_username}
+... *Password:* {openshift_cluster_admin_password}
+*****
+
 . Log in to OpenShift using the username: `user1` and password:
 `openshift`
 . Select `Administrator` view.
@@ -133,25 +158,28 @@ image:select-administrator.png[select-administrator]
 . Navigate to *Pipelines* , then *Pipelines* (yes, again), and then go
 to *PipelineRuns*
 image:select-pipelines.png[select-pipelines]
-. Make sure that the selected project is *retail-Red Hat OpenShift AI-project*
+. Make sure that the selected project is *retail-rhods-project*
 . You should see a pipeline run that failed on the third step
 . Review the failed step.
 . Our sanitycheck.py program is a safeguard that ensures the discounts
 are never more than a certain percentage.
 . It would seem that the new version of the model might be too generous
 with the discount!
+****
 
-==== Retrain the model (again).
+. Retrain the model (again).
 
-Let’s fix this! Clearly we had a problem with our data - luckily we
+.. Let’s fix this! Clearly we had a problem with our data - luckily we
 received the data from wednesday which our data engineers have promised
 will be correct.
 
-Even more lucky, our pipeline has prevented us from putting a ``bad''
+.. Even more lucky, our pipeline has prevented us from putting a ``bad''
 model into our dev environment. Therefore, we don’t even need to worry
 about rolling back a bad change: the bad change was prevented from
 happening.
 
++
+****
 [arabic]
 . Again, go to `5_discount_model.ipynb` notebook in your Red Hat OpenShift AI tab.
 . Let’s use the new data from wednesday, update that same cell as before
@@ -160,55 +188,75 @@ to now point to `discount_data/datasets/wednesday.csv`.
 did before.
 . This will update the discount model with a new discount model trained
 on wednesday’s data.
+****
 
-We could also run the sanity-check here, but the pipeline will take care
+.. We could also run the sanity-check here, but the pipeline will take care
 of that for us.
 
++
+****
 [arabic, start=5]
-. Run the notebook `6_git_commit_and_push.ipynb` again to commit and
+* Run the notebook `6_git_commit_and_push.ipynb` again to commit and
 push our model changes to our git repo.
+****
 
-==== Watch the build.
+. Watch the build.
 
-Let’s look at the pipeline build now that we’ve retrained our model with
+.. Let’s look at the pipeline build now that we’ve retrained our model with
 what should be good data.
 
++
+****
 [arabic]
 . Navigate back to your OpenShift Console tab.
++
+*****
+.. Find the login details for accessing Openshift Console below:
+... *Console URL:* {openshift_console_url}[window=_blank]
+... *Username:* {openshift_cluster_admin_username}
+... *Password:* {openshift_cluster_admin_password}
+*****
 . Again, take a look at the PipelineRuns and click on the latest run
 which should be in progress.
 . We can click on the sanity check step within our pipeline, view the
 log and see that the model has now passed our predefined tests.
 . After the sanity check passes, the rest of the pipeline can now
 complete and our app will be redeployed with our changes.
+****
 
-=== Reviewing ArgoCD and GitOps
+. Reviewing ArgoCD and GitOps
 
-In the previous section, we’ve seen how the pipeline can help detect
-potential issues and prevent from implementing ``broken'' artifacts in
+.. In the previous section, we’ve seen how the pipeline can help detect
+potential issues and prevent from implementing `broken` artifacts in
 our dev environment.
 
-In this section, we will see how OpenShift GitOps is used deploy our
+.. In this section, we will see how OpenShift GitOps is used deploy our
 application, and then to maintain its state.
 
-==== Connecting to OpenShift GitOps
-.. *OpenShift GitOps / ArgoCD URL*: https://{gitops_argocd_url}[window=_blank]
-.. *Username:* {gitops_argocd_username}
-.. *Password:* {gitops_argocd_admin_password}
++
+****
+.. Connecting to OpenShift GitOps
+... *OpenShift GitOps / ArgoCD URL*: https://{gitops_argocd_url}[window=_blank]
+... *Username:* {gitops_argocd_username}
+... *Password:* {gitops_argocd_admin_password}
 
-==== Login to ArgoCD:
+.. Login to ArgoCD:
 * When you first open up that URL, ≈you may get a warning that ``your
 connection is not private''.
 * Click on *Advanced* and then *Proceed to
 openshift-gitops…….opentlc.com(unsafe)*.
 * You will use the username `admin` and the associated password provided above.
 * Once you’re logged into ArgoCD, explore the 2 apps that you see.
+image:argocd_apps.png[ArgoCD Applications]
+****
 
-==== Attempting a manual change in OpenShift
+. Attempting a manual change in OpenShift
 
-One way to illustrate the benefits of ArgoCD is to try to perform an
+.. One way to illustrate the benefits of ArgoCD is to try to perform an
 ad-hoc change in OpenShift.
 
++
+****
 * Open the OpenShift Console.
 * Navigate to *Workloads* and then *Deployments*.
 * You will see that the deployment called `object-detection-rest`
@@ -216,27 +264,31 @@ currently has a single pod (replica)
 * If you click on the 3-dots icon at the end of that line, you can
 choose to *Edit pod count*.
 * Change that `1` into a `5` and click *Save*
+****
 
-By default, ArgoCD will reconcile things every 5 minutes.
+.. By default, ArgoCD will reconcile things every 5 minutes. You can autosync as well,
+but for learning purpose we have not used autosync here.
 
-In the interest of time, we can trigger this to happen sooner. Let’s see
+.. In the interest of time, we can trigger this to happen sooner. Let’s see
 how. * click on the *retail-dev* app * Once the app is open, click on
 *APP DIFF* * Tick the box that says *Compact Diff* * The difference that
 you see should make sense * click on *Sync* * click *SYNCHRONIZE*
 
-You will see that doing so will reset things to their original values.
+.. You will see that doing so will reset things to their original values.
 The diff will go away, and the number of pods for this deployment will
 go back down to 1.
 
-In fact, you could actually delete a whole lot of things on the
+.. In fact, you could actually delete a whole lot of things on the
 OpenShift side, and ArgoCD would re-create them almost as quickly!
 
-==== Updating things the GitOps way
+. Updating things the GitOps way
 
-So if we did want more replicas, what we have to do is to do it in the
+.. So if we did want more replicas, what we have to do is to do it in the
 Gitea repo, and then get Argo to make that change happen. So let’s do
 that.
 
++
+****
 * Access gitea again
 * Make sure you are logged in as `lab-user` with password `openshift`
 * Navigate to the repo called `retail-dev-gitops`
@@ -249,20 +301,24 @@ image:commit-msg.png[commit-msg]
 * Once that is done, toggle over to Argo and get it to refresh again.
 * You will quickly see that the number of pods will have been changed in
 the target environment as well.
+****
 
-Well, we’ve finally achieved our change, and it’s been implemented in
+.. Well, we’ve finally achieved our change, and it’s been implemented in
 the cluster. As a bonus, we now have very good traceability on who did
 that change when, and it’s also a lot easier to undo it if needed. Now this
 was all about MLOps and how its achieved using GitOps methodology.
 Of course you can always add security at every stage of your pipeline.
 
-== Lets review the business side and see how this addresses the challenge.
-We will introduce multiple comments using a simulator, link provided below:
+. Lets review the business side and see how this addresses the challenge.
+.. We will introduce multiple comments using a simulator, link provided below:
+
++
+****
 .... *Globex Review Simulator URL:* hhttps://reviews-simulator-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
 Go to your Globex review simulator to introduce multiple comments simultaneously as shown in the below image as POST, select clothing catalogue, then `Try ii out` and Execute.
 image:review-simulator.png[Product Review Simulation]
 
-This is what you see after Execution of the POST is successful.
+.. This is what you see after Execution of the POST is successful.
 image:review-simulator-success.png[Product Review Simulation Successful Output.]
 
 This will alter the grafana dashboard with more positive sentiment messages. You can execute it couple of times to ensure that you have more than 60% positive sentiments and achieve the required KPI.
@@ -273,14 +329,13 @@ This will alter the grafana dashboard with more positive sentiment messages. You
 
 Finally review the grafana dashboard showing better positive sentiments for clothing category.
 image:improved_positive_sentiments.png[Improved Positive Sentiments.]
+****
 
-So a marketing strategy combined with object detection based discount coupon app, leading to better positive comments and sentiments as customer's are happy with these discount offers.
+.. So a marketing strategy combined with object detection based discount coupon app, leading to better positive comments and sentiments as customer's are happy with these discount offers.
 
-You can try similar comments for Bags category as well.
+.. You can try similar comments for Bags category as well.
 
-=== Wrap up of solution addressing the challenge in previous section.
-
-This concludes the solution addressing the challenge being presented in the previous section.
+. This concludes the solution addressing the challenge being presented in the previous section.
 
 == Summary:
 This section demonstrates how a team of data scientist can follow MLOps using GitOps methodology even for model creation and serving.
