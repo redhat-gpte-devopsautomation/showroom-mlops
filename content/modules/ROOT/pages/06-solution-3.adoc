@@ -4,5 +4,11 @@
 
 == Understanding Red Hat OpenShift AI basic capabilities.
 
+As a Red Hat Architect you are to demonstrate Red Hat OpenShift AI model serving and pipeline capabilities
+to GLOBEX data scientist team so that they can move to RHOAI's new capabilities for their Model Serving requirments.
+
+. Objectives :
+.. Demonstrate OpenShift AI model serving capability
+.. Demonstrate OpenShift AI pipeline capability
 
 *Feel free to continue to the next page for further information or actions.*

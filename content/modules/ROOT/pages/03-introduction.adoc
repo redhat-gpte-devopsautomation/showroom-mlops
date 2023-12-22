@@ -1,7 +1,7 @@
 = Introduction and Challenge Overview
 :navtitle: 3: Workshop Introduction and Challenge Overview
 
-== The Story Behind The Solution 
+== The Story Behind The Solution
 
 This solution highlights an architecture that is both scalable and efficient, designed to capture and respond to streaming data using Kafka as the streaming platform and AIML. Leveraging an Event-Driven Architecture, this system seamlessly connects to and consumes data from various systems, services, and data sources, triggered by specific events. Moreover, it incorporates a GitOps approach, facilitating collaboration between data scientists and application teams in deploying models and implementing business logic. This integration ensures a streamlined and collaborative development process within a modern landscape.
 
@@ -29,3 +29,21 @@ If there is negative feedback for a specific product category due to cost, the p
 
 The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`.
 All steps of this lab are to be completed as the `{ssh_user}` user.
+
+== Technology Stack
+. Red Hat OpenShift
+.. OpenShift Serverless
+.. OpenShift GitOps
+.. Grafana
+
+. Red Hat OpenShift AI
+
+. Red Hat Application Foundation
+.. Quarkus
+.. AMQ Kafka Streams
+
+. Others
+.. InfluxDB TimeSeries Database
+.. Helm
+.. Kustomize
+.. PostgreSQL Database
