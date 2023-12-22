@@ -220,6 +220,8 @@ what should be good data.
 which should be in progress.
 . We can click on the sanity check step within our pipeline, view the
 log and see that the model has now passed our predefined tests.
+image:pipeline_sanity_pass.png[Pipeline Run Sanity Check Pass]
+
 . After the sanity check passes, the rest of the pipeline can now
 complete and our app will be redeployed with our changes.
 ****
