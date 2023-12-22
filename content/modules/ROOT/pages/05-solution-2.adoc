@@ -72,7 +72,7 @@ information here:
 * *Gitea URL:* {gitea_console_url}[window=_blank]
 * Sign in to Gitea as user `lab-user` with password `openshift`.
 * Navigate to the *arc-model* git repo.
-* Copy the Git Clone URL:
+* Copy the Git Clone URL: {gitea_console_url}/lab-user/arc-model.git
 ** image:copy-git-url.png[copy-git-url]
 * Navigate back to your JupyterLab tab
 * Click on the Git Icon (fourth of the 6 big icons on the left)
