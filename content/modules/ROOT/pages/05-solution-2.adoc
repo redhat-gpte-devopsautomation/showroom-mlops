@@ -329,7 +329,7 @@ Of course you can always add security at every stage of your pipeline.
 
 +
 ****
-... *Globex Review Simulator URL:* hhttps://reviews-simulator-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
+... *Globex Review Simulator URL:* https://reviews-simulator-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
 ... Go to your Globex review simulator to introduce multiple comments simultaneously as shown in the below image as POST, select clothing catalogue, then `Try it out` and Execute.
 image:review-simulator.png[Product Review Simulation]
 
