@@ -1,5 +1,5 @@
 = MLOps (GitOps)
-:navtitle: 3: Red Hat OpenShift AI
+:navtitle: 3: Demo Red Hat OpenShift AI
 :numbered:
 
 == Understanding Red Hat OpenShift AI basic capabilities.
@@ -10,5 +10,7 @@ to GLOBEX data scientist team so that they can move to RHOAI's new capabilities 
 . Objectives :
 .. Demonstrate OpenShift AI model serving capability
 .. Demonstrate OpenShift AI pipeline capability
+
+... TBD ...
 
 *Feel free to continue to the next page for further information or actions.*
