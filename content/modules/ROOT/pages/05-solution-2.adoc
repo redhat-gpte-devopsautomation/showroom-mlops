@@ -271,7 +271,6 @@ choose to *Edit pod count* or you can increase the pod count using the up arrow 
 image:object_detection_five_pod.png[Multi pod object detection deployment]
 
 ****
-
 .. By default, ArgoCD will reconcile things every 5 minutes. You can autosync as well,
 but for learning purpose we have not used autosync here.
 
@@ -282,8 +281,12 @@ how from ArgoCD UI.
 ... Click on the *retail-dev* app
 ... Once the app is open, click on *APP DIFF*
 ... Tick the box that says *Compact Diff*
+
 ... The difference that you see should make sense
+image:argocd_app_diff.png[ArgoCD application difference]
+
 ... Click on *Sync* * click *SYNCHRONIZE*
+image:argocd_app_diff.png[ArgoCD Application Synchronize]
 ****
 
 .. You will see that doing so will reset things to their original values.
