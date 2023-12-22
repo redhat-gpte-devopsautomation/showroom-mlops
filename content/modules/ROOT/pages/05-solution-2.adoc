@@ -246,7 +246,7 @@ connection is not private''.
 * Click on *Advanced* and then *Proceed to
 openshift-gitops…….opentlc.com(unsafe)*.
 * You will use the username `admin` and the associated password provided above.
-* Once you’re logged into ArgoCD, explore the 2 apps that you see.
+* Once you’re logged into ArgoCD, explore the 2 apps that you see (Red Boxes in the below image).
 image:argocd_apps.png[ArgoCD Applications]
 ****
 
@@ -258,28 +258,40 @@ ad-hoc change in OpenShift.
 +
 ****
 * Open the OpenShift Console.
+... *OpenShift GitOps / ArgoCD URL*: https://{gitops_argocd_url}[window=_blank]
+... *Username:* {gitops_argocd_username}
+... *Password:* {gitops_argocd_admin_password}
 * Navigate to *Workloads* and then *Deployments*.
 * You will see that the deployment called `object-detection-rest`
 currently has a single pod (replica)
+image:object_detection_one_pod.png[Single pod object detection deployment]
 * If you click on the 3-dots icon at the end of that line, you can
-choose to *Edit pod count*.
+choose to *Edit pod count* or you can increase the pod count using the up arrow as shown in the below image.
 * Change that `1` into a `5` and click *Save*
+image:object_detection_five_pod.png[Multi pod object detection deployment]
+
 ****
 
 .. By default, ArgoCD will reconcile things every 5 minutes. You can autosync as well,
 but for learning purpose we have not used autosync here.
 
 .. In the interest of time, we can trigger this to happen sooner. Let’s see
-how. * click on the *retail-dev* app * Once the app is open, click on
-*APP DIFF* * Tick the box that says *Compact Diff* * The difference that
-you see should make sense * click on *Sync* * click *SYNCHRONIZE*
+how from ArgoCD UI.
++
+****
+... Click on the *retail-dev* app
+... Once the app is open, click on *APP DIFF*
+... Tick the box that says *Compact Diff*
+... The difference that you see should make sense
+... Click on *Sync* * click *SYNCHRONIZE*
+****
 
 .. You will see that doing so will reset things to their original values.
 The diff will go away, and the number of pods for this deployment will
 go back down to 1.
 
 .. In fact, you could actually delete a whole lot of things on the
-OpenShift side, and ArgoCD would re-create them almost as quickly!
+OpenShift side for the specific managed apps, and ArgoCD would re-create them almost as quickly!
 
 . Updating things the GitOps way
 
@@ -309,7 +321,7 @@ that change when, and it’s also a lot easier to undo it if needed. Now this
 was all about MLOps and how its achieved using GitOps methodology.
 Of course you can always add security at every stage of your pipeline.
 
-. Lets review the business side and see how this addresses the challenge.
+. Let's review the business side and see how this addresses the challenge.
 .. We will introduce multiple comments using a simulator, link provided below:
 
 +
