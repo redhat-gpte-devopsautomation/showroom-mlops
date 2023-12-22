@@ -27,4 +27,4 @@
 ** https://docs.google.com/presentation/d/1OnB-HUVj8JN2yB8CjDfgvKAFZAQrK4wvlrVtITdOQlc/edit?usp=sharing[_Presentation Slide Deck_,window=_blank]
 
 * *_Demo Platform Lab link_*:
-** https://demo.redhat.com/catalog?search=MLOps&item=babylon-catalog-prod%2Fsandboxes-gpte.ocp4-mlops-sentiment-demo.prod[_Lab Link for you to start, demo and explore_,window=_blank]
+** https://demo.redhat.com/catalog?search=MLOps&item=babylon-catalog-prod%2Fsandboxes-gpte.ocp4-mlops-sentiment-demo.prod[_Lab Link for you to start the demo and explore_,window=_blank]
