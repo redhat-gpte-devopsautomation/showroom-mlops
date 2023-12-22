@@ -286,7 +286,7 @@ how from ArgoCD UI.
 image:argocd_app_diff.png[ArgoCD application difference]
 
 ... Click on *Sync* * click *SYNCHRONIZE*
-image:argocd_app_diff.png[ArgoCD Application Synchronize]
+image:argocd_app_sync.png[ArgoCD Application Synchronize]
 ****
 
 .. You will see that doing so will reset things to their original values.
