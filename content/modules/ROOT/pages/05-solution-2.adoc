@@ -326,28 +326,35 @@ Of course you can always add security at every stage of your pipeline.
 
 +
 ****
-.... *Globex Review Simulator URL:* hhttps://reviews-simulator-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
-Go to your Globex review simulator to introduce multiple comments simultaneously as shown in the below image as POST, select clothing catalogue, then `Try ii out` and Execute.
+... *Globex Review Simulator URL:* hhttps://reviews-simulator-sentiment-analysis.{openshift_cluster_ingress_domain}[window=_blank]
+... Go to your Globex review simulator to introduce multiple comments simultaneously as shown in the below image as POST, select clothing catalogue, then `Try it out` and Execute.
 image:review-simulator.png[Product Review Simulation]
 
-.. This is what you see after Execution of the POST is successful.
+... This is what you see after Execution of the POST is successful.
 image:review-simulator-success.png[Product Review Simulation Successful Output.]
+****
 
-This will alter the grafana dashboard with more positive sentiment messages. You can execute it couple of times to ensure that you have more than 60% positive sentiments and achieve the required KPI.
++
+.. This will alter the grafana dashboard with more positive sentiment messages. You can execute it couple of times to ensure that you have more than 60% positive sentiments and achieve the required KPI.
 .. Find the login details for accessing Grafana Dashboard below:
++
+****
 ... *Grafana Dashboard:* https://grafana-route-influxdb-project.{openshift_cluster_ingress_domain}[window=_blank]
 ... *Username:* admin
 ... *Password:* graphsRcool
-
-Finally review the grafana dashboard showing better positive sentiments for clothing category.
+****
++
+.. Finally review the grafana dashboard showing better positive sentiments for clothing category.
++
+****
 image:improved_positive_sentiments.png[Improved Positive Sentiments.]
 ****
-
++
 .. So a marketing strategy combined with object detection based discount coupon app, leading to better positive comments and sentiments as customer's are happy with these discount offers.
-
++
 .. You can try similar comments for Bags category as well.
 
-. This concludes the solution addressing the challenge being presented in the previous section.
+.. This concludes the solution addressing the challenge being presented in the previous section.
 
 == Summary:
 This section demonstrates how a team of data scientist can follow MLOps using GitOps methodology even for model creation and serving.
