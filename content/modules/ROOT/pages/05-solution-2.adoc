@@ -158,7 +158,7 @@ image:select-pipelines.png[select-pipelines]
 . Make sure that the selected project is *retail-rhods-project*
 . You should see a pipeline run that failed on the third step
 . Review the failed step.
-image:pipeline_sanity_fail.png[select-pipelines]
+image:pipeline_sanity_fail.png[Pipeline Run Sanity Check Fail]
 . Our sanitycheck.py program is a safeguard that ensures the discounts
 are never more than a certain percentage.
 . It would seem that the new version of the model might be too generous
@@ -222,6 +222,7 @@ image:pipeline_sanity_pass.png[Pipeline Run Sanity Check Pass]
 
 . After the sanity check passes, the rest of the pipeline can now
 complete and our app will be redeployed with our changes.
+image:pipeline_run_successful.png[Pipeline Run completed successfully]
 ****
 
 . Reviewing ArgoCD and GitOps
