@@ -18,7 +18,7 @@
 
 * *_Learning Videos_*:
 ** https://youtube.com/watch?v=6msow8ZMn9Y[_MLOps Video_,window=_blank]
-** https://drive.google.com/file/d/12feDPcRXnWcYyW9t9dZkjm6-OG6WG2y1/view?usp=drive_link[_Sentiment Analysis and MLOps demo prensetation video_,window=_blank]
+** https://drive.google.com/file/d/12feDPcRXnWcYyW9t9dZkjm6-OG6WG2y1/view?usp=drive_link[_Sentiment Analysis and MLOps demo presentation video_,window=_blank]
 
 * *_Solution Pattern_*:
 ** https://redhat-solution-patterns.github.io/solution-pattern-enhancing-applications/solution-pattern-enhancing-applications/main/index.html[_Sentiment Analysis Solution Pattern_,window=_blank]
