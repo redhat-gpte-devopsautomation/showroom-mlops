@@ -340,7 +340,8 @@ You will get sandbox id. from the lab provisioned information so that the config
 
 sandbox: check the provisioned data (the openshift console will have something like sandbox253)
 
-:g_uid: 1234
+:g_uid: {guid}
+$g_uid
 
 [source,yaml]
 ----
