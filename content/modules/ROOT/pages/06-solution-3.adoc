@@ -332,3 +332,12 @@ but it’s kind of difficult right now.
 * gRPC is *wwwwwaaaayyyyy much faster* than REST. With the exact same
 model serving instance, as showed in the notebooks, inferences are about
 30x faster. That is huge when you have score of images to process.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setup-bucket-config
+  namespace: object-detection-yolov5
+data:
+  guid: {GUID}
+  sandbox_zone: {sandbox}.opentlc.com
