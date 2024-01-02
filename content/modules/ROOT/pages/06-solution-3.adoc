@@ -345,6 +345,8 @@ The id for group is {g_uid}
 
 [source,yaml]
 ----
+:g_uid: {GUID}
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
