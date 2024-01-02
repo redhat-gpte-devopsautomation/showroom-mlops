@@ -343,10 +343,8 @@ sandbox: check the provisioned data (the openshift console will have something l
 :g_uid: {GUID}
 The id for group is {g_uid}
 
-[source,yaml]
+[source,yaml,subs="attributes"]
 ----
-:g_uid: {GUID}
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
