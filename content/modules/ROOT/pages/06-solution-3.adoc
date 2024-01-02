@@ -350,7 +350,7 @@ metadata:
   name: setup-bucket-config
   namespace: object-detection-yolov5
 data:
-  guid: $g-uid
+  guid: {g-uid}
   sandbox_zone: {sandbox}.opentlc.com
 ----
 
