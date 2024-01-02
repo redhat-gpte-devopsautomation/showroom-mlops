@@ -333,6 +333,12 @@ but it’s kind of difficult right now.
 model serving instance, as showed in the notebooks, inferences are about
 30x faster. That is huge when you have score of images to process.
 
+Steps to automate till model serving.
+git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
+You will get sandbox id. from the lab provisioned information so that the configmap file looks as shown below:
+
+<yaml>
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -341,3 +347,8 @@ metadata:
 data:
   guid: {GUID}
   sandbox_zone: {sandbox}.opentlc.com
+<yaml>
+
+Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
+cd object-detection-model-serving-yolov5/deployment-yaml
+./setup.sh
