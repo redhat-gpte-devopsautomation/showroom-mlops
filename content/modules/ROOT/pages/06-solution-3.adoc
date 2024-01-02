@@ -340,6 +340,8 @@ You will get sandbox id. from the lab provisioned information so that the config
 
 sandbox: check the provisioned data (the openshift console will have something like sandbox253)
 
+:guid: {guid}
+
 [source,yaml]
 ----
 apiVersion: v1
@@ -348,7 +350,7 @@ metadata:
   name: setup-bucket-config
   namespace: object-detection-yolov5
 data:
-  guid: $guid
+  guid: {guid}
   sandbox_zone: {sandbox}.opentlc.com
 ----
 
