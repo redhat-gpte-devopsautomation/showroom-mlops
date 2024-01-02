@@ -338,6 +338,8 @@ git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
 You will get sandbox id. from the lab provisioned information so that the configmap file looks as shown below:
 
+guid: {guid}
+sandbox: check the provisioned data (the openshift console will have something like sandbox253)
 [source,yaml]
 ----
 apiVersion: v1
