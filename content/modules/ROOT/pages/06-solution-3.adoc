@@ -341,6 +341,7 @@ You will get sandbox id. from the lab provisioned information so that the config
 sandbox: check the provisioned data (the openshift console will have something like sandbox253)
 
 :g_uid: {GUID}
+:sandbox_zoneid: {sandbox_zone}
 The id for group is {g_uid}
 
 [source,yaml,subs="attributes"]
@@ -352,7 +353,7 @@ metadata:
   namespace: object-detection-yolov5
 data:
   guid: {g_uid}
-  sandbox_zone: {sandbox}.opentlc.com
+  sandbox_zone: {sandbox_zoneid}
 ----
 
 Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
