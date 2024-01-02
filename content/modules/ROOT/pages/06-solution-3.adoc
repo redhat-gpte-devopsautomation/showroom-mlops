@@ -13,4 +13,41 @@ to GLOBEX data scientist team so that they can move to RHOAI's new capabilities 
 
 ... TBD ...
 
+We will demonstrate object detection using YOLO (You Only Look Once) is a popular object detection and image segmentation model,
+to recognize specific objects in pictures, and how to deploy and use this model. This wil also help demonstrate RHOAI features.
+
+We will start with Data Preparation following by Training and Model Serving. Finally we will see how to consume this model over gRPC or REST.
+
+.. In this section, we will: * log into Red Hat OpenShift AI
+* Create a Data Science Project
+* Create a workbench of type pytorch in this project
+* Clone the project from your a github instance
+https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+
++
+****
+... Logging into Red Hat OpenShift AI
+
+* Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
+* Click on ``Log in with OpenShift''
+* Log in as `user1` with the password `openshift`
+* Click *Allow Selected Permissions* to Authorize the access
+* Once in the Red Hat OpenShift AI Dashboard, Click on the *Data Science Projects and select create data science project*
+
+Main OpenShiftAI Dashboard, select Data Science Projects
+** image:data-science-project.png[Data Science Projects]
+
+Create a Data Science Project called `object-detection-yolov5` as shown below:
+** image:Create-data-scioence-project.png[Create data science project]
+
+This will give you an empty Data Science Project of yolov5, the same is created in Openshift as a project as well.
+You can check by login to openshift console and checking the project named `object-detection-yolov5`
+
+****
+* Log in as `user1` with the password `openshift`
+* Click *Allow Selected Permissions* to Authorize the access
+* Choose *Standard Data Science* as the image and *Small* as the
+Notebook Size
+* Click on *Start Server*
+
 *Feel free to continue to the next page for further information or actions.*
