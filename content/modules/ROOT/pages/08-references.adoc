@@ -14,7 +14,7 @@
 
 * *_Reference Articles_*:
 ** https://medium.com/@ritz.shah/gitops-ci-cd-mlops-how-it-all-comes-together-for-an-ai-ml-developer-a9d15e43dccf[_MLOps_,window=_blank]
-** https://medium.com/@ritz.shah/rocket-chat-setup-configuration-and-working-in-an-openshift-k8s-environment-3b418a3e48c7[_Rocket Chat Setup Configuration and Working in an OpenShift_,window=_blank]
+** https://developers.redhat.com/articles/2023/10/11/build-event-driven-data-pipelines-business-intelligence[_Build event-driven data pipelines for business intelligence_,window=_blank]
 
 * *_Learning Videos_*:
 ** https://youtube.com/watch?v=6msow8ZMn9Y[_MLOps Video_,window=_blank]
