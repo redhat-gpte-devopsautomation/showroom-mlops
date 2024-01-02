@@ -338,7 +338,8 @@ git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
 You will get sandbox id. from the lab provisioned information so that the configmap file looks as shown below:
 
-<yaml>
+[source,yaml]
+----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -347,7 +348,7 @@ metadata:
 data:
   guid: {GUID}
   sandbox_zone: {sandbox}.opentlc.com
-<yaml>
+----
 
 Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
 cd object-detection-model-serving-yolov5/deployment-yaml
