@@ -182,7 +182,7 @@ Once you have completed to whole notebook you have a model that is able
 to recognize the three different classes on a given image.
 
 .Test Image
-image:img/img_test.jpg[Test Image]
+image:img_test.jpg[Test Image]
 
 === Model Serving
 
@@ -294,7 +294,7 @@ of several ones from the `images` folder. This allows for a small
 benchmark on processing/inference time.
 
 .Inference gRPC
-image:img/inference_grpc.png[Inference gRPC]
+image:inference_grpc.png[Inference gRPC]
 
 ==== Consuming the model over REST
 
