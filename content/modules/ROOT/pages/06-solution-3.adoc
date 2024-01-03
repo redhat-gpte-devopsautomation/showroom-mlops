@@ -1,19 +1,19 @@
-= MLOps (GitOps)
+= Red Hat OpenShift AI and Model Serving
 :navtitle: 3: Demo Red Hat OpenShift AI
 :numbered:
 
 == Understanding Red Hat OpenShift AI basic capabilities.
 
-As a Red Hat Architect you are to demonstrate Red Hat OpenShift AI model serving and pipeline capabilities
+As a Red Hat Architect you are to demonstrate Red Hat OpenShift AI model serving capability
 to GLOBEX data scientist team so that they can move to RHOAI's new capabilities for their Model Serving requirments.
 
 . Objectives :
 .. Demonstrate OpenShift AI model serving capability
 
-We will demonstrate object detection using YOLO (You Only Look Once) is a popular object detection and image segmentation model,
+We will demonstrate object detection using YOLO (You Only Look Once) which is a popular object detection and image segmentation model,
 to recognize specific objects in pictures, and how to deploy and use this model. This wil also help demonstrate RHOAI features.
 
-=== YOLO and YOLOv5
+=== More about YOLO and YOLOv5
 
 YOLO (You Only Look Once) is a popular object detection and image
 segmentation model developed by Joseph Redmon and Ali Farhadi at the
@@ -31,7 +31,7 @@ such as the use of Mosaic data augmentation, a new anchor-free detection
 head, and a new loss function.
 
 In 2021, Ultralytics released
-**https://github.com/ultralytics/yolov5/[YOLOv5]\{:target=“_blank”}**,
+**https://github.com/ultralytics/yolov5/[YOLOv5]**,
 which further improved the model’s performance and added new features
 such as support for panoptic segmentation and object tracking.
 
@@ -43,39 +43,50 @@ Detection Challenge and the DOTA Object Detection Challenge.
 We will start with Data Preparation following by Training and Model Serving.
 Finally we will see how to consume this model over gRPC or REST.
 
+There are newer versions of Yolo available, but we will stick to v5.
+
 .. Logging into Red Hat OpenShift AI
 
 * Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
-* Click on ``Log in with OpenShift''
-* Log in as `user1` with the password `openshift`
+* Click on `Log in with OpenShift`
+* Log in as `{openshift_cluster_admin_username}` with the password `{openshift_cluster_admin_password}`
 * Click *Allow Selected Permissions* to Authorize the access
 
+You should not have any jupyterhub notebook running for this user. Just incase you have a running notebook then you can stop.
 * If you already have the previous notebook server running,
 go to Hub Control Panel and Stop the same as shown below.
 image:hub-control-1.png[Hub Control Panel]
-
+* Alternatively when you login to your OpenShift AI dashboard again,
+you can select `Enabled Jupyter application`, `Launch` it to get to the running server and `Stop notebook server`.
 * Stop the notebook server
 image:stop-notebook-server.png[Stop Notebook Server]
 
-Once you stop the notebook server, you should switch over to terminal tab on your showroom browser window
-and login to the cluster as user1. (get the oc login credentials from openshift console for user1)
+* Once you stop the notebook server, you should switch over to terminal tab on your showroom browser window
+and login to the cluster using the below command.
 
-Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
-This is the repository to be cloned - https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+ oc login --insecure-skip-tls-verify=false -u {openshift_cluster_admin_username} -p {openshift_cluster_admin_password} {openshift_api_server_url}
 
-Steps to automate till model serving.
+* Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
+
+  git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+
+* Steps to automate the creation of workbench , s3 storage and model serving part only.
 git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
-Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
-You will get sandbox id. from the lab provisioned information so that the configmap file looks as shown below:
 
-sandbox: check the provisioned data (the openshift console will have something like sandbox253)
+* Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
+
+Note: minio is a very simple way of implemented S3 storage but its not recommended for production use.
+For production use, you should leverage Container Storage like OpenShift Data Foundation.
 
 :g_uid: {GUID}
 :sandbox_zoneid: {sandbox_name}
-The id for group is {g_uid}
+
+* Run this section in the terminal window (showroom terminal tab) to update minio's setup-bucket-configmap.
+****
 
 [source,yaml,subs="attributes"]
 ----
+cat << EOF > /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml/minio/setup-bucket-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -83,17 +94,20 @@ metadata:
   namespace: object-detection-yolov5
 data:
   guid: {g_uid}
-  sandbox_zone: {sandbox_zoneid}
+  sandbox_zone: {sandbox_zoneid}.opentlc.com
+EOF
 ----
+****
 
-Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
-cd object-detection-model-serving-yolov5/deployment-yaml
-./setup.sh
+* Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
 
-Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
+  cd object-detection-model-serving-yolov5/deployment-yaml
+  ./setup.sh
+
+* Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
 image:OpenShift-AI-post-script-run.png[Post deployent script completion]
 
-Process of workbench creation, model creation and storing in onnx format in S3 storage and Model serving
+* Process of workbench creation, model creation and storing in onnx format in S3 storage and Model serving
 is all automated using the above script.
 
 Following is explanation of how its done step by step including re-training of the model..
@@ -156,7 +170,7 @@ Images]\{:target=“_blank”}. We will work with 3 classes: *Bicycle*,
 We have selected only a few classes in this example to speed up the
 process, but of course feel free to adapt and choose the ones you want.
 
-For this first step:
+For this first step (This step is already completed when you ran setup.sh script earlier):
 
 * If not already done, create your Data Science Project,
 * Create a Workbench of type *PyTorch*, with at least *8Gi* of memory,
