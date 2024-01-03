@@ -36,93 +36,99 @@ portable camera than your laptop
 . Retraining the model
 
 .. The initial version of the discounting model was built using a dataset
-called link:discount_data/datasets/monday.csv[monday.csv].
+called link:{gitea_console_url}/lab-user/arc-model/src/branch/main/discount_data/datasets/monday.csv[monday.csv].
 
-.. In this section, we will: * log into Red Hat OpenShift AI * Clone the project from your
-on-cluster gitea instance * Retrain the model with fresher data *
-Publish our changes
+.. In this section, we will:
+... log into Red Hat OpenShift AI
+... Clone the project from on-cluster gitea instance (git repo)
+... Retrain the model with fresher data
+... Publish our changes
+
+.. Logging into Red Hat OpenShift AI
 
 +
 ****
-... Logging into Red Hat OpenShift AI
 
-* Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
-* Click on ``Log in with OpenShift''
-* Log in as `user1` with the password `openshift`
-* Click *Allow Selected Permissions* to Authorize the access
-* Once in the Red Hat OpenShift AI Dashboard, Click on the *Launch Application*
+... Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
+... Click on `Log in with OpenShift`
+... Log in as `user1` with the password `openshift`
+... Click *Allow Selected Permissions* to Authorize the access
+... Once in the Red Hat OpenShift AI Dashboard, Click on the *Launch Application*
 hyperlink in the JupyterHub tile
-* Log in as `user1` with the password `openshift`
-* Click *Allow Selected Permissions* to Authorize the access
-* Choose *Standard Data Science* as the image and *Small* as the
+... Log in as `user1` with the password `openshift`
+... Click *Allow Selected Permissions* to Authorize the access
+... Choose *Standard Data Science* as the image and *Small* as the
 Notebook Size
-* Click on *Start Server*
+... Click on *Start Server*
 ****
 
-. Git clone the arc-model project
++
+.. Git clone the arc-model project
 
-.. Each environment comes with a dedicated instance of Gitea so that each
++
+****
+... Each environment comes with a dedicated instance of Gitea so that each
 student can easily and independently make updates in the git repo
 without affecting the others.
 
-+
-****
-* The Gitea URL to use should be provided together with your environment
+... The Gitea URL to use should be provided together with your environment
 information here:
-* *Gitea URL:* {gitea_console_url}[window=_blank]
-* Sign in to Gitea as user `lab-user` with password `openshift`.
-* Navigate to the *arc-model* git repo.
-* Copy the Git Clone URL: {gitea_console_url}/lab-user/arc-model.git
+... *Gitea URL:* {gitea_console_url}[window=_blank]
+... Sign in to Gitea as user `lab-user` with password `openshift`.
+... Navigate to the *arc-model* git repo.
+... Copy the Git Clone URL: {gitea_console_url}/lab-user/arc-model.git
 ** image:copy-git-url.png[copy-git-url]
-* Navigate back to your JupyterLab tab
-* Click on the Git Icon (fourth of the 6 big icons on the left)
-* Click on the *Clone a repository* button
+... Navigate back to your JupyterLab tab
+... Click on the Git Icon (fourth of the 6 big icons on the left)
+... Click on the *Clone a repository* button
 ** image:clone-repo.png[clone-repo]
-* Paste the URL and click *Clone*
-* In the File Explorer menu, double-click on *arc-model* to move to that
+... Paste the URL and click *Clone*
+... In the File Explorer menu, double-click on *arc-model* to move to that
 directory
 
 ****
 
-. Retrain the model
-
-.. Now that we’ve cloned the project, let’s retrain the model. We will use
-a notebook to do so.
-
++
+.. Retrain the model
 +
 ****
-* Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI file
+... Now that we’ve cloned the project, let’s retrain the model. We will use
+a notebook to do so.
+
+... Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI file
 system tab
-* This notebook contains the code for training our discount model.
-* In the third cell you can see a reference to our ``monday'' dataset
+... This notebook contains the code for training our discount model.
+... In the third cell you can see a reference to our ``monday'' dataset
 called `discount_data/datasets/monday.csv`
-* Update the content of the cell so that it points to our second
+... Update the content of the cell so that it points to our second
 dataset: `discount_data/datasets/tuesday.csv`
-* Select the *Run* menu, then the last option: *Restart Kernel and Run
+... Select the *Run* menu, then the last option: *Restart Kernel and Run
 All Cells*
 ** image:csv-restart-run-all.png[csv-restart-run-all]
-* Confirm by clicking *Restart*
-* Once all the cells have run, you will notice that some of the files in
+... Confirm by clicking *Restart*
+... Once all the cells have run, you will notice that some of the files in
 the folder *5_discount_models* have been updated.
 ****
 
-. Publish the changes
-
-.. We have now updated our model files as well as the notebook that was
-used to generate them. We will push those changes back into our gitea
-instance, in the `main` branch.
++
+.. Publish the changes
 
 +
 ****
-* Open up the notebook called `6_git_commit_and_push.ipynb`
-* Once again, run the *Restart Kernel and Run all Cells*
-* Doing this will automatically Commit our changes into the local git
+... We have now updated our model files as well as the notebook that was
+used to generate them. We will push those changes back into our gitea
+instance, in the `main` branch.
+
+... Open up the notebook called `6_git_commit_and_push.ipynb`
+... Once again, run the *Restart Kernel and Run all Cells*
+... Doing this will automatically Commit our changes into the local git
 repo, and then push those commits back into the Gitea instance.
 ****
 
-... Note that here, we are storing both the code (notebook) and model
+Point to note:: Make a note that in this case, we are storing both the code (notebook) and model
 (*.pkl) in Git. If this were a real production project, we’d probably
 have a more advanced way of storing the various versions of the model.
+Check the next section for model serving to get some idea on how its done.
 
 . Reviewing the OpenShift Pipeline
 
