@@ -32,7 +32,19 @@ https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 * Click on ``Log in with OpenShift''
 * Log in as `user1` with the password `openshift`
 * Click *Allow Selected Permissions* to Authorize the access
-* Once in the Red Hat OpenShift AI Dashboard, Click on the *Data Science Projects and select create data science project*
+
+* If you already have the previous notebook server running, go to Hub Control Panel and Stop the same as shown below.
+image:hub-control-1.png[Hub Control Panel]
+image:stop-notebook-server.png[Stop Notebook Server]
+
+Once you stop the notebook server, you should switch over to terminal and login to the cluster.
+Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
+This is the repository to be cloned - https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+
+Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
+image:OpenShift-AI-post-script-run.png[Post deployent script completion]
+
+* The Red Hat OpenShift AI Dashboard will be empty as we
 
 Main OpenShiftAI Dashboard, select Data Science Projects
 ** image:data-science-project.png[Data Science Projects]
