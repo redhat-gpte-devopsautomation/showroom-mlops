@@ -9,40 +9,9 @@ to GLOBEX data scientist team so that they can move to RHOAI's new capabilities 
 
 . Objectives :
 .. Demonstrate OpenShift AI model serving capability
-.. Demonstrate OpenShift AI pipeline capability
-
-... TBD ...
 
 We will demonstrate object detection using YOLO (You Only Look Once) is a popular object detection and image segmentation model,
 to recognize specific objects in pictures, and how to deploy and use this model. This wil also help demonstrate RHOAI features.
-
-We will start with Data Preparation following by Training and Model Serving. Finally we will see how to consume this model over gRPC or REST.
-
-.. In this section, we will: * log into Red Hat OpenShift AI
-* Create a Data Science Project
-* Create a workbench of type pytorch in this project
-* Clone the project from your a github instance
-https://github.com/ritzshah/object-detection-model-serving-yolov5.git
-
-+
-****
-... Logging into Red Hat OpenShift AI
-
-* Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
-* Click on ``Log in with OpenShift''
-* Log in as `user1` with the password `openshift`
-* Click *Allow Selected Permissions* to Authorize the access
-
-* If you already have the previous notebook server running, go to Hub Control Panel and Stop the same as shown below.
-image:hub-control-1.png[Hub Control Panel]
-image:stop-notebook-server.png[Stop Notebook Server]
-
-Once you stop the notebook server, you should switch over to terminal and login to the cluster.
-Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
-This is the repository to be cloned - https://github.com/ritzshah/object-detection-model-serving-yolov5.git
-
-Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
-image:OpenShift-AI-post-script-run.png[Post deployent script completion]
 
 === YOLO and YOLOv5
 
@@ -70,6 +39,64 @@ YOLO has been widely used in a variety of applications, including
 autonomous vehicles, security and surveillance, and medical imaging. It
 has also been used to win several competitions, such as the COCO Object
 Detection Challenge and the DOTA Object Detection Challenge.
+
+We will start with Data Preparation following by Training and Model Serving.
+Finally we will see how to consume this model over gRPC or REST.
+
+.. Logging into Red Hat OpenShift AI
+
+* Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
+* Click on ``Log in with OpenShift''
+* Log in as `user1` with the password `openshift`
+* Click *Allow Selected Permissions* to Authorize the access
+
+* If you already have the previous notebook server running,
+go to Hub Control Panel and Stop the same as shown below.
+image:hub-control-1.png[Hub Control Panel]
+
+* Stop the notebook server
+image:stop-notebook-server.png[Stop Notebook Server]
+
+Once you stop the notebook server, you should switch over to terminal tab on your showroom browser window
+and login to the cluster as user1. (get the oc login credentials from openshift console for user1)
+
+Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
+This is the repository to be cloned - https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+
+Steps to automate till model serving.
+git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
+You will get sandbox id. from the lab provisioned information so that the configmap file looks as shown below:
+
+sandbox: check the provisioned data (the openshift console will have something like sandbox253)
+
+:g_uid: {GUID}
+:sandbox_zoneid: {sandbox_name}
+The id for group is {g_uid}
+
+[source,yaml,subs="attributes"]
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setup-bucket-config
+  namespace: object-detection-yolov5
+data:
+  guid: {g_uid}
+  sandbox_zone: {sandbox_zoneid}
+----
+
+Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
+cd object-detection-model-serving-yolov5/deployment-yaml
+./setup.sh
+
+Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
+image:OpenShift-AI-post-script-run.png[Post deployent script completion]
+
+Process of workbench creation, model creation and storing in onnx format in S3 storage and Model serving
+is all automated using the above script.
+
+Following is explanation of how its done step by step including re-training of the model..
 
 === Model training
 
@@ -324,30 +351,3 @@ but it’s kind of difficult right now.
 * gRPC is *wwwwwaaaayyyyy much faster* than REST. With the exact same
 model serving instance, as showed in the notebooks, inferences are about
 30x faster. That is huge when you have score of images to process.
-
-Steps to automate till model serving.
-git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
-Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
-You will get sandbox id. from the lab provisioned information so that the configmap file looks as shown below:
-
-sandbox: check the provisioned data (the openshift console will have something like sandbox253)
-
-:g_uid: {GUID}
-:sandbox_zoneid: {sandbox_name}
-The id for group is {g_uid}
-
-[source,yaml,subs="attributes"]
-----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: setup-bucket-config
-  namespace: object-detection-yolov5
-data:
-  guid: {g_uid}
-  sandbox_zone: {sandbox_zoneid}
-----
-
-Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
-cd object-detection-model-serving-yolov5/deployment-yaml
-./setup.sh
