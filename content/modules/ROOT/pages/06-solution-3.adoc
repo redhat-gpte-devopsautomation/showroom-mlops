@@ -44,26 +44,6 @@ This is the repository to be cloned - https://github.com/ritzshah/object-detecti
 Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
 image:OpenShift-AI-post-script-run.png[Post deployent script completion]
 
-* The Red Hat OpenShift AI Dashboard will be empty as we
-
-Main OpenShiftAI Dashboard, select Data Science Projects
-** image:data-science-project.png[Data Science Projects]
-
-Create a Data Science Project called `object-detection-yolov5` as shown below:
-** image:Create-data-scioence-project.png[Create data science project]
-
-This will give you an empty Data Science Project of yolov5, the same is created in Openshift as a project as well.
-You can check by login to openshift console and checking the project named `object-detection-yolov5`
-
-****
-* Log in as `user1` with the password `openshift`
-* Click *Allow Selected Permissions* to Authorize the access
-* Choose *Standard Data Science* as the image and *Small* as the
-Notebook Size
-* Click on *Start Server*
-
-*Feel free to continue to the next page for further information or actions.*
-
 === YOLO and YOLOv5
 
 YOLO (You Only Look Once) is a popular object detection and image
