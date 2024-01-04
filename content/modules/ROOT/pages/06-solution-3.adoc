@@ -68,7 +68,7 @@ and login to the cluster using the below command.
 :admin_pwd: {openshift_cluster_admin_password}
 :api_url: {openshift_api_server_url}
 
-[source,yaml,subs="attributes"]
+[source,subs="attributes"]
 ----
 oc login --insecure-skip-tls-verify=false -u {admin_user} -p {admin_pwd} {api_url}
 ----
