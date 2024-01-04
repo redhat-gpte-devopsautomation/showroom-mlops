@@ -64,11 +64,18 @@ image:stop-notebook-server.png[Stop Notebook Server]
 * Once you stop the notebook server, you should switch over to terminal tab on your showroom browser window
 and login to the cluster using the below command.
 
- oc login --insecure-skip-tls-verify=false -u {openshift_cluster_admin_username} -p {openshift_cluster_admin_password} {openshift_api_server_url}
+:admin_user: {openshift_cluster_admin_username}
+:admin_pwd: {openshift_cluster_admin_password}
+:api_url: {openshift_api_server_url}
+
+[source,yaml,subs="attributes"]
+----
+oc login --insecure-skip-tls-verify=false -u {admin_user} -p {admin_pwd} {api_url}
+----
 
 * Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
 
-  git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 
 * Steps to automate the creation of workbench , s3 storage and model serving part only.
 git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
@@ -109,113 +116,6 @@ image:OpenShift-AI-post-script-run.png[Post deployent script completion]
 
 * Process of workbench creation, model creation and storing in onnx format in S3 storage and Model serving
 is all automated using the above script.
-
-Following is explanation of how its done step by step including re-training of the model..
-
-=== Model training
-
-YOLOv5 has already been trained to recognize some objects. Here we are
-going to use a technique called Transfer Learning to adjust YOLOv5 to
-recognize a custom set of images.
-
-==== Transfer Learning
-
-Transfer learning is a machine learning technique in which a model
-trained on one task is repurposed or adapted to another related task.
-Instead of training a new model from scratch, transfer learning allows
-the use of a pre-trained model as a starting point, which can
-significantly reduce the amount of data and computing resources needed
-for training.
-
-The idea behind transfer learning is that the knowledge gained by a
-model while solving one task can be applied to a new task, provided that
-the two tasks are similar in some way. By leveraging pre-trained models,
-transfer learning has become a powerful tool for solving a wide range of
-problems in various domains, including natural language processing,
-computer vision, and speech recognition.
-
-Ultralytics have fully integrated the transfer learning process in
-YOLOv5, making it easy for us to do. Let’s go!
-
-==== Environment and prerequisites
-
-* This training should be done in a *Data Science Project* to be able to
-modify the Workbench configuration (see below the /dev/shm issue).
-* YOLOv5 is using *PyTorch*, so in RHOAI it’s better to start with a
-notebook image already including this library, rather than having to
-install it afterwards.
-* PyTorch is internally using shared memory (/dev/shm) to exchange data
-between its internal worker processes. However, default container engine
-configurations limit this memory to the bare minimum, which can make the
-process exhaust this memory and crash. The solution is to manually
-increase this memory by mounting a specific volume with enough space at
-this emplacement. This problem will be fixed in an upcoming version.
-Meanwhile you can use
-**https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1.28/html-single/1.28_release_notes/index#known-issues_RHOAI-8939_relnotes[this
-procedure]\{:target=“_blank”}**.
-* Finally, a *GPU* is strongly recommended for this type of training.
-
-==== Data Preparation
-
-To train the model we will of course need some data. In this case a
-sufficient number of images for the various classes we want to
-recognize, along with their labels and the definitions of the bounding
-boxes for the object we want to detect.
-
-In this example we will use images from
-https://storage.googleapis.com/openimages/web/index.html[Google’s Open
-Images]\{:target=“_blank”}. We will work with 3 classes: *Bicycle*,
-*Car* and *Traffic sign*.
-
-We have selected only a few classes in this example to speed up the
-process, but of course feel free to adapt and choose the ones you want.
-
-For this first step (This step is already completed when you ran setup.sh script earlier):
-
-* If not already done, create your Data Science Project,
-* Create a Workbench of type *PyTorch*, with at least *8Gi* of memory,
-*1 GPU* and *20GB* of storage.
-* Apply
-https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1.28/html-single/1.28_release_notes/index#known-issues_RHOAI-8939_relnotes[this
-procedure]\{:target=“_blank”} to increase shared memory.
-* Start the workbench.
-* Clone the repository
-https://github.com/rh-aiservices-bu/yolov5-transfer-learning\{:target=“_blank”},
-open the notebook 01-data_preparation.ipynb and follow the instructions.
-
-Once you have completed to whole notebook the Dataset is ready for
-training!
-
-==== Training
-
-In this example, we will do the training with the smallest base model
-available to save some time. Of course you can change this base model
-and adapt the various hyperparameters of the training to improve the
-result.
-
-For this second step, from the same workbench environment, open the
-notebook `02-model_training.ipynb` and follow the instructions.
-
-!!! warning The amount of memory you have assigned to your Workbench has
-a great impact on the batch size you will be able to work with,
-independently of the size of your GPU. For example, a batch size of 128
-will barely fit into an 8Gi of memory Pod. The higher the better, until
-it breaks… Which you will find out soon anyway, after the first 1-2
-epochs.
-
-!!! note During the training, you can launch and access Tensorboard by:
-
-....
-  - Opening a Terminal tab in Jupyter
-  - Launch Tensorboard from this terminal with `tensorboard --logdir yolov5/runs/train`
-  - Access Tensorboard in your browser using the same Route as your notebook, but replacing the `.../lab/...` part by `.../proxy/6006/`. Example: `https://yolov5-yolo.apps.cluster-address/notebook/yolo/yolov5/proxy/6006/`
-....
-
-Once you have completed to whole notebook you have a model that is able
-to recognize the three different classes on a given image.
-
-.Test Image
-image:img_test.jpg[Test Image]
 
 === Model Serving
 
@@ -261,6 +161,9 @@ will use in your Data Connection on RHOAI. At the moment it has to be an
 S3-Compatible Object Storage, and the model must be in it own folder
 (not at the root of the bucket).
 
+In this case , you can open minio dashboard, and upload this file to the s3 bucket.
+We have already done this step in automated script setup.sh earlier and have yolov5.onnx model in the s3 bucket.
+
 ==== Serving the model
 
 Here we can use the standard configuration path for RHOAI Model Serving:
@@ -277,6 +180,8 @@ https://developers.redhat.com/learn/openshift-data-science/model-serving-rhods[i
 this Learning Path]\{:target=“_blank”} or in the
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1-latest/html/working_on_data_science_projects/model-serving-on-openshift-data-science_model-serving[RHOAI
 documentation]\{:target=“_blank”}.
+
+We have already completed this step in previous setup.sh automated script.
 
 ==== gRPC connection
 
@@ -365,3 +270,114 @@ but it’s kind of difficult right now.
 * gRPC is *wwwwwaaaayyyyy much faster* than REST. With the exact same
 model serving instance, as showed in the notebooks, inferences are about
 30x faster. That is huge when you have score of images to process.
+
+Optional Section if you have time, else read through this section for information on how model training works.
+
+Following is explanation of how Model Training is done step by step including re-training of the model.
+Note that we are not using GPU's so you can go till the last step in this section but the model training will not work (its going to be too slow to see that its working) as we do not have GPU's,
+but you will get the idea. If you want to run this on GPU's, you can start a CI with `Base RHODS with NVIDIA on AWS` from demo.redhat.com, clone this repo and you should be good to go.
+
+=== Model training
+
+YOLOv5 has already been trained to recognize some objects. Here we are
+going to use a technique called Transfer Learning to adjust YOLOv5 to
+recognize a custom set of images.
+
+==== Transfer Learning
+
+Transfer learning is a machine learning technique in which a model
+trained on one task is repurposed or adapted to another related task.
+Instead of training a new model from scratch, transfer learning allows
+the use of a pre-trained model as a starting point, which can
+significantly reduce the amount of data and computing resources needed
+for training.
+
+The idea behind transfer learning is that the knowledge gained by a
+model while solving one task can be applied to a new task, provided that
+the two tasks are similar in some way. By leveraging pre-trained models,
+transfer learning has become a powerful tool for solving a wide range of
+problems in various domains, including natural language processing,
+computer vision, and speech recognition.
+
+Ultralytics have fully integrated the transfer learning process in
+YOLOv5, making it easy for us to do. Let’s go!
+
+==== Environment and prerequisites
+
+* This training should be done in a *Data Science Project* to be able to
+modify the Workbench configuration (see below the /dev/shm issue).
+* YOLOv5 is using *PyTorch*, so in RHOAI it’s better to start with a
+notebook image already including this library, rather than having to
+install it afterwards.
+* PyTorch is internally using shared memory (/dev/shm) to exchange data
+between its internal worker processes. However, default container engine
+configurations limit this memory to the bare minimum, which can make the
+process exhaust this memory and crash. The solution is to manually
+increase this memory by mounting a specific volume with enough space at
+this emplacement. This problem will be fixed in an upcoming version.
+Meanwhile you can use
+**https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1.28/html-single/1.28_release_notes/index#known-issues_RHOAI-8939_relnotes[this
+procedure]\{:target=“_blank”}**.
+* Finally, a *GPU* is strongly recommended for this type of training.
+
+==== Data Preparation
+
+To train the model we will of course need some data. In this case a
+sufficient number of images for the various classes we want to
+recognize, along with their labels and the definitions of the bounding
+boxes for the object we want to detect.
+
+In this example we will use images from
+https://storage.googleapis.com/openimages/web/index.html[Google’s Open
+Images]\{:target=“_blank”}. We will work with 3 classes: *Bicycle*,
+*Car* and *Traffic sign*.
+
+We have selected only a few classes in this example to speed up the
+process, but of course feel free to adapt and choose the ones you want.
+
+For this first step (This step is already completed when you ran setup.sh script earlier), you can open the workbench juypter notebook and clone the repo:
+
+* If not already done, create your Data Science Project,
+* Create a Workbench of type *PyTorch*, with at least *8Gi* of memory,
+*1 GPU* and *20GB* of storage.
+* Apply
+https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1.28/html-single/1.28_release_notes/index#known-issues_RHOAI-8939_relnotes[this
+procedure]\{:target=“_blank”} to increase shared memory.
+* Start the workbench.
+* Clone the repository
+https://github.com/rh-aiservices-bu/yolov5-transfer-learning\{:target=“_blank”},
+open the notebook 01-data_preparation.ipynb and follow the instructions.
+
+Once you have completed the whole notebook, the Dataset is ready for
+training!
+
+==== Training
+
+In this example, we will do the training with the smallest base model
+available to save some time. Of course you can change this base model
+and adapt the various hyperparameters of the training to improve the
+result.
+
+For this second step, from the same workbench environment, open the
+notebook `02-model_training.ipynb` and follow the instructions.
+
+!!! warning The amount of memory you have assigned to your Workbench has
+a great impact on the batch size you will be able to work with,
+independently of the size of your GPU. For example, a batch size of 128
+will barely fit into an 8Gi of memory Pod. The higher the better, until
+it breaks… Which you will find out soon anyway, after the first 1-2
+epochs.
+
+!!! note During the training, you can launch and access Tensorboard by:
+
+....
+  - Opening a Terminal tab in Jupyter
+  - Launch Tensorboard from this terminal with `tensorboard --logdir yolov5/runs/train`
+  - Access Tensorboard in your browser using the same Route as your notebook, but replacing the `.../lab/...` part by `.../proxy/6006/`. Example: `https://yolov5-yolo.apps.cluster-address/notebook/yolo/yolov5/proxy/6006/`
+....
+
+Once you have completed to whole notebook you have a model that is able
+to recognize the three different classes on a given image.
+
+.Test Image
+image:img_test.jpg[Test Image]
