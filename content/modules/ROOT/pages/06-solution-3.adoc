@@ -173,25 +173,40 @@ ONNX defines a common set of operators - the building blocks of machine learning
 deep learning models - and a common file format to enable AI developers to use models
 with a variety of frameworks, tools, runtimes, and compilers
 
-. We will first need to convert model.pt to the ONNX format.
-.. Open the workbench from your OpenShift AI dashboard: {rhodh_dashboard}[window=_blank].
+. We will learn how to convert model.pt to the ONNX format. You can run this notebook and check.
 +
 ****
+.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard: {rhodh_dashboard}[window=_blank].
++
+*****
 image:open-workbench.png[Workbench to Open]
-****
-.. From your workbench, clone the repository
-https://github.com/rh-aiservices-bu/yolov5-model-serving\{:target=“_blank”}.
+*****
+.. Clone the repository
+https://github.com/ritzshah/object-detection-model-serving-yolov5.git\{:target=“_blank”}.
 +
-****
+*****
 image:clone-model-serving-repo.png[Clone Model Serving Repo]
+*****
+
+.. Open the notebook `01-yolov5_to_onnx.ipynb` and read the
+instructions in this notebook.
+
+.. Select `Kernel` and `Restart Kernel and Run All Cells`.
++
+*****
+image:onnx-run-all-cells.png[Run all Cells]
+*****
+
+.. This will create and store the new onnx file.
++
+*****
+image:post-onnx-run.png[Post completed of running all the cells]
+*****
 ****
 
-.. Open the notebook `01-yolov5_to_onnx.ipynb` and follow the
-instructions.
-.. The notebook will guide you through all the steps for the conversion.
 If you don’t want to do it at this time, you can also find in this repo
 the original YOLOv5 ``nano'' model, `yolov5n.pt`, and its already
-converted ONNX version, `yolov5n.onnx`.
+converted ONNX version, `yolov5n.onnx` in the same repository.
 
 Once converted, you can save/upload your ONNX model to the storage you
 will use in your Data Connection on RHOAI. At the moment it has to be an
@@ -203,18 +218,42 @@ https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain}
 and upload this file to the s3 bucket which you can call during your model deployment.
 
 ****
-We have already done this above step in automated script setup.sh earlier and have yolov5.onnx model in the s3 bucket which is being deployed by OpenShift AI Model Serving Server and exposed as a gRPC or restful link to infer.
+We have already completed the above steps in this section using automated script setup.sh earlier and have yolov5.onnx model in the s3 bucket being deployed by OpenShift AI Model Serving Server and exposed as a gRPC & restful api for inference service as shown here:
+*****
+image:OpenShift-AI-post-script-run.png[Inference Service]
+*****
 ****
 
 ==== Serving the model
 
-Here we can use the standard configuration path for RHOAI Model Serving:
+NOTE::
+****
+* This section is only for understanding how a model is deployed from s3 storage in OpenShift AI dashboard.
+Just read through this section as we have completed model deployment form s3 storage using automated setup script earlier.
+* Note the *gRPC service route* and note it down as we will need it for next section when we consume the deployed model.
+****
+
+Here we can use the standard configuration path for Red Hat OpenShift AI (RHOAI) Model Serving:
 
 * Create a Data Connection to the storage where you saved your model. In
 this example we don’t need to expose an external Route, but of course
 you can. In this case though, you won’t be able to directly see the
-internal gRPC and REST endpoints in the RHOAI UI, you will have to get
-them from the Network->Services panel in the OpenShift Console.
+internal gRPC and REST endpoints in the RHOAI UI.
+
++
+****
+. You will have to get the gRPC URL from the Network->Services->modelmesh-serving panel in the OpenShift Console:
+{openshift_cluster_console_url} with {openshift_cluster_admin_username} and {openshift_cluster_admin_password}.
++
+*****
+image:gRPC-url-image.png[gRPC URL in OpenShift]
+*****
++
+*****
+NOTE:: Get the gRPC url from the above procedure and store it, as you will need it for next section.
+*****
+****
+
 * Create a Model Server, then deploy the model using the ONNX format.
 
 !!! note You can find full detailed versions of this procedure
@@ -224,7 +263,11 @@ https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_sel
 documentation]\{:target=“_blank”}.
 
 ****
-We have already completed these step in previous by running `setup.sh` automated script.
+We have already completed these steps in previous by running `setup.sh` automated script.
+When you login to Red Hat OpenShift AI Dashboard and go to Data Science Project, you can see there the deployed model.
+*****
+image:OpenShift-AI-post-script-run.png[Deployed Model]
+*****
 ****
 
 ==== gRPC connection
@@ -246,27 +289,60 @@ you want to learn more about this, the conversion can be done using the
 https://grpc.io/docs/protoc-installation/[protoc]\{:target=“_blank”}
 tool.
 
-You can use the notebook `02-grpc.ipynb` to connect to the interface and
-test some of the services. You will see that many ``possible'' services
-from ModelMesh are unfortunately simply not implemented with the
-OpenVino backend at the time of this writing. But at least ModelMetadata
+****
+. You can use the notebook `02-grpc.ipynb` to connect to the interface and
+test some of the services. You will see that many `possible` services
+from ModelMesh are not yet implemented in here. But at least ModelMetadata
 will give some information on the formats we have to use for inputs and
 outputs when doing the inference.
+****
 
 ==== Consuming the model over gRPC
+* Execute this next sub-section:
 
-In the `03-remote_inference_grpc.ipynb` notebook, you will find a full
+*****
+. Select `03-remote_inference_grpc.ipynb` notebook.
+.. You will need the gRPC service route which you got earlier which is:
+
+    modelmesh-serving.object-detection-yolov5.svc.cluster.local
+
+.. You will also need the model name as deployed using OpenShift AI dashboard which is:
+
+  object-detection-yolov5-model
+
+.. This is how you get the model name from OpenShift AI dashboard:
++
+****
+image:OpenShift-AI-post-script-run.png[object-detection-yoolv5-model name]
+****
+
+.. Verify that these values are set correctly in the `03-remote_inference_grpc.ipynb`
++
+****
+grpc_host = 'modelmesh-serving.object-detection-yolov5.svc.cluster.local'
+
+grpc_port = 8033
+
+model_name = 'object-detection-yolov5-model'
+
+classes_file = 'coco.yaml'
+****
+
+.. Run the complete notebook and check how this notebook connects to the deployed model using gRPC route set in OpenShift and provides you inference which is object detecion.
+*****
+
+* In the `03-remote_inference_grpc.ipynb` notebook, you will find a full
 example on how to query the grpc endpoint to make an inference. It is
 backed by the file `remote_infer_grpc.py`, where most of the relevant
 code is:
 
-* Image preprocessing on L35: reads the image and transforms it in a
+** Image preprocessing on L35: reads the image and transforms it in a
 proper numpy array
-* gRPC request content building on L44: transforms the array in the
+** gRPC request content building on L44: transforms the array in the
 expected input shape (refer to model metadata obtained in the previous
 notebook), then flatten it as expected by ModelMesh.
-* gRPC calling on L58.
-* Response processing on L73: reshape the response from flat array to
+** gRPC calling on L58.
+** Response processing on L73: reshape the response from flat array to
 expected output shape (refer to model metadata obtained in the previous
 notebook), run NMS to remove overlapping boxes, draw the boxes from
 results.
@@ -279,6 +355,37 @@ benchmark on processing/inference time.
 image:inference_grpc.png[Inference gRPC]
 
 ==== Consuming the model over REST
+
+* Execute this next sub-section:
+
+*****
+. Select `04-remote_inference_rest.ipynb` notebook.
+.. You will need the REST inference service route which you get from OpenShift AI dashboard:
+
+    https://object-detection-yolov5-model-object-detection-yolov5.{openshift_cluster_ingress_domain}/v2/models/object-detection-yolov5-model/infer
+
+.. This is how you get the RESET inference service route from OpenShift AI dashboard:
++
+****
+image:OpenShift-AI-post-script-run.png[object-detection-yoolv5-model name]
+****
+
+.. You will also need the model name as deployed using OpenShift AI dashboard which is given below, you can also check the same from the above image:
+
+  object-detection-yolov5-model
+
+.. Verify that these values are set correctly in the `04-remote_inference_rest.ipynb`
++
+****
+infer_url = 'https://object-detection-yolov5-model-object-detection-yolov5.{openshift_cluster_ingress_domain}/v2/models/object-detection-yolov5-model/infer'
+
+model_name = 'object-detection-yolov5-model'
+
+classes_file = 'coco.yaml'
+****
+
+.. Run the complete notebook and check how this notebook connects to the deployed model using gRPC route set in OpenShift and provides you inference which is object detecion.
+*****
 
 In the `04-remote_inference_rest.ipynb` notebook, you will find a full
 example on how to query the gRPC endpoint to make an inference. It is
