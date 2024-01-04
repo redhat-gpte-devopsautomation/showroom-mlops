@@ -58,6 +58,7 @@ go to Hub Control Panel and Stop the same as shown below.
 image:hub-control-1.png[Hub Control Panel]
 * Alternatively when you login to your OpenShift AI dashboard again,
 you can select `Enabled Jupyter application`, `Launch` it to get to the running server and `Stop notebook server`.
+
 * Stop the notebook server
 image:stop-notebook-server.png[Stop Notebook Server]
 
@@ -75,10 +76,11 @@ oc login --insecure-skip-tls-verify=false -u {admin_user} -p {admin_pwd} {api_ur
 
 * Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
 
-git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+  git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 
 * Steps to automate the creation of workbench , s3 storage and model serving part only.
-git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
+
+  git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 
 * Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
 
