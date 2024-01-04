@@ -1,6 +1,11 @@
 = Red Hat OpenShift AI and Model Serving
 :navtitle: 3: Demo Red Hat OpenShift AI
 :numbered:
+:admin_user: {openshift_cluster_admin_username}
+:admin_pwd: {openshift_cluster_admin_password}
+:api_url: {openshift_api_server_url}
+:g_uid: {GUID}
+:sandbox_zoneid: {sandbox_name}
 
 == Understanding Red Hat OpenShift AI basic capabilities.
 
@@ -8,10 +13,14 @@ As a Red Hat Architect you are to demonstrate Red Hat OpenShift AI model serving
 to GLOBEX data scientist team so that they can move to RHOAI's new capabilities for their Model Serving requirments.
 
 . Objectives :
-.. Demonstrate OpenShift AI model serving capability
+.. Demonstrate OpenShift AI model serving capability.
+.. Automatically create workbench in OpenShift AI and deploy the model.
+.. Work with S3 storage using Minio.
+.. Understand how to work with the deployed models and use it for inference.
+.. Explore pipeline creation part with Elyra (Currently out of scope).
 
-We will demonstrate object detection using YOLO (You Only Look Once) which is a popular object detection and image segmentation model,
-to recognize specific objects in pictures, and how to deploy and use this model. This wil also help demonstrate RHOAI features.
+We will be using object detection using YOLO (You Only Look Once) which is a popular object detection and image segmentation model,
+to recognize specific objects in pictures, and demonstrate how it meets the above defined objectives. This wil help you learn RHOAI features.
 
 === More about YOLO and YOLOv5
 
@@ -40,59 +49,62 @@ autonomous vehicles, security and surveillance, and medical imaging. It
 has also been used to win several competitions, such as the COCO Object
 Detection Challenge and the DOTA Object Detection Challenge.
 
-We will start with Data Preparation following by Training and Model Serving.
+We will start with Data Preparation followed by Training and Model Serving.
 Finally we will see how to consume this model over gRPC or REST.
 
 There are newer versions of Yolo available, but we will stick to v5.
 
-.. Logging into Red Hat OpenShift AI
+=== Lets deploy the model and realted pre-requisites using automated scripts and yaml based deployment.
+. Logging into Red Hat OpenShift AI
++
+.. Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
+.. Click on `Log in with OpenShift`
+.. Log in as `{openshift_cluster_admin_username}` with the password `{openshift_cluster_admin_password}`
+.. Click *Allow Selected Permissions* to Authorize the access
 
-* Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
-* Click on `Log in with OpenShift`
-* Log in as `{openshift_cluster_admin_username}` with the password `{openshift_cluster_admin_password}`
-* Click *Allow Selected Permissions* to Authorize the access
-
-You should not have any jupyterhub notebook running for this user. Just incase you have a running notebook then you can stop.
-* If you already have the previous notebook server running,
-go to Hub Control Panel and Stop the same as shown below.
++
+.. You should not have any jupyterhub notebook running for this user `{openshift_cluster_admin_username}`.
++
+.. Just incase you have a running notebook then you can stop it, else skip to next point.
+* Go to Hub Control Panel and Stop the same as shown below.
++
+****
 image:hub-control-1.png[Hub Control Panel]
-* Alternatively when you login to your OpenShift AI dashboard again,
+****
+* Alternatively, when you login to your OpenShift AI dashboard again,
 you can select `Enabled Jupyter application`, `Launch` it to get to the running server and `Stop notebook server`.
-
-* Stop the notebook server
++
+****
 image:stop-notebook-server.png[Stop Notebook Server]
-
-* Once you stop the notebook server, you should switch over to terminal tab on your showroom browser window
-and login to the cluster using the below command.
-
-:admin_user: {openshift_cluster_admin_username}
-:admin_pwd: {openshift_cluster_admin_password}
-:api_url: {openshift_api_server_url}
-
+****
+. Automate workbench creation and Model Deployment.
+.. Switch over to terminal tab on your showroom browser window
+.. Clone the repo and run the script.
+... First, login to the cluster using the below command,
++
+****
 [source,subs="attributes"]
 ----
 oc login --insecure-skip-tls-verify=false -u {admin_user} -p {admin_pwd} {api_url}
 ----
-
-* Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
-
-  git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
-
-* Steps to automate the creation of workbench , s3 storage and model serving part only.
-
-  git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
-
-* Update the sandbox id in the minio/setup-bucket-configmap.yaml as shown below.
-
-Note: minio is a very simple way of implemented S3 storage but its not recommended for production use.
-For production use, you should leverage Container Storage like OpenShift Data Foundation.
-
-:g_uid: {GUID}
-:sandbox_zoneid: {sandbox_name}
-
-* Run this section in the terminal window (showroom terminal tab) to update minio's setup-bucket-configmap.
+****
++
+... Clone the repository which we need to run to create our workbench with S3 storage and model serving deployed.
+Steps to automate the creation of workbench , s3 storage and model serving part only.
++
+****
+git clone https://github.com/ritzshah/object-detection-model-serving-yolov5.git
 ****
 
+... Minio storage configmap setup.
++
+****
+* We use Minio which is a very simple way of implementing S3 storage for demo purposes only and its not recommended for production use.
+For production use, you should leverage Container Storage like Red Hat OpenShift Data Foundation.
+****
+.... Update the sandbox id in the minio/setup-bucket-configmap.yaml by running the command in the terminal window (showroom terminal tab) to update minio's setup-bucket-configmap.
++
+****
 [source,yaml,subs="attributes"]
 ----
 cat << EOF > /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml/minio/setup-bucket-configmap.yaml
@@ -107,21 +119,29 @@ data:
 EOF
 ----
 ****
++
+... Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
++
+****
+[source]
+----
+cd /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml
+./setup.sh
+----
+****
 
-* Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
-
-  cd object-detection-model-serving-yolov5/deployment-yaml
-  ./setup.sh
-
-* Post deployment of this script, you should see this in your OpenShift AI dashboard. (Data Science Projects)
+.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard. (Data Science Projects)
++
+****
 image:OpenShift-AI-post-script-run.png[Post deployent script completion]
+****
 
-* Process of workbench creation, model creation and storing in onnx format in S3 storage and Model serving
-is all automated using the above script.
+. Process of workbench creation, model creation and storing in onnx format in S3 storage and Model serving
+is now complete using the above script. Next we learn how to consume this model being deployed using above process.
 
 === Model Serving
 
-We are going to serve a YOLOv5 model using the ONNX format, a general
+We are serving a YOLOv5 model using the ONNX format, a general
 purpose open format built to represent machine learning models. RHOAI
 Model Serving includes the OpenVino serving runtime that accepts two
 formats for models: OpenVino IR, its own format, and ONNX.
@@ -139,21 +159,36 @@ hesitate to have a look at it directly.
 * YOLOv5 is using PyTorch, so in RHOAI it’s better to start with a
 notebook image already including this library, rather than having to
 install it afterwards.
-* Although not necessary as in this example we won’t use the model we
-trained in the previous section, the same environment can totally be
-reused.
 
 ==== Converting a YOLOv5 model to ONNX
 
-YOLOv5 is based on PyTorch. So base YOLOv5 models, or the ones you
-retrain using this framework, will come in the form of a `model.pt`
-file. We will first need to convert it to the ONNX format.
+YOLOv5 is based on PyTorch (but we are fine with the workbench we have for now).
+So base YOLOv5 models, or the ones you retrain using this framework,
+will come in the form of a `model.pt` file. We will first need to convert it into onnx format.
+This is what our model serving server understands and hence we need to deploy our model using this onnx format.
 
-* From your workbench, clone the repository
+`Open Neural Network Exchange`(ONNX) is the open standard for machine learning interoperability.
+ONNX is an open format built to represent machine learning models.
+ONNX defines a common set of operators - the building blocks of machine learning and
+deep learning models - and a common file format to enable AI developers to use models
+with a variety of frameworks, tools, runtimes, and compilers
+
+. We will first need to convert model.pt to the ONNX format.
+.. Open the workbench from your OpenShift AI dashboard: {rhodh_dashboard}[window=_blank].
++
+****
+image:open-workbench.png[Workbench to Open]
+****
+.. From your workbench, clone the repository
 https://github.com/rh-aiservices-bu/yolov5-model-serving\{:target=“_blank”}.
-* Open the notebook `01-yolov5_to_onnx.ipynb` and follow the
++
+****
+image:clone-model-serving-repo.png[Clone Model Serving Repo]
+****
+
+.. Open the notebook `01-yolov5_to_onnx.ipynb` and follow the
 instructions.
-* The notebook will guide you through all the steps for the conversion.
+.. The notebook will guide you through all the steps for the conversion.
 If you don’t want to do it at this time, you can also find in this repo
 the original YOLOv5 ``nano'' model, `yolov5n.pt`, and its already
 converted ONNX version, `yolov5n.onnx`.
@@ -163,8 +198,13 @@ will use in your Data Connection on RHOAI. At the moment it has to be an
 S3-Compatible Object Storage, and the model must be in it own folder
 (not at the root of the bucket).
 
-In this case , you can open minio dashboard, and upload this file to the s3 bucket.
-We have already done this step in automated script setup.sh earlier and have yolov5.onnx model in the s3 bucket.
+In this case , you can open minio dashboard
+https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain} with `minioadmin` as username and password,
+and upload this file to the s3 bucket which you can call during your model deployment.
+
+****
+We have already done this above step in automated script setup.sh earlier and have yolov5.onnx model in the s3 bucket which is being deployed by OpenShift AI Model Serving Server and exposed as a gRPC or restful link to infer.
+****
 
 ==== Serving the model
 
@@ -183,7 +223,9 @@ this Learning Path]\{:target=“_blank”} or in the
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1-latest/html/working_on_data_science_projects/model-serving-on-openshift-data-science_model-serving[RHOAI
 documentation]\{:target=“_blank”}.
 
-We have already completed this step in previous setup.sh automated script.
+****
+We have already completed these step in previous by running `setup.sh` automated script.
+****
 
 ==== gRPC connection
 
@@ -273,13 +315,15 @@ but it’s kind of difficult right now.
 model serving instance, as showed in the notebooks, inferences are about
 30x faster. That is huge when you have score of images to process.
 
-Optional Section if you have time, else read through this section for information on how model training works.
+Below is Optional Section to read through and understand how model training works.
 
 Following is explanation of how Model Training is done step by step including re-training of the model.
-Note that we are not using GPU's so you can go till the last step in this section but the model training will not work (its going to be too slow to see that its working) as we do not have GPU's,
-but you will get the idea. If you want to run this on GPU's, you can start a CI with `Base RHODS with NVIDIA on AWS` from demo.redhat.com, clone this repo and you should be good to go.
+Note that we are not using GPU's so you can go till the last step in this section but the model training will not work as we do not have GPU's, but you will get the idea.
+If you want to run this on GPU's, you can start a CI with `Base RHODS with NVIDIA on AWS` from demo.redhat.com, clone this repo and you should be good to go.
+There are CI's available in RHDP (demo.redhat.com) to work with OpenShift AI and GPU's e.g. NVIDIA or Intel Gaudi Accelerators.
 
-=== Model training
+=== Model training [OPTIONAL - For Reading Purpose Only], it needs GPU and so this section is only for reading purpose.
+The last step will not work unless you use an environment with GPU.
 
 YOLOv5 has already been trained to recognize some objects. Here we are
 going to use a technique called Transfer Learning to adjust YOLOv5 to
