@@ -6,7 +6,7 @@
 :api_url: {openshift_api_server_url}
 :g_uid: {GUID}
 :sandbox_zoneid: {sandbox_name}
-:openshift_ap:{openshift_cluster_ingress_domain}
+:openshift_api: {openshift_cluster_ingress_domain}
 
 == Understanding Red Hat OpenShift AI basic capabilities.
 
