@@ -6,10 +6,10 @@
 Product Manager (PM) for clothing category along with Marketing Team reviews sentiment analysis and respective comments.
 They conclude that cost seems to be a major issue for sentiments and comes up with a discounting offer.
 PM approaches data scientist team to come up with an object detection based discount coupon solution.
-- Customer goes to a store app or online to take picture of the product which they want to buy.
-- Based on the Machine Learning logic, object is detected and a discount is offered.
-- Customer keys in this discount online or shows to the Shop Manager for discount.
-- Customer avails discount which eventually will turn the sentiments positive.
+  - Customer goes to a store app or online to take picture of the product which they want to buy.
+  - Based on the Machine Learning logic, object is detected and a discount is offered.
+  - Customer keys in this discount online or shows to the Shop Manager for discount.
+  - Customer avails discount which eventually will turn the sentiments positive.
 
 . Accessing and testing your deployed Application
 

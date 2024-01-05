@@ -78,7 +78,7 @@ image::03_grafana_dashboard_login.jpg[Grafana Dashboard Login, 400]
 .GLOBEX Sentiment Analysis Dashboard Page
 image::03_globex_grafana_dashboard.jpg[GLOBEX Sentiment Analysis Dashboard, 640]
 
-.. Post the earlier 3 customer ormore comments, you will see dashboard with more negative sentiments (ensure that your comments resemble more negative sentiments to make this look more real).
+.. Post the earlier 3 customer comments, you will see dashboard with more negative sentiments (ensure that your comments resemble more negative sentiments to make this look more real).
 This dashboard shows that the KPI (Key Performance Indicator of more than 60% positive sentiments is the ask from Product Manager) for GLOBEX Clothing Product Manager is not met and so the PM needs to do something to get the KPI of positive sentiments back to more than 60%. That is when a marketing strategy is evolved and data scientist team is roped in.
 We will see how to challenge is overcome in next section.
 +

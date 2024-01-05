@@ -6,6 +6,7 @@
 :api_url: {openshift_api_server_url}
 :g_uid: {GUID}
 :sandbox_zoneid: {sandbox_name}
+:openshift_ap:{openshift_cluster_ingress_domain}
 
 == Understanding Red Hat OpenShift AI basic capabilities.
 
@@ -19,8 +20,10 @@ to GLOBEX data scientist team so that they can move to RHOAI's new capabilities 
 .. Understand how to work with the deployed models and use it for inference.
 .. Explore pipeline creation part with Elyra (Currently out of scope).
 
-We will be using object detection using YOLO (You Only Look Once) which is a popular object detection and image segmentation model,
-to recognize specific objects in pictures, and demonstrate how it meets the above defined objectives. This wil help you learn RHOAI features.
+We will be using object detection using YOLO (You Only Look Once) which is a popular
+object detection and image segmentation model,
+to recognize specific objects in pictures, and demonstrate how it meets the above defined objectives.
+This wil help you learn RHOAI features.
 
 === More about YOLO and YOLOv5
 
@@ -54,7 +57,7 @@ Finally we will see how to consume this model over gRPC or REST.
 
 There are newer versions of Yolo available, but we will stick to v5.
 
-=== Lets deploy the model and realted pre-requisites using automated scripts and yaml based deployment.
+=== Lets deploy the model and related pre-requisites using automated scripts and yaml based deployment.
 . Logging into Red Hat OpenShift AI
 +
 .. Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
@@ -181,8 +184,9 @@ with a variety of frameworks, tools, runtimes, and compilers
 *****
 image:open-workbench.png[Workbench to Open]
 *****
+.. Login using {openshift_cluster_admin_username} as the username and {openshift_cluster_admin_password} password.
 .. Clone the repository
-https://github.com/ritzshah/object-detection-model-serving-yolov5.git\{:target=“_blank”}.
+https://github.com/ritzshah/object-detection-model-serving-yolov5.git[window=_blank].
 +
 *****
 image:clone-model-serving-repo.png[Clone Model Serving Repo]
@@ -258,9 +262,9 @@ NOTE:: Get the gRPC url from the above procedure and store it, as you will need 
 
 !!! note You can find full detailed versions of this procedure
 https://developers.redhat.com/learn/openshift-data-science/model-serving-rhods[in
-this Learning Path]\{:target=“_blank”} or in the
+this Learning Path][window=_blank] or in the
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1-latest/html/working_on_data_science_projects/model-serving-on-openshift-data-science_model-serving[RHOAI
-documentation]\{:target=“_blank”}.
+documentation]\[window=_blank].
 
 ****
 We have already completed these steps in previous by running `setup.sh` automated script.
@@ -286,7 +290,7 @@ any programming language, has already been converted to usable Python
 modules defining objects and classes to be used to interact with the
 service: `grpc_predict_v2_pb2.py` and `grpc_predict_v2_pb2_grpc.py`. If
 you want to learn more about this, the conversion can be done using the
-https://grpc.io/docs/protoc-installation/[protoc]\{:target=“_blank”}
+https://grpc.io/docs/protoc-installation/[window=_blank]”}
 tool.
 
 ****
@@ -301,7 +305,7 @@ outputs when doing the inference.
 * Execute this next sub-section:
 
 *****
-. Select `03-remote_inference_grpc.ipynb` notebook.
+. Select `03-remote_inference_grpc.ipynb` notebook from OpenShift AI workbench.
 .. You will need the gRPC service route which you got earlier which is:
 
     modelmesh-serving.object-detection-yolov5.svc.cluster.local
@@ -359,10 +363,13 @@ image:inference_grpc.png[Inference gRPC]
 * Execute this next sub-section:
 
 *****
-. Select `04-remote_inference_rest.ipynb` notebook.
+. Select `04-remote_inference_rest.ipynb` notebook from OpenShift AI workbench.
 .. You will need the REST inference service route which you get from OpenShift AI dashboard:
-
-    https://object-detection-yolov5-model-object-detection-yolov5.{openshift_cluster_ingress_domain}/v2/models/object-detection-yolov5-model/infer
++
+[source,subs="attributes"]
+****
+https://object-detection-yolov5-model-object-detection-yolov5.{openshift_api}/v2/models/object-detection-yolov5-model/infer
+****
 
 .. This is how you get the RESET inference service route from OpenShift AI dashboard:
 +
@@ -470,7 +477,7 @@ increase this memory by mounting a specific volume with enough space at
 this emplacement. This problem will be fixed in an upcoming version.
 Meanwhile you can use
 **https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1.28/html-single/1.28_release_notes/index#known-issues_RHOAI-8939_relnotes[this
-procedure]\{:target=“_blank”}**.
+procedure]\[window=_blank]”}**.
 * Finally, a *GPU* is strongly recommended for this type of training.
 
 ==== Data Preparation
@@ -482,7 +489,7 @@ boxes for the object we want to detect.
 
 In this example we will use images from
 https://storage.googleapis.com/openimages/web/index.html[Google’s Open
-Images]\{:target=“_blank”}. We will work with 3 classes: *Bicycle*,
+Images]\[window=_blank]”}. We will work with 3 classes: *Bicycle*,
 *Car* and *Traffic sign*.
 
 We have selected only a few classes in this example to speed up the
@@ -495,10 +502,10 @@ For this first step (This step is already completed when you ran setup.sh script
 *1 GPU* and *20GB* of storage.
 * Apply
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1.28/html-single/1.28_release_notes/index#known-issues_RHOAI-8939_relnotes[this
-procedure]\{:target=“_blank”} to increase shared memory.
+procedure]\[window=_blank]”} to increase shared memory.
 * Start the workbench.
 * Clone the repository
-https://github.com/rh-aiservices-bu/yolov5-transfer-learning\{:target=“_blank”},
+https://github.com/rh-aiservices-bu/yolov5-transfer-learning\[window=_blank]”},
 open the notebook 01-data_preparation.ipynb and follow the instructions.
 
 Once you have completed the whole notebook, the Dataset is ready for
@@ -513,6 +520,7 @@ result.
 
 For this second step, from the same workbench environment, open the
 notebook `02-model_training.ipynb` and follow the instructions.
+Note that the steps to epochs will not work if you are not using GPU's.
 
 !!! warning The amount of memory you have assigned to your Workbench has
 a great impact on the batch size you will be able to work with,
@@ -529,7 +537,7 @@ epochs.
   - Access Tensorboard in your browser using the same Route as your notebook, but replacing the `.../lab/...` part by `.../proxy/6006/`. Example: `https://yolov5-yolo.apps.cluster-address/notebook/yolo/yolov5/proxy/6006/`
 ....
 
-Once you have completed to whole notebook you have a model that is able
+Once you have completed this notebook you have a model that is able
 to recognize the three different classes on a given image.
 
 .Test Image
