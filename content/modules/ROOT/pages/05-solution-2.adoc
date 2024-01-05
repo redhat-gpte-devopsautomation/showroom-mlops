@@ -192,7 +192,7 @@ to now point to `discount_data/datasets/wednesday.csv`.
 . Now, rerun the notebook by clicking *Restart Kernel and Run All* as we
 did before.
 . This will update the discount model with a new discount model trained
-on wednesday’s data.
+on wednesday’s data. Wait till the last cell is executed and you see the output.
 ****
 
 .. We could also run the sanity-check here, but the pipeline will take care
@@ -262,7 +262,6 @@ image:argocd_apps.png[ArgoCD Applications]
 
 .. One way to illustrate the benefits of ArgoCD is to try to perform an
 ad-hoc change in OpenShift.
-
 +
 ****
 * Open the OpenShift Console.
@@ -273,15 +272,16 @@ ad-hoc change in OpenShift.
 * You will see that the deployment called `object-detection-rest`
 currently has a single pod (replica)
 image:object_detection_one_pod.png[Single pod object detection deployment]
-* If you click on the 3-dots icon at the end of that line, you can
-choose to *Edit pod count* or you can increase the pod count using the up arrow as shown in the below image.
+* Select the Deployment (left hand side menu), you will see three deployment. If you click on the 3-dots icon for `object-detect-rest` deployment, you can
+choose to *Edit pod count* or alternatives from your previous step you can increase the pod count using the up arrow to 5.
+** image:edit_three_dots_deployment.png[Deployment pod Update using Edit option]
 * Change that `1` into a `5` and click *Save*
-image:object_detection_five_pod.png[Multi pod object detection deployment]
-
+* Nativage back to the object-detection-rest deployment by selecting that deployment and you will see that the pods are scaled up to 5.
+** image:object_detection_five_pod.png[Multi pod object detection deployment]
 ****
 .. By default, ArgoCD will reconcile things every 5 minutes. You can autosync as well,
 but for learning purpose we have not used autosync here.
-
++
 .. In the interest of time, we can trigger this to happen sooner. Let’s see
 how from ArgoCD UI.
 +
