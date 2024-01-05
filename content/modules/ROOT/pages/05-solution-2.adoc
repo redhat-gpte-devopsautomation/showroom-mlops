@@ -96,11 +96,10 @@ directory
 .. Retrain the model
 +
 ****
-... Now that we’ve cloned the project, let’s retrain the model. We will use
-a notebook to do so.
+... Now that we’ve cloned the project, let’s retrain the model. Currently we are in the arc-model folder on our jupyterhub notebook server.
 
-... Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI file
-system tab
+... From the left side tab, Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI jupyterhub notebook server UI which you got in earlier section.
+** image:open-notebook-05.png[open notebook]
 ... This notebook contains the code for training our discount model.
 ... In the third cell you can see a reference to our ``monday'' dataset
 called `discount_data/datasets/monday.csv`
@@ -111,7 +110,8 @@ All Cells*
 ** image:csv-restart-run-all.png[csv-restart-run-all]
 ... Confirm by clicking *Restart*
 ... Once all the cells have run, you will notice that some of the files in
-the folder *5_discount_models* have been updated.
+the folder *5_discount_models* have been updated. This is what you will also see as output of running cell 15.
+** image:cell15_output.png[Cell 15 output]
 ****
 
 +
@@ -149,7 +149,7 @@ Our dev app should automatically rebuild since that we’ve pushed our
 changes to the git repository.
 
 [arabic]
-. Follow the link to your `OpenShift Console URL'.
+. Follow the link to your `OpenShift Console URL' and login.
 +
 *****
 .. Find the login details for accessing Openshift Console below:
@@ -157,9 +157,6 @@ changes to the git repository.
 ... *Username:* {openshift_cluster_admin_username}
 ... *Password:* {openshift_cluster_admin_password}
 *****
-
-. Log in to OpenShift using the username: `user1` and password:
-`openshift`
 . Select `Administrator` view.
 image:select-administrator.png[select-administrator]
 . Navigate to *Pipelines* , then *Pipelines* (yes, again), and then go
