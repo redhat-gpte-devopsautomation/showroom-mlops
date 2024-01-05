@@ -87,7 +87,7 @@ image::03_negative_kpi.jpg[Grafana Dashboard showing KPI not met for clothing pr
 ****
 
 . Before we move onto implementing the marketing strategy (in out next section) to improve the KPI for clothing product category, lets understand the technical aspects of how the above sentiment analysis works.
-. Once a customer provides feedback via comments, it gets will pushed to kafka message queue and is picked up by intelligent sentiment analysis application to analyse the sentiment of this comment.
+. Once a customer provides feedback via comments, this message is pushed to kafka message queue and is picked up by intelligent sentiment analysis application to analyse the sentiment of this comment.
 Once its analyzed, it will send the comment along with sentiment to another kafka message queue.
 Note that there is another application running and which moderates the comments which are not using proper language or are abusive in nature. Those messages are then discarded.
 This output is then moved to a Time Series InfluxDB database for storing the results for dashboard and historical purpose as well as to another database from where its visible back to the GLOBEX UI as customer comments.
@@ -135,10 +135,11 @@ image::06_openshift_login-2.jpg[OpenShift, 600]
 
 ****
 
-* Let us now trace the flow of the reviews across the various systems
-** Earlier when you login to GLBOEX App UI as a customer and commented on a product (for e.g. we commented on cothing category - T-shirt above), it gets submitted to the *globex.reviews* kafka topic, which then gets picked up by the Intelligent App *aiml-moderate-reviews*
+* Let us now trace the flow of the reviews across the various systems.
+** On you login, Go from Administrator to Developer View (Side Tab) -> Topology View -> Select Project sentiment-analysis
+** Earlier when you login to GLBOEX App UI as a customer and commented on a product (for e.g. we commented on clothing category - T-shirt above), it gets submitted to the *globex.reviews* kafka topic, which then gets picked up by the Intelligent App *aiml-moderate-reviews*
 This service routes the reviews to either *reviews.moderated* topic or *reviews.denied* topic depending on whether review's language was acceptable or not.
-You go to your topology view as a developer and ensure that you are selecting sentiment-analysis project. If you review carefullly, you can see that all the aiml services and the persist review service are all knative serverless services.
+When go to your topology view as a developer, selecting sentiment-analysis project carefully review all the AI/ML services and the persist review service. These are all knative serverless services.
 
 +
 ****
