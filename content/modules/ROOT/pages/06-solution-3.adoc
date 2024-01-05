@@ -364,14 +364,14 @@ image:inference_grpc.png[Inference gRPC]
 
 *****
 . Select `04-remote_inference_rest.ipynb` notebook from OpenShift AI workbench.
-.. You will need the REST inference service route which you get from OpenShift AI dashboard:
+.. You will need the below REST inference service route which you get from OpenShift AI dashboard:
 +
 [source,subs="attributes"]
 ****
 https://object-detection-yolov5-model-object-detection-yolov5.{openshift_api}/v2/models/object-detection-yolov5-model/infer
 ****
 
-.. This is how you get the RESET inference service route from OpenShift AI dashboard:
+.. This is where you get the above REST based inference service route from OpenShift AI dashboard:
 +
 ****
 image:OpenShift-AI-post-script-run.png[object-detection-yoolv5-model name]
