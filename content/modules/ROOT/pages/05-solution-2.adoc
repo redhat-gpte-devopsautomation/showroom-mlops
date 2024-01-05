@@ -6,10 +6,11 @@
 Product Manager (PM) for clothing category along with Marketing Team reviews sentiment analysis and respective comments.
 They conclude that cost seems to be a major issue for sentiments and comes up with a discounting offer.
 PM approaches data scientist team to come up with an object detection based discount coupon solution.
-  - Customer goes to a store app or online to take picture of the product which they want to buy.
-  - Based on the Machine Learning logic, object is detected and a discount is offered.
-  - Customer keys in this discount online or shows to the Shop Manager for discount.
-  - Customer avails discount which eventually will turn the sentiments positive.
+
+* Customer goes to a store app or online to take picture of the product which they want to buy.
+* Based on the Machine Learning logic, object is detected and a discount is offered.
+* Customer keys in this discount online or shows to the Shop Manager for discount.
+* Customer avails discount which eventually will turn the sentiments positive.
 
 . Accessing and testing your deployed Application
 
@@ -59,11 +60,15 @@ hyperlink in the JupyterHub tile
 ... Click *Allow Selected Permissions* to Authorize the access
 ... Choose *Standard Data Science* as the image and *Small* as the
 Notebook Size
-... Click on *Start Server*
+... Click on *Start Server*. Wait for the process to finish starting the notebook server.
+Since its for the 1st time the notebook image is pulled and hence it take time to start the notebook.
+... Once the process is completed, click on `Open in new tab`
+... This will start a new notebook tab.
+... Again login using the same user1 / openshift as the username and password, Allow all permissions should take you to the juypterhub notebook server UI.
 ****
 
 +
-.. Git clone the arc-model project
+.. Next is to clone the arc-model project repository in the jupyterhub notebook server you just started.
 
 +
 ****
@@ -79,13 +84,12 @@ information here:
 ... Copy the Git Clone URL: {gitea_console_url}/lab-user/arc-model.git
 ** image:copy-git-url.png[copy-git-url]
 ... Navigate back to your JupyterLab tab
-... Click on the Git Icon (fourth of the 6 big icons on the left)
-... Click on the *Clone a repository* button
+... Click on the Git Icon (fourth of the 6 big icons on the left menur bar). See the image.
 ** image:clone-repo.png[clone-repo]
+... Click on the *Clone a repository* button (Again see the image above)
 ... Paste the URL and click *Clone*
-... In the File Explorer menu, double-click on *arc-model* to move to that
+... In the File Explorer menu (left side) you will see arc-model folder created, double-click on *arc-model* to move to that
 directory
-
 ****
 
 +
@@ -102,7 +106,7 @@ system tab
 called `discount_data/datasets/monday.csv`
 ... Update the content of the cell so that it points to our second
 dataset: `discount_data/datasets/tuesday.csv`
-... Select the *Run* menu, then the last option: *Restart Kernel and Run
+... Select the *Run* menu, then the option: *Restart Kernel and Run
 All Cells*
 ** image:csv-restart-run-all.png[csv-restart-run-all]
 ... Confirm by clicking *Restart*
