@@ -3,11 +3,21 @@
 
 == The Story Behind The Solution
 
-This solution highlights an architecture that is both scalable and efficient, designed to capture and respond to streaming data using Kafka as the streaming platform and AIML. Leveraging an Event-Driven Architecture, this system seamlessly connects to and consumes data from various systems, services, and data sources, triggered by specific events. Moreover, it incorporates a GitOps approach, facilitating collaboration between data scientists and application teams in deploying models and implementing business logic. This integration ensures a streamlined and collaborative development process within a modern landscape.
+Presented here is an architecture emphasizing scalability and efficiency.
+It is crafted to capture and respond to streaming data using Kafka as the streaming platform and AIML.
+Operating on an Event-Driven Architecture, the system seamlessly connects to and consumes data from
+various systems, services, and data sources, triggered by specific events.
+Furthermore, it employs a GitOps approach, fostering collaboration between data scientists and application
+teams in deploying models and implementing business logic.
+This integration guarantees a streamlined and collaborative development process within a modern landscape.
 
-This architecture demonstrates how an Event-Driven Architecture with Red Hat AMQ Streams and OpenShift Serverless can help build an intelligent system with the OpenShift Data Science platform to drive business insights and an event-driven workflow.
+Illustrating how an Event-Driven Architecture with Red Hat AMQ Streams and OpenShift Serverless can assist
+in constructing an intelligent system using the OpenShift Data Science platform.
+This system facilitates the generation of business insights and an event-driven workflow.
 
-This solution pattern extends Globex, a fictitious retail store that has undergone a modernization journey and has already adopted Kafka as a streaming platform. Globex now wants to extend its eCommerce website to allow customers to leave their reviews of the product catalog.
+This particular solution pattern extends Globex, a fictional retail store that has undergone a
+modernization journey and has already embraced Kafka as a streaming platform.
+Globex now aims to expand its eCommerce website, allowing customers to share their reviews of the product catalog.
 
 Globex would like to:
 
