@@ -369,7 +369,7 @@ image:inference_grpc.png[Inference gRPC]
 
 *****
 . Select `04-remote_inference_rest.ipynb` notebook from OpenShift AI workbench.
-.. You will need the below REST inference service route which you get from OpenShift AI dashboard:
+.. You will need to use the below REST inference service route which you get from OpenShift AI dashboard as depicted in the image below:
 +
 [source,subs="attributes"]
 ****
