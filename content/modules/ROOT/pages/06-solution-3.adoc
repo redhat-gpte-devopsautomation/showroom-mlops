@@ -60,6 +60,9 @@ There are newer versions of Yolo available, but we will stick to v5.
 === Lets deploy the model and related pre-requisites using automated scripts and yaml based deployment.
 . Logging into Red Hat OpenShift AI
 +
+[IMPORTANT]
+Please ensure that you are logged in as `{openshift_cluster_admin_username}`
+
 .. Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
 .. Click on `Log in with OpenShift`
 .. Log in as `{openshift_cluster_admin_username}` with the password `{openshift_cluster_admin_password}`
@@ -180,7 +183,7 @@ with a variety of frameworks, tools, runtimes, and compilers
 . We will learn how to convert model.pt to the ONNX format. You can run this notebook and check.
 +
 ****
-.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard: {rhodh_dashboard}[window=_blank].
+.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard: {rhodh_dashboard}[√.
 +
 *****
 image:open-workbench.png[Workbench to Open]
@@ -219,7 +222,8 @@ S3-Compatible Object Storage, and the model must be in it own folder
 (not at the root of the bucket).
 
 In this case , you can open minio dashboard
-https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain} with `minioadmin` as username and password,
+https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain}[window=_blank]### Model Metadata
+ with `minioadmin` as username and password,
 and upload this file to the s3 bucket which you can call during your model deployment.
 
 ****
@@ -231,12 +235,12 @@ image:OpenShift-AI-post-script-run.png[Inference Service]
 
 ==== Serving the model
 
-NOTE::
-****
+[NOTE]
+====
 * This section is only for understanding how a model is deployed from s3 storage in OpenShift AI dashboard.
 Just read through this section as we have completed model deployment form s3 storage using automated setup script earlier.
 * Note the *gRPC service route* and note it down as we will need it for next section when we consume the deployed model.
-****
+====
 
 Here we can use the standard configuration path for Red Hat OpenShift AI (RHOAI) Model Serving:
 
@@ -248,25 +252,25 @@ internal gRPC and REST endpoints in the RHOAI UI.
 +
 ****
 . You will have to get the gRPC URL from the Network->Services->modelmesh-serving panel in the OpenShift Console:
-{openshift_cluster_console_url} with {openshift_cluster_admin_username} and {openshift_cluster_admin_password}.
+{openshift_cluster_console_url}[window=_blank] with {openshift_cluster_admin_username} and {openshift_cluster_admin_password}.
 +
 *****
 image:gRPC-url-image.png[gRPC URL in OpenShift]
 *****
 +
-*****
-NOTE:: Get the gRPC url from the above procedure and store it, as you will need it for next section.
-*****
+
+[NOTE]
+Get the gRPC url from the above procedure and store it, as you will need it for next section.
 ****
 
 * Create a Model Server, then deploy the model using the ONNX format.
-
-!!! note You can find full detailed versions of this procedure
-https://developers.redhat.com/learn/openshift-data-science/model-serving-rhods[in
-this Learning Path][window=_blank] or in the
++
+[TIP]
+You can find full detailed versions of this procedure
+https://developers.redhat.com/learn/openshift-data-science/model-serving-rhods[in this Learning Path, window=_blank] or in the
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1-latest/html/working_on_data_science_projects/model-serving-on-openshift-data-science_model-serving[RHOAI
-documentation]\[window=_blank].
-
+documentation, window=_blank].
++
 ****
 We have already completed these steps in previous by running `setup.sh` automated script.
 When you login to Red Hat OpenShift AI Dashboard and go to Data Science Project, you can see there the deployed model.
