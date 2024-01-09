@@ -79,7 +79,7 @@ without affecting the others.
 ... The Gitea URL to use should be provided together with your environment
 information here:
 ... *Gitea URL:* {gitea_console_url}[window=_blank]
-... Sign in to Gitea as user `lab-user` with password `openshift`.
+... Sign in to Gitea as user `user1` with password `openshift`.
 ... Navigate to the *arc-model* git repo.
 ... Copy the Git Clone URL: {gitea_console_url}/lab-user/arc-model.git
 ** image:copy-git-url.png[copy-git-url]
