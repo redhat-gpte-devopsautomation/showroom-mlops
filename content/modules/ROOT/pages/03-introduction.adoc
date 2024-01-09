@@ -15,7 +15,7 @@ Illustrating how an Event-Driven Architecture with Red Hat AMQ Streams and OpenS
 in constructing an intelligent system using the OpenShift Data Science platform.
 This system facilitates the generation of business insights and an event-driven workflow.
 
-This particular solution pattern extends Globex, a fictional retail store that has undergone a
+The solution pattern extends Globex, a fictional retail store that has undergone a
 modernization journey and has already embraced Kafka as a streaming platform.
 Globex now aims to expand its eCommerce website, allowing customers to share their reviews of the product catalog.
 
