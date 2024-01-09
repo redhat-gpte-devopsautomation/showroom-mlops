@@ -133,7 +133,8 @@ cd /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml
 ----
 ****
 
-.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard. (Data Science Projects)
+.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Data Science Projects).
+Make sure that you are logged in as `{openshift_cluster_admin_username}` with the password `{openshift_cluster_admin_password}`
 +
 ****
 image:OpenShift-AI-post-script-run.png[Post deployent script completion]
