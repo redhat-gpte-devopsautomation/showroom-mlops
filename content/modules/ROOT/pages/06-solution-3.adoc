@@ -130,11 +130,13 @@ cd /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml
 ----
 
 .. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Data Science Projects). 
+
 +
 [IMPORTANT]
-----
+====
 Ensure that you are logged in as `{openshift_cluster_admin_username}` with the password `{openshift_cluster_admin_password}`
-----
+====
+
 
 +
 image:OpenShift-AI-post-script-run.png[Post deployent script completion]
@@ -207,7 +209,6 @@ https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain}
 We have already completed the above steps in this section using automated script setup.sh earlier and have yolov5.onnx model in the s3 bucket being deployed by OpenShift AI Model Serving Server and exposed as a gRPC & restful api for inference service as shown here:
 ====
 
-+
 image:OpenShift-AI-post-script-run.png[Inference Service]
 
 ****
