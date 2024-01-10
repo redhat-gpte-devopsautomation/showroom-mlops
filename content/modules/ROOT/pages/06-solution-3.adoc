@@ -244,7 +244,7 @@ Get the gRPC url from the above procedure and store it, as you will need it for 
 ====
 ****
 
-* Create a Model Server, then deploy the model using the ONNX format.
+. Create a Model Server, then deploy the model using the ONNX format.
 +
 ****
 [TIP]
