@@ -213,192 +213,170 @@ image:OpenShift-AI-post-script-run.png[Inference Service]
 
 ****
 
-==== Serving the model
+=== Serving the model
 
 [NOTE]
 ====
-* This section is only for understanding how a model is deployed from s3 storage in OpenShift AI dashboard.
-Just read through this section as we have completed model deployment form s3 storage using automated setup script earlier.
+* This section is only for understanding how a model is deployed from s3 storage in OpenShift AI dashboard. Just read through this section as we have completed model deployment form s3 storage using automated setup script earlier.
+
 * Note the *gRPC service route* and note it down as we will need it for next section when we consume the deployed model.
 ====
 
-Here we can use the standard configuration path for Red Hat OpenShift AI (RHOAI) Model Serving:
+. Here we can use the standard configuration path for Red Hat OpenShift AI (RHOAI) Model Serving:
 
-* Create a Data Connection to the storage where you saved your model. In
++
+Create a Data Connection to the storage where you saved your model. In
 this example we don’t need to expose an external Route, but of course
 you can. In this case though, you won’t be able to directly see the
 internal gRPC and REST endpoints in the RHOAI UI.
 
 +
 ****
-. You will have to get the gRPC URL from the Network->Services->modelmesh-serving panel in the OpenShift Console:
-{openshift_cluster_console_url}[window=_blank] with {openshift_cluster_admin_username} and {openshift_cluster_admin_password}.
-+
-*****
-image:gRPC-url-image.png[gRPC URL in OpenShift]
-*****
-+
+. You will have to get the gRPC URL from the Network->Services->modelmesh-serving panel in the OpenShift Console: {openshift_cluster_console_url}[window=_blank] with {openshift_cluster_admin_username} and {openshift_cluster_admin_password}.
 
++
+image:gRPC-url-image.png[gRPC URL in OpenShift]
+
++
 [NOTE]
+====
 Get the gRPC url from the above procedure and store it, as you will need it for next section.
+====
 ****
 
 * Create a Model Server, then deploy the model using the ONNX format.
 +
+****
 [TIP]
+====
 You can find full detailed versions of this procedure
 https://developers.redhat.com/learn/openshift-data-science/model-serving-rhods[in this Learning Path, window=_blank] or in the
 https://access.redhat.com/documentation/en-us/red_hat_openshift_data_science_self-managed/1-latest/html/working_on_data_science_projects/model-serving-on-openshift-data-science_model-serving[RHOAI
 documentation, window=_blank].
-+
-****
+====
+
+[NOTE]
+====
 We have already completed these steps in previous by running `setup.sh` automated script.
 When you login to Red Hat OpenShift AI Dashboard and go to Data Science Project, you can see there the deployed model.
-*****
+====
+
 image:OpenShift-AI-post-script-run.png[Deployed Model]
-*****
 ****
 
-==== gRPC connection
+=== gRPC connection
 
-With the gRPC interface of the model server, you have access to
-different Services. They are described, along with their format, in the
-`grpc_predict_v2.proto` file.
+With the gRPC interface of the model server, you have access to different Services. They are described, along with their format, in the `grpc_predict_v2.proto` file.
 
-There are lots of important information in this file: how to query the
-service, how to format the data,… This is really important as the data
-format is not something you can ``invent'', and not exactly the same
-compared as the REST interface (!).
+There are lots of important information in this file: how to query the service, how to format the data,… This is really important as the data format is not something you can ``invent'', and not exactly the same compared as the REST interface (!).
 
-This proto file, which is a service description meant to be used with
-any programming language, has already been converted to usable Python
-modules defining objects and classes to be used to interact with the
-service: `grpc_predict_v2_pb2.py` and `grpc_predict_v2_pb2_grpc.py`. If
-you want to learn more about this, the conversion can be done using the
-https://grpc.io/docs/protoc-installation/[window=_blank]”}
-tool.
+This proto file, which is a service description meant to be used with any programming language, has already been converted to usable Python modules defining objects and classes to be used to interact with the service: `grpc_predict_v2_pb2.py` and `grpc_predict_v2_pb2_grpc.py`. If you want to learn more about this, the conversion can be done using the https://grpc.io/docs/protoc-installation/[window=_blank]”} tool.
 
-****
-. You can use the notebook `02-grpc.ipynb` to connect to the interface and
-test some of the services. You will see that many `possible` services
-from ModelMesh are not yet implemented in here. But at least ModelMetadata
-will give some information on the formats we have to use for inputs and
-outputs when doing the inference.
-****
 
-==== Consuming the model over gRPC
-* Execute this next sub-section:
+. You can use the notebook `02-grpc.ipynb` to connect to the interface and test some of the services. You will see that many `possible` services from ModelMesh are not yet implemented in here. But at least ModelMetadata will give some information on the formats we have to use for inputs and outputs when doing the inference.
 
-*****
+
+=== Consuming the model over gRPC
+
+Execute following sub-section:
+
+
 . Select `03-remote_inference_grpc.ipynb` notebook from OpenShift AI workbench.
++
+****
 .. You will need the gRPC service route which you got earlier which is:
-
-    modelmesh-serving.object-detection-yolov5.svc.cluster.local
++
+----
+modelmesh-serving.object-detection-yolov5.svc.cluster.local
+----
 
 .. You will also need the model name as deployed using OpenShift AI dashboard which is:
-
-  object-detection-yolov5-model
++
+----
+object-detection-yolov5-model
+----
 
 .. This is how you get the model name from OpenShift AI dashboard:
 +
-****
 image:OpenShift-AI-post-script-run.png[object-detection-yoolv5-model name]
-****
 
 .. Verify that these values are set correctly in the `03-remote_inference_grpc.ipynb`
 +
-****
+[source,ini]
+----
 grpc_host = 'modelmesh-serving.object-detection-yolov5.svc.cluster.local'
-
 grpc_port = 8033
-
 model_name = 'object-detection-yolov5-model'
-
 classes_file = 'coco.yaml'
-****
+----
 
 .. Run the complete notebook and check how this notebook connects to the deployed model using gRPC route set in OpenShift and provides you inference which is object detecion.
-*****
 
-* In the `03-remote_inference_grpc.ipynb` notebook, you will find a full
-example on how to query the grpc endpoint to make an inference. It is
-backed by the file `remote_infer_grpc.py`, where most of the relevant
-code is:
+.. In the `03-remote_inference_grpc.ipynb` notebook, you will find a full example on how to query the grpc endpoint to make an inference. It is backed by the file `remote_infer_grpc.py`, where most of the relevant code is:
 
-** Image preprocessing on L35: reads the image and transforms it in a
-proper numpy array
-** gRPC request content building on L44: transforms the array in the
-expected input shape (refer to model metadata obtained in the previous
-notebook), then flatten it as expected by ModelMesh.
-** gRPC calling on L58.
-** Response processing on L73: reshape the response from flat array to
-expected output shape (refer to model metadata obtained in the previous
-notebook), run NMS to remove overlapping boxes, draw the boxes from
-results.
+.. Image preprocessing on L35: reads the image and transforms it in a proper numpy array
 
-The notebook gives the example for one image, as well as the processing
-of several ones from the `images` folder. This allows for a small
-benchmark on processing/inference time.
+... gRPC request content building on L44: transforms the array in the expected input shape (refer to model metadata obtained in the previous notebook), then flatten it as expected by ModelMesh.
+... gRPC calling on L58.
+... Response processing on L73: reshape the response from flat array to expected output shape (refer to model metadata obtained in the previous notebook), run NMS to remove overlapping boxes, draw the boxes from results.
 
+. The notebook gives the example for one image, as well as the processing of several ones from the `images` folder. This allows for a small benchmark on processing/inference time.
+
++
 .Inference gRPC
 image:inference_grpc.png[Inference gRPC]
+****
 
-==== Consuming the model over REST
+=== Consuming the model over REST
 
-* Execute this next sub-section:
+Execute following sub-section:
 
-*****
 . Select `04-remote_inference_rest.ipynb` notebook from OpenShift AI workbench.
++
+****
 .. You will need to use the below REST inference service route which you get from OpenShift AI dashboard as depicted in the image below:
 +
 [source,subs="attributes"]
-****
+----
 https://object-detection-yolov5-model-object-detection-yolov5.{openshift_api}/v2/models/object-detection-yolov5-model/infer
-****
+----
 
 .. This is where you get the above REST based inference service route from OpenShift AI dashboard:
 +
-****
 image:OpenShift-AI-post-script-run.png[object-detection-yoolv5-model name]
-****
 
 .. You will also need the model name as deployed using OpenShift AI dashboard which is given below, you can also check the same from the above image:
 
-  object-detection-yolov5-model
++
+----
+object-detection-yolov5-model
+----
 
 .. Verify that these values are set correctly in the `04-remote_inference_rest.ipynb`
 +
-****
+[source,ini]
+----
 infer_url = 'https://object-detection-yolov5-model-object-detection-yolov5.{openshift_cluster_ingress_domain}/v2/models/object-detection-yolov5-model/infer'
-
 model_name = 'object-detection-yolov5-model'
-
 classes_file = 'coco.yaml'
-****
+----
 
 .. Run the complete notebook and check how this notebook connects to the deployed model using gRPC route set in OpenShift and provides you inference which is object detecion.
-*****
 
-In the `04-remote_inference_rest.ipynb` notebook, you will find a full
-example on how to query the gRPC endpoint to make an inference. It is
-backed by the file `remote_infer_rest.py`, where most of the relevant
-code is:
+. In the `04-remote_inference_rest.ipynb` notebook, you will find a full example on how to query the gRPC endpoint to make an inference. It is backed by the file `remote_infer_rest.py`, where most of the relevant code is:
 
-* Image preprocessing on L30: reads the image and transforms it in a
-proper numpy array
-* Payload building on L39: transforms the array in the expected input
-shape (refer to model metadata obtained in the previous notebook).
-* REST calling on L54.
-* Response processing on L60: reshape the response from flat array to
-expected output shape (refer to model metadata obtained in the previous
-notebook), run NMS to remove overlapping boxes, draw the boxes from
-results.
+.. Image preprocessing on L30: reads the image and transforms it in a proper numpy array
+... Payload building on L39: transforms the array in the expected input shape (refer to model metadata obtained in the previous notebook).
+... REST calling on L54.
+... Response processing on L60: reshape the response from flat array to expected output shape (refer to model metadata obtained in the previous notebook), run NMS to remove overlapping boxes, draw the boxes from results.
 
-The notebook gives the example for one image, as well as the processing
-of several ones from the `images` folder. This allows for a small
-benchmark on processing/inference time.
+[NOTE]
+====
+The notebook gives the example for one image, as well as the processing of several ones from the `images` folder. This allows for a small benchmark on processing/inference time.
+====
+****
 
-==== gRPC vs REST
+=== gRPC vs REST
 
 Here are a few elements to help you choose between the two available
 interfaces to query your model:
