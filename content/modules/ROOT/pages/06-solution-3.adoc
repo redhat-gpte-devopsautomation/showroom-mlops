@@ -172,7 +172,9 @@ ONNX is an open format built to represent machine learning models. ONNX defines 
 . We will learn how to convert model.pt to the ONNX format. You can run this notebook and check.
 +
 ****
-.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard. Ensure that the workbench is in `Running` state: {rhodh_dashboard}.
+.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard -> Data Science Projects ->
+object-detection-yolov5 -> Open.
+Ensure that the workbench is in `Running` state: {rhodh_dashboard}.
 +
 image:open-workbench.png[Workbench to Open]
 
