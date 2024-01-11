@@ -203,7 +203,7 @@ If you don’t want to do it at this time, you can also find in this repo the or
 Once converted, you can save/upload your ONNX model to the storage you will use in your Data Connection on RHOAI. At the moment it has to be an S3-Compatible Object Storage, and the model must be in it own folder (not at the root of the bucket).
 
 In this case , you can open minio dashboard
-https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain}[window=_blank]### Model Metadata  with `minioadmin` as username and password, and upload this file to the s3 bucket which you can call during your model deployment.
+https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain}[window=_blank] with `minioadmin` as username and `minioadmin` as password, and upload this file to the s3 bucket which you can call during your model deployment.
 ====
 
 [IMPORTANT]
