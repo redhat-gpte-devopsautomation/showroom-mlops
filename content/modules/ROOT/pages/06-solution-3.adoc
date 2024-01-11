@@ -204,6 +204,7 @@ Once converted, you can save/upload your ONNX model to the storage you will use 
 
 In this case , you can open minio dashboard
 https://minio-console-object-detection-yolov5.{openshift_cluster_ingress_domain}[window=_blank] with `minioadmin` as username and `minioadmin` as password, and upload this file to the s3 bucket which you can call during your model deployment.
+You don't have to do this step as its already done for you.
 ====
 
 [IMPORTANT]
