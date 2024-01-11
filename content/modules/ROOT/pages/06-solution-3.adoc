@@ -179,7 +179,7 @@ image:open-workbench.png[Workbench to Open]
 .. Login using {openshift_cluster_admin_username} as the username and {openshift_cluster_admin_password} password.
 
 .. Clone the repository
-https://github.com/ritzshah/object-detection-model-serving-yolov5.git[window=_blank].
+https://github.com/ritzshah/object-detection-model-serving-yolov5.git[window=_blank]
 +
 image:clone-model-serving-repo.png[Clone Model Serving Repo]
 
