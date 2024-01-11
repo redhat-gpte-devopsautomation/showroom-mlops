@@ -129,7 +129,7 @@ cd /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml
 ./setup.sh
 ----
 
-.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Data Science Projects). 
+.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Data Science Projects).
 
 +
 [IMPORTANT]
@@ -172,7 +172,7 @@ ONNX is an open format built to represent machine learning models. ONNX defines 
 . We will learn how to convert model.pt to the ONNX format. You can run this notebook and check.
 +
 ****
-.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard: {rhodh_dashboard}[√.
+.. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard: {rhodh_dashboard}.
 +
 image:open-workbench.png[Workbench to Open]
 
@@ -467,7 +467,7 @@ training!
 
 In this example, we will do the training with the smallest base model available to save some time. Of course you can change this base model and adapt the various hyperparameters of the training to mprove the result.
 
-. For this second step, from the same workbench environment, open the notebook `02-model_training.ipynb` and follow the instructions. 
+. For this second step, from the same workbench environment, open the notebook `02-model_training.ipynb` and follow the instructions.
 
 +
 [NOTE]
