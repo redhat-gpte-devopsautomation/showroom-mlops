@@ -265,9 +265,10 @@ ad-hoc change in OpenShift.
 +
 ****
 * Open the OpenShift Console.
-... *OpenShift GitOps / ArgoCD URL*: https://{gitops_argocd_url}[window=_blank]
-... *Username:* {gitops_argocd_username}
-... *Password:* {gitops_argocd_admin_password}
+.. Find the login details for accessing Openshift Console below:
+... *Console URL:* {openshift_console_url}[window=_blank]
+... *Username:* {openshift_cluster_admin_username}
+... *Password:* {openshift_cluster_admin_password}
 * Navigate to *Workloads* and then *Deployments*.
 * You will see that the deployment called `object-detection-rest`
 currently has a single pod (replica)
