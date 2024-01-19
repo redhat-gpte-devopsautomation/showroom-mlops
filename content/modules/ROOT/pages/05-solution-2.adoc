@@ -314,7 +314,7 @@ that.
 
 +
 ****
-* Access gitea again
+* Access gitea again : *Gitea URL:* {gitea_console_url}[window=_blank]
 * Make sure you are logged in as `lab-user` with password `openshift`
 * Navigate to the repo called `retail-dev-gitops`
 * In this repo, stay in the `main` branch
