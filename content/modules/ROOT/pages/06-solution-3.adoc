@@ -47,7 +47,7 @@ There are newer versions of Yolo available, but we will stick to v5.
 +
 ****
 [IMPORTANT]
-Please ensure that you are logged in as `{openshift_cluster_admin_username}`
+Please ensure that you are logged in as `{openshift_cluster_admin_username}`. Logout if you are already logged in as user1.
 
 .. Red Hat OpenShift AI URL: {rhodh_dashboard}[window=_blank]
 .. Click on `Log in with OpenShift`
