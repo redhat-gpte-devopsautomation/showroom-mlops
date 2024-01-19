@@ -179,7 +179,7 @@ Ensure that the workbench is in `Running` state: {rhodh_dashboard}.
 +
 image:open-workbench.png[Workbench to Open]
 
-.. Login using {openshift_cluster_admin_username} as the username and {openshift_cluster_admin_password} as the password. Allow selected permissions and proceed.
+.. Login using {openshift_cluster_admin_username} as the username and {openshift_cluster_admin_password} as the password. Allow selected permissions and proceed. First time it takes a while (say a minute to two sometimes) to load the notebook in your browser tab.
 
 .. Clone the repository
 https://github.com/ritzshah/object-detection-model-serving-yolov5.git[window=_blank]
@@ -187,13 +187,13 @@ https://github.com/ritzshah/object-detection-model-serving-yolov5.git[window=_bl
 image:clone-model-serving-repo.png[Clone Model Serving Repo]
 
 
-.. Open the notebook `01-yolov5_to_onnx.ipynb` and read the instructions in this notebook.
+.. Open the notebook `01-yolov5_to_onnx.ipynb` from object-detection-model-serving-yolov5 folder and read the instructions in this notebook.
 
 .. Select `Kernel` and `Restart Kernel and Run All Cells`.
 +
 image:onnx-run-all-cells.png[Run all Cells]
 
-.. This will create and store the new onnx file.
+.. This will create and store the new onnx file. It will take a minute to get the relevant output.
 +
 image:post-onnx-run.png[Post completed of running all the cells]
 
@@ -261,7 +261,7 @@ documentation, window=_blank].
 
 [NOTE]
 ====
-We have already completed these steps in previous by running `setup.sh` automated script.
+We have already completed these steps in previous section by running `setup.sh` automated script.
 When you login to Red Hat OpenShift AI Dashboard and go to Data Science Project, you can see there the deployed model.
 ====
 
@@ -318,11 +318,10 @@ classes_file = 'coco.yaml'
 
 .. In the `03-remote_inference_grpc.ipynb` notebook, you will find a full example on how to query the grpc endpoint to make an inference. It is backed by the file `remote_infer_grpc.py`, where most of the relevant code is:
 
-.. Image preprocessing on L35: reads the image and transforms it in a proper numpy array
+.. Image preprocessing reads the image and transforms it in a proper numpy array
 
-... gRPC request content building on L44: transforms the array in the expected input shape (refer to model metadata obtained in the previous notebook), then flatten it as expected by ModelMesh.
-... gRPC calling on L58.
-... Response processing on L73: reshape the response from flat array to expected output shape (refer to model metadata obtained in the previous notebook), run NMS to remove overlapping boxes, draw the boxes from results.
+... gRPC request content building transforms the array in the expected input shape (refer to model metadata obtained in the previous notebook), then flatten it as expected by ModelMesh.
+... Response processing reshapes the response from flat array to expected output shape (refer to model metadata obtained in the previous notebook), run NMS to remove overlapping boxes, draw the boxes from results.
 
 .. The notebook gives the example for one image, as well as the processing of several ones from the `images` folder. This allows for a small benchmark on processing/inference time.
 
@@ -369,10 +368,9 @@ classes_file = 'coco.yaml'
 
 . In the `04-remote_inference_rest.ipynb` notebook, you will find a full example on how to query the gRPC endpoint to make an inference. It is backed by the file `remote_infer_rest.py`, where most of the relevant code is:
 
-.. Image preprocessing on L30: reads the image and transforms it in a proper numpy array
-... Payload building on L39: transforms the array in the expected input shape (refer to model metadata obtained in the previous notebook).
-... REST calling on L54.
-... Response processing on L60: reshape the response from flat array to expected output shape (refer to model metadata obtained in the previous notebook), run NMS to remove overlapping boxes, draw the boxes from results.
+.. Image preprocessing reads the image and transforms it in a proper numpy array
+... Payload building on transforms the array in the expected input shape (refer to model metadata obtained in the previous notebook).
+... Response processing reshapes the response from flat array to expected output shape (refer to model metadata obtained in the previous notebook), run NMS to remove overlapping boxes, draw the boxes from results.
 
 [NOTE]
 ====
