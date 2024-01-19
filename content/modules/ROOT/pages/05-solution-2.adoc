@@ -310,7 +310,7 @@ OpenShift side for the specific managed apps, and ArgoCD would re-create them al
 
 .. So if we did want more replicas, what we have to do is to do it in the
 Gitea repo, and then get Argo to make that change happen. So let’s do
-that.
+that. Ideally use VSCode or Jupyter notebook to update and push changes to git from Dev env, but not in this case as its a single simple change.
 
 +
 ****

@@ -4,10 +4,11 @@
 
 == Challenge:
 
-. Delete complete retail-rhods-project project from openshift and check yourself that ArogCD reconcile loop will ensure that it brings that project back.
+. Delete complete retail-prod-rhods-project project from openshift and check yourself that ArogCD reconcile loop will ensure that it brings that project back.
 +
 ****
-HINT: ArgoCD Sync.
+HINT: ArgoCD Sync. Also note that object-detection-app-git pod takes some time to get started. You can check using
+object-detection-app-git route to verify that the app is working fine.
 ****
 
 . List down all the products being used to create this workshop.
