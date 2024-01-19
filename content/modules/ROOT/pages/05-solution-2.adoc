@@ -343,7 +343,7 @@ Of course you can always add security at every stage of your pipeline.
 ... Go to your Globex review simulator to introduce multiple comments simultaneously as shown in the below image as POST, select clothing catalogue, then `Try it out` and Execute.
 image:review-simulator.png[Product Review Simulation]
 
-... Ensure that you execute the above step twice to generate 50 comments for clothing category.This is what you see after Execution of the POST is successful.
+... Ensure that you execute the above step 4 to 5 times to generate enough comments for clothing category.This is what you see after Execution of the POST is successful.
 image:review-simulator-success.png[Product Review Simulation Successful Output.]
 ****
 
