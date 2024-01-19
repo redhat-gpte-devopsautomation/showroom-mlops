@@ -250,8 +250,8 @@ application, and then to maintain its state.
 ... *Password:* {gitops_argocd_admin_password}
 
 .. Login to ArgoCD:
-* When you first open up that URL, ≈you may get a warning that ``your
-connection is not private''.
+* When you first open up that URL, ≈you may get a warning that `your
+connection is not private`.
 * Click on *Advanced* and then *Proceed to
 openshift-gitops…….opentlc.com(unsafe)*.
 * You will use the username `admin` and the associated password provided above.
