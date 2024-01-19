@@ -129,7 +129,7 @@ cd /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml
 ./setup.sh
 ----
 
-.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Data Science Projects).
+.. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Select - Data Science Projects -> object-detection-yolov5).
 
 +
 [IMPORTANT]
