@@ -11,6 +11,7 @@
 ** https://www.influxdata.com/[_InfluxDB_,window=_blank]
 ** https://helm.sh/[_Helm_,window=_blank]
 ** https://www.postgresql.org/[_Postgresql_,window=_blank]
+** https://jupyter-notebook.readthedocs.io/en/latest/[_JupyterHub Notebook_,window=_blank]
 
 * *_Reference Articles_*:
 ** https://medium.com/@ritz.shah/gitops-ci-cd-mlops-how-it-all-comes-together-for-an-ai-ml-developer-a9d15e43dccf[_MLOps_,window=_blank]

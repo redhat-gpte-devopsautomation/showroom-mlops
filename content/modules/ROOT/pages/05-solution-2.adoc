@@ -97,6 +97,7 @@ directory
 +
 ****
 ... Now that we’ve cloned the project, let’s retrain the model. Currently we are in the arc-model folder on our jupyterhub notebook server.
+You can get more details about jupyterhub notebook here : https://jupyter-notebook.readthedocs.io/en/latest/[_JupyterHub Notebook_,window=_blank]
 
 ... From the left side tab, Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI jupyterhub notebook server UI which you got in earlier section.
 ** image:open-notebook-05.png[open notebook]
