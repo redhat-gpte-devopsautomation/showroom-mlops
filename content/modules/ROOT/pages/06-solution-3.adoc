@@ -130,6 +130,7 @@ cd /home/lab-user/object-detection-model-serving-yolov5/deployment-yaml
 ----
 
 .. Post deployment of this script, you should see the below image in your OpenShift AI dashboard (Select - Data Science Projects -> object-detection-yolov5).
+When you start the workbench for the first time, it downloads the image and hence takes longer. The status will be Starting for a while. You can always check the event log to understand the progress of the startup process for the workbench server.
 
 +
 [IMPORTANT]
