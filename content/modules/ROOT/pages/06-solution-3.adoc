@@ -174,12 +174,12 @@ ONNX is an open format built to represent machine learning models. ONNX defines 
 +
 ****
 .. Open the workbench `object-detection-yolov5` from your OpenShift AI dashboard -> Data Science Projects ->
-object-detection-yolov5 -> Open (in another tab). 
+object-detection-yolov5 -> Open (in another tab).
 Ensure that the workbench is in `Running` state: {rhodh_dashboard}.
 +
 image:open-workbench.png[Workbench to Open]
 
-.. Login using {openshift_cluster_admin_username} as the username and {openshift_cluster_admin_password} as the password.
+.. Login using {openshift_cluster_admin_username} as the username and {openshift_cluster_admin_password} as the password. Allow selected permissions and proceed.
 
 .. Clone the repository
 https://github.com/ritzshah/object-detection-model-serving-yolov5.git[window=_blank]
