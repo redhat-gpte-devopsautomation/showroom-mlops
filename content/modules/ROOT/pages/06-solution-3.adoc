@@ -121,7 +121,7 @@ EOF
 ----
 
 
-.. Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder:
+.. Run setup.sh script from deploment-yaml folder. Once you clone the git repository, go to the deployment-yaml folder. Review the yaml scripts there and the setup.sh script to understand the deployment:
 +
 [source,textinfo]
 ----
