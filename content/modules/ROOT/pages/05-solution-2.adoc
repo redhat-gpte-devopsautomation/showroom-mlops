@@ -102,7 +102,7 @@ You can get more details about jupyterhub notebook here : https://jupyter-notebo
 ... From the left side tab, Open the Notebook called `5_discount_model.ipynb` from the Red Hat OpenShift AI jupyterhub notebook server UI which you got in earlier section.
 ** image:open-notebook-05.png[open notebook]
 ... This notebook contains the code for training our discount model.
-... In the third cell you can see a reference to our ``monday'' dataset
+... In the third cell you can see a reference to our `monday` dataset
 called `discount_data/datasets/monday.csv`
 ... Update the content of the cell so that it points to our second
 dataset: `discount_data/datasets/tuesday.csv`
@@ -179,7 +179,7 @@ with the discount!
 received the data from wednesday which our data engineers have promised
 will be correct.
 
-.. Even more lucky, our pipeline has prevented us from putting a ``bad''
+.. Even more lucky, our pipeline has prevented us from putting a `bad`
 model into our dev environment. Therefore, we don’t even need to worry
 about rolling back a bad change: the bad change was prevented from
 happening.
